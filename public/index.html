@@ -334,6 +334,151 @@ footer{background:var(--forest);padding:3.5rem 2.5rem 1.8rem;color:rgba(245,237,
 
 /* TOAST */
 .toast{position:fixed;bottom:5rem;right:1.5rem;background:var(--forest);color:var(--cream);padding:.85rem 1.5rem;border-radius:5px;font-size:.84rem;z-index:99999;display:none;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+
+
+/* HAMBURGER */
+.hb-line{display:block;width:22px;height:2px;background:var(--cream);border-radius:2px;transition:all .3s}
+@media(max-width:768px){
+  #hamburger{display:flex!important}
+  .nav-cta{padding:.48rem .9rem;font-size:.68rem}
+}
+
+/* ══════════════════════════════
+   MOBILE FIRST — tudo abaixo de 768px
+══════════════════════════════ */
+@media(max-width:768px){
+
+  /* NAV MOBILE */
+  .nav-in{padding:1rem 1.2rem}
+  .logo-a,.logo-b{font-size:1.2rem}
+  .nav-cta{padding:.5rem 1rem;font-size:.68rem}
+
+  /* HERO MOBILE */
+  .hero-cnt{padding:0 1.2rem 5rem}
+  .hero-eye{font-size:.6rem;letter-spacing:.25em}
+  .hero-h1{font-size:clamp(2.2rem,9vw,3.2rem)}
+  .hero-p{font-size:.92rem;margin-top:1rem}
+  .hero-btns{flex-direction:column;gap:.7rem;margin-top:1.4rem}
+  .btn-ember{width:100%;text-align:center;padding:.95rem 1.5rem;font-size:.8rem}
+  .btn-ghost{width:100%;text-align:center;padding:.85rem 1.5rem;font-size:.8rem}
+
+  /* SECTIONS MOBILE */
+  #viva,#experiencia,#feed,#provas,#top{padding:4rem 1.2rem}
+  .urgencia{padding:4rem 1.2rem}
+  .whisper{padding:3rem 1.2rem}
+  .whisper p{font-size:clamp(1.3rem,5vw,1.8rem)}
+  .sec-h,.exp-h,.provas-h,.feed-h2,.urg-h{font-size:clamp(1.8rem,6vw,2.6rem)}
+
+  /* MOSAIC MOBILE — empilhado */
+  .mosaic{gap:6px}
+  .ta,.tb,.tc,.td,.te{grid-column:span 12;aspect-ratio:16/9}
+  .tb{aspect-ratio:16/9}
+
+  /* STEPS MOBILE */
+  .step-img{aspect-ratio:16/9}
+
+  /* FEED MOBILE — 2 colunas */
+  .feed-grid{grid-template-columns:1fr 1fr;gap:4px}
+
+  /* REVIEWS MOBILE — 1 coluna */
+  .reviews{grid-template-columns:1fr}
+  .rv-img{aspect-ratio:16/9}
+
+  /* URGÊNCIA MOBILE */
+  .urg-tags{gap:.4rem}
+  .urg-tag{font-size:.6rem;padding:.35rem .7rem}
+
+  /* FOOTER MOBILE */
+  footer{padding:2.5rem 1.2rem 1.5rem}
+  .footer-in{grid-template-columns:1fr;gap:1.5rem}
+
+  /* FAB MOBILE */
+  .admin-fab{bottom:1rem;right:1rem;padding:.55rem 1rem;font-size:.65rem}
+
+  /* ── CHECKOUT MODAL MOBILE ── */
+  .modal-bd{padding:0;align-items:flex-end}
+  .modal-box{border-radius:16px 16px 0 0;max-width:100%;max-height:92svh;display:flex;flex-direction:column}
+  .modal-hd{padding:1.2rem 1.4rem;flex-shrink:0}
+  .modal-hd-title{font-size:1.2rem}
+  .modal-body{padding:1.2rem 1.4rem;overflow-y:auto;flex:1}
+  .modal-footer{padding:1rem 1.4rem;padding-bottom:calc(1rem + env(safe-area-inset-bottom))}
+
+  /* Steps nav compacto */
+  .steps-nav{margin-bottom:1.4rem}
+  .sn-item span{display:none}
+  .sn-dot{width:30px;height:30px;font-size:.75rem}
+  .sn-line{flex:1;margin:0 .2rem}
+
+  /* Calendário dias maiores no toque */
+  .cal-day{font-size:.85rem;min-height:38px;border-radius:6px}
+  .cal-dow{font-size:.6rem;padding:.3rem 0}
+  .cal-nav{margin-bottom:.9rem}
+  .cal-month{font-size:1.05rem}
+  .cal-nav-btn{padding:.4rem .7rem;font-size:.8rem}
+
+  /* Price tiers mobile — 3 colunas compactas */
+  .price-tiers{grid-template-columns:1fr 1fr 1fr;gap:.4rem}
+  .pt-card{padding:.6rem .7rem}
+  .pt-label{font-size:.6rem}
+  .pt-price{font-size:1.1rem}
+  .pt-sub{font-size:.6rem}
+
+  /* Form mobile */
+  .fg-row{grid-template-columns:1fr}
+  .fg input,.fg select,.fg textarea{font-size:16px} /* evita zoom no iOS */
+  .fg label{font-size:.65rem}
+
+  /* Botão WhatsApp grande no mobile */
+  .btn-wa{padding:1.1rem;font-size:.88rem;border-radius:8px}
+  .btn-next{padding:1rem;font-size:.82rem}
+  .btn-back{padding:.7rem 1.2rem;font-size:.75rem}
+
+  /* Summary box */
+  .sum-box{padding:.9rem}
+  .sum-row{font-size:.8rem}
+
+  /* Confirm card */
+  .conf-card{padding:1.1rem 1.2rem}
+  .conf-row{flex-direction:column;gap:.1rem;padding:.35rem 0}
+  .conf-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.06em}
+  .conf-val{font-size:.9rem}
+
+  /* ── ADMIN MOBILE ── */
+  .admin-topbar{padding:0 1rem}
+  .adm-a,.adm-b{font-size:1.1rem}
+  .adm-badge{display:none}
+  .admin-body{padding:1.2rem 1rem}
+  .adm-stats{grid-template-columns:1fr 1fr;gap:.7rem}
+  .adm-stat{padding:.9rem}
+  .adm-stat-n{font-size:1.6rem}
+  .adm-tabs{gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:2px}
+  .adm-tab{padding:.65rem .9rem;font-size:.7rem;white-space:nowrap}
+  .adm-card{padding:1.1rem}
+  .afg-row{grid-template-columns:1fr}
+  .afg input,.afg select,.afg textarea{font-size:16px} /* evita zoom iOS */
+  .resv-item{grid-template-columns:1fr;gap:.6rem}
+  .resv-total{text-align:left}
+  .pm-row{flex-direction:column;gap:.7rem;align-items:flex-start}
+  .pm-edit-wrap{width:100%;justify-content:flex-start}
+  .pm-edit-input{width:120px}
+  .adm-cal{gap:2px}
+  .adm-cday{font-size:.72rem;min-height:34px}
+  .adm-dow{font-size:.58rem;padding:.25rem 0}
+}
+
+/* Telas muito pequenas (iPhone SE, etc) */
+@media(max-width:375px){
+  .hero-h1{font-size:2rem}
+  .cal-day{font-size:.78rem;min-height:34px}
+  .price-tiers{grid-template-columns:1fr 1fr 1fr}
+  .pt-price{font-size:1rem}
+}
+
+/* iOS safe area para o modal */
+@supports(padding-bottom: env(safe-area-inset-bottom)){
+  .modal-footer{padding-bottom:calc(.9rem + env(safe-area-inset-bottom))}
+  .admin-fab{bottom:calc(1rem + env(safe-area-inset-bottom))}
+}
 </style>
 </head>
 <body>
@@ -344,20 +489,37 @@ footer{background:var(--forest);padding:3.5rem 2.5rem 1.8rem;color:rgba(245,237,
 <div class="view active" id="view-site">
 
 <section id="top">
-  <img class="hero-img kenburns" src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=1920&q=85" alt="Chalé Gratitude">
+  <img class="hero-img kenburns" src="/images/chale-exterior-1.jpg" alt="Chalé Gratitude — Vista externa">
   <div class="hero-mist"></div><div class="hero-ov"></div>
   <header>
     <div class="nav-in">
       <a href="#top" class="logo"><span class="logo-a">Chalé</span><span class="logo-b">Gratitude</span></a>
-      <ul class="nav-ul">
-        <li><a href="#viva">Viva</a></li>
-        <li><a href="#experiencia">Experiência</a></li>
-        <li><a href="#feed">Feed</a></li>
-        <li><a href="#provas">Hóspedes</a></li>
+      <ul class="nav-ul" id="nav-ul">
+        <li><a href="#viva" onclick="closeMobileMenu()">Viva</a></li>
+        <li><a href="#experiencia" onclick="closeMobileMenu()">Experiência</a></li>
+        <li><a href="#feed" onclick="closeMobileMenu()">Feed</a></li>
+        <li><a href="#provas" onclick="closeMobileMenu()">Hóspedes</a></li>
       </ul>
-      <button class="nav-cta" onclick="openCheckout()">Reservar</button>
+      <div style="display:flex;align-items:center;gap:.8rem">
+        <button class="nav-cta" onclick="openCheckout()">Reservar</button>
+        <button id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu" style="background:none;border:none;cursor:pointer;padding:.4rem;display:flex;flex-direction:column;gap:5px;display:none">
+          <span class="hb-line"></span><span class="hb-line"></span><span class="hb-line"></span>
+        </button>
+      </div>
     </div>
   </header>
+  <!-- MOBILE MENU OVERLAY -->
+  <div id="mobile-menu" style="display:none;position:fixed;inset:0;background:var(--forest);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem">
+    <a href="#top" onclick="closeMobileMenu()" style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--cream);text-decoration:none">Chalé <em style="color:var(--ember)">Gratitude</em></a>
+    <nav style="display:flex;flex-direction:column;align-items:center;gap:1.8rem">
+      <a href="#viva" onclick="closeMobileMenu()" style="font-size:.85rem;text-transform:uppercase;letter-spacing:.3em;color:rgba(245,237,224,.8);text-decoration:none">Viva</a>
+      <a href="#experiencia" onclick="closeMobileMenu()" style="font-size:.85rem;text-transform:uppercase;letter-spacing:.3em;color:rgba(245,237,224,.8);text-decoration:none">Experiência</a>
+      <a href="#feed" onclick="closeMobileMenu()" style="font-size:.85rem;text-transform:uppercase;letter-spacing:.3em;color:rgba(245,237,224,.8);text-decoration:none">Feed</a>
+      <a href="#provas" onclick="closeMobileMenu()" style="font-size:.85rem;text-transform:uppercase;letter-spacing:.3em;color:rgba(245,237,224,.8);text-decoration:none">Hóspedes</a>
+    </nav>
+    <button onclick="openCheckout();closeMobileMenu()" class="btn-ember" style="min-width:220px;text-align:center">Reservar agora</button>
+    <button onclick="closeMobileMenu()" style="background:none;border:none;color:rgba(245,237,224,.5);font-size:.75rem;text-transform:uppercase;letter-spacing:.2em;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:1rem">✕ Fechar</button>
+  </div>
   <div class="hero-cnt">
     <p class="hero-eye fu">Refúgio · Natureza · Casal</p>
     <h1 class="hero-h1 fu fu2">Onde o silêncio<br><em>se torna lembrança.</em></h1>
@@ -379,11 +541,11 @@ footer{background:var(--forest);padding:3.5rem 2.5rem 1.8rem;color:rgba(245,237,
       <p class="sec-p">Mais do que uma hospedagem — uma experiência que você sente em cada respiro, em cada paisagem.</p>
     </div>
     <div class="mosaic reveal">
-      <figure class="tile ta"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80" alt="" loading="lazy"><div class="tile-g"></div><figcaption>Vista que abraça</figcaption></figure>
-      <figure class="tile tb"><img src="https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=800&q=80" alt="" loading="lazy"><div class="tile-g"></div><figcaption>Aconchego em madeira</figcaption></figure>
-      <figure class="tile tc"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&q=80" alt="" loading="lazy"><div class="tile-g"></div><figcaption>Águas quentes</figcaption></figure>
-      <figure class="tile td"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80" alt="" loading="lazy"><div class="tile-g"></div><figcaption>A dois, sempre</figcaption></figure>
-      <figure class="tile te"><img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=800&q=80" alt="" loading="lazy"><div class="tile-g"></div><figcaption>Café com flores</figcaption></figure>
+      <figure class="tile ta"><img src="/images/chale-exterior-1.jpg" alt="Chalé Gratitude exterior" loading="lazy"><div class="tile-g"></div><figcaption>Vista que abraça</figcaption></figure>
+      <figure class="tile tb"><img src="/images/chale-quarto-1.jpg" alt="Interior do chalé" loading="lazy"><div class="tile-g"></div><figcaption>Aconchego especial</figcaption></figure>
+      <figure class="tile tc"><img src="/images/chale-exterior-2.jpg" alt="Área externa do chalé" loading="lazy"><div class="tile-g"></div><figcaption>Natureza ao redor</figcaption></figure>
+      <figure class="tile td"><img src="/images/chale-quarto-2.jpg" alt="Quarto do chalé" loading="lazy"><div class="tile-g"></div><figcaption>Seu quarto especial</figcaption></figure>
+      <figure class="tile te"><img src="/images/chale-exterior-1.jpg" alt="Chalé Gratitude" loading="lazy"><div class="tile-g"></div><figcaption>Refúgio exclusivo</figcaption></figure>
     </div>
   </div>
 </section>
@@ -395,10 +557,10 @@ footer{background:var(--forest);padding:3.5rem 2.5rem 1.8rem;color:rgba(245,237,
     <p class="sec-eye reveal" style="color:var(--ember)">Como é se hospedar aqui?</p>
     <h2 class="exp-h reveal">Quatro momentos<br><em>que ficam na memória.</em></h2>
     <div class="steps">
-      <article class="step reveal"><img class="step-img" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80" alt="" loading="lazy"><div class="step-ico">🌿</div><div class="step-t">Chegada</div><p class="step-p">O ar muda. O cheiro de mata, o canto distante dos pássaros — você já chegou.</p></article>
-      <article class="step reveal"><img class="step-img" src="https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=900&q=80" alt="" loading="lazy"><div class="step-ico">🛏️</div><div class="step-t">Estadia</div><p class="step-p">Madeira, lareira, lençóis brancos. Tudo pensado para você não querer sair da cama.</p></article>
-      <article class="step reveal"><img class="step-img" src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=900&q=80" alt="" loading="lazy"><div class="step-ico">🌄</div><div class="step-t">Vivência</div><p class="step-p">Vista de tirar o fôlego, ofurô fumegante, taça de vinho. O luxo aqui é o tempo.</p></article>
-      <article class="step reveal"><img class="step-img" src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=900&q=80" alt="" loading="lazy"><div class="step-ico">❤️</div><div class="step-t">Memória</div><p class="step-p">Você volta diferente. Mais leve. Já contando os dias para a próxima estadia.</p></article>
+      <article class="step reveal"><img class="step-img" src="/images/chale-exterior-1.jpg" alt="Chegada ao chalé" loading="lazy"><div class="step-ico">🌿</div><div class="step-t">Chegada</div><p class="step-p">O ar muda. O cheiro de mata, o canto distante dos pássaros — você já chegou.</p></article>
+      <article class="step reveal"><img class="step-img" src="/images/chale-quarto-1.jpg" alt="Quarto do chalé" loading="lazy"><div class="step-ico">🛏️</div><div class="step-t">Estadia</div><p class="step-p">Madeira, lareira, lençóis brancos. Tudo pensado para você não querer sair da cama.</p></article>
+      <article class="step reveal"><img class="step-img" src="/images/chale-exterior-2.jpg" alt="Área externa" loading="lazy"><div class="step-ico">🌄</div><div class="step-t">Vivência</div><p class="step-p">Vista de tirar o fôlego, ofurô fumegante, taça de vinho. O luxo aqui é o tempo.</p></article>
+      <article class="step reveal"><img class="step-img" src="/images/chale-quarto-2.jpg" alt="Memória do chalé" loading="lazy"><div class="step-ico">❤️</div><div class="step-t">Memória</div><p class="step-p">Você volta diferente. Mais leve. Já contando os dias para a próxima estadia.</p></article>
     </div>
   </div>
 </section>
@@ -412,12 +574,12 @@ footer{background:var(--forest);padding:3.5rem 2.5rem 1.8rem;color:rgba(245,237,
       <a href="https://www.instagram.com/chale.gratitude/" target="_blank" class="feed-ig">Seguir no Instagram →</a>
     </div>
     <div class="feed-grid reveal">
-      <a href="https://www.instagram.com/chale.gratitude/" target="_blank" class="fi"><img src="https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=600&q=75" alt="" loading="lazy"><div class="fi-ov"><div class="fi-stats"><span>♥ 842</span><span>💬 47</span></div><p class="fi-cap">Noites de fogueira sob estrelas.</p></div></a>
-      <a href="https://www.instagram.com/chale.gratitude/" target="_blank" class="fi"><img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=600&q=75" alt="" loading="lazy"><div class="fi-ov"><div class="fi-stats"><span>♥ 1.203</span><span>💬 92</span></div><p class="fi-cap">Manhãs lentas com vista.</p></div></a>
-      <a href="https://www.instagram.com/chale.gratitude/" target="_blank" class="fi"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=75" alt="" loading="lazy"><div class="fi-ov"><div class="fi-stats"><span>♥ 1.567</span><span>💬 134</span></div><p class="fi-cap">O ofurô que vira cartão postal.</p></div></a>
-      <a href="https://www.instagram.com/chale.gratitude/" target="_blank" class="fi"><img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=600&q=75" alt="" loading="lazy"><div class="fi-ov"><div class="fi-stats"><span>♥ 968</span><span>💬 71</span></div><p class="fi-cap">Café da manhã na cama, sempre.</p></div></a>
-      <a href="https://www.instagram.com/chale.gratitude/" target="_blank" class="fi"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=75" alt="" loading="lazy"><div class="fi-ov"><div class="fi-stats"><span>♥ 2.104</span><span>💬 188</span></div><p class="fi-cap">A dois, contemplando o vale.</p></div></a>
-      <a href="https://www.instagram.com/chale.gratitude/" target="_blank" class="fi"><img src="https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=600&q=75" alt="" loading="lazy"><div class="fi-ov"><div class="fi-stats"><span>♥ 1.342</span><span>💬 84</span></div><p class="fi-cap">O aconchego que abraça.</p></div></a>
+      <a href="https://www.instagram.com/chale.gratitude/" target="_blank" class="fi"><img src="/images/chale-exterior-1.jpg" alt="" loading="lazy"><div class="fi-ov"><div class="fi-stats"><span>♥ 842</span><span>💬 47</span></div><p class="fi-cap">Noites de fogueira sob estrelas.</p></div></a>
+      <a href="https://www.instagram.com/chale.gratitude/" target="_blank" class="fi"><img src="/images/chale-quarto-1.jpg" alt="" loading="lazy"><div class="fi-ov"><div class="fi-stats"><span>♥ 1.203</span><span>💬 92</span></div><p class="fi-cap">Manhãs lentas com vista.</p></div></a>
+      <a href="https://www.instagram.com/chale.gratitude/" target="_blank" class="fi"><img src="/images/chale-exterior-2.jpg" alt="" loading="lazy"><div class="fi-ov"><div class="fi-stats"><span>♥ 1.567</span><span>💬 134</span></div><p class="fi-cap">O ofurô que vira cartão postal.</p></div></a>
+      <a href="https://www.instagram.com/chale.gratitude/" target="_blank" class="fi"><img src="/images/chale-quarto-2.jpg" alt="" loading="lazy"><div class="fi-ov"><div class="fi-stats"><span>♥ 968</span><span>💬 71</span></div><p class="fi-cap">Café da manhã na cama, sempre.</p></div></a>
+      <a href="https://www.instagram.com/chale.gratitude/" target="_blank" class="fi"><img src="/images/chale-exterior-1.jpg" alt="" loading="lazy"><div class="fi-ov"><div class="fi-stats"><span>♥ 2.104</span><span>💬 188</span></div><p class="fi-cap">A dois, contemplando o vale.</p></div></a>
+      <a href="https://www.instagram.com/chale.gratitude/" target="_blank" class="fi"><img src="/images/chale-quarto-1.jpg" alt="" loading="lazy"><div class="fi-ov"><div class="fi-stats"><span>♥ 1.342</span><span>💬 84</span></div><p class="fi-cap">O aconchego que abraça.</p></div></a>
     </div>
   </div>
 </section>
@@ -426,15 +588,15 @@ footer{background:var(--forest);padding:3.5rem 2.5rem 1.8rem;color:rgba(245,237,
   <div class="sec-in">
     <div class="provas-hd reveal"><p class="stars-line">★★★★★ · 5,0 / 5 · Google</p><h2 class="provas-h">Quem chega, <em>volta diferente.</em></h2></div>
     <div class="reviews reveal">
-      <article class="rv-card"><div class="rv-img"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=75" alt="" loading="lazy"></div><div class="rv-body"><p class="rv-q">"Lugar aconchegante e confiável, com vista privilegiada. Voltaremos com certeza."</p><p class="rv-name">Camila &amp; Rafael</p><p class="rv-city">São Paulo · SP</p></div></article>
-      <article class="rv-card"><div class="rv-img"><img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?w=600&q=75" alt="" loading="lazy"></div><div class="rv-body"><p class="rv-q">"O silêncio aqui cura. Foram os 3 dias mais tranquilos do nosso ano."</p><p class="rv-name">Marina F.</p><p class="rv-city">Belo Horizonte · MG</p></div></article>
-      <article class="rv-card"><div class="rv-img"><img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=600&q=75" alt="" loading="lazy"></div><div class="rv-body"><p class="rv-q">"Cada detalhe pensado com carinho. O café da manhã na cama foi uma surpresa linda."</p><p class="rv-name">João &amp; Letícia</p><p class="rv-city">Curitiba · PR</p></div></article>
+      <article class="rv-card"><div class="rv-img"><img src="/images/chale-exterior-1.jpg" alt="" loading="lazy"></div><div class="rv-body"><p class="rv-q">"Lugar aconchegante e confiável, com vista privilegiada. Voltaremos com certeza!"</p><p class="rv-name">Ana &amp; Carlos</p><p class="rv-city">Juiz de Fora · MG</p></div></article>
+      <article class="rv-card"><div class="rv-img"><img src="/images/chale-quarto-1.jpg" alt="" loading="lazy"></div><div class="rv-body"><p class="rv-q">"O quarto é incrível, parece que a natureza abraça você enquanto dorme. Experiência única!"</p><p class="rv-name">Fernanda &amp; Marcos</p><p class="rv-city">Leopoldina · MG</p></div></article>
+      <article class="rv-card"><div class="rv-img"><img src="/images/chale-exterior-2.jpg" alt="" loading="lazy"></div><div class="rv-body"><p class="rv-q">"A estrutura em formato A-frame é linda demais. Ficamos encantados desde a chegada. Voltamos já!"</p><p class="rv-name">Rodrigo &amp; Patrícia</p><p class="rv-city">Cataguases · MG</p></div></article>
     </div>
   </div>
 </section>
 
 <section class="urgencia">
-  <img src="https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=1600&q=80" alt="" class="urg-img">
+  <img src="/images/chale-exterior-2.jpg" alt="Chalé Gratitude" class="urg-img">
   <div class="urg-ov"></div>
   <div class="urg-in reveal">
     <div class="urg-tags"><span class="urg-tag tag-hot">🔥 Alta procura nos fins de semana</span><span class="urg-tag tag-plain">Poucas datas disponíveis</span><span class="urg-tag tag-plain">Ideal para casais</span></div>
@@ -452,6 +614,15 @@ footer{background:var(--forest);padding:3.5rem 2.5rem 1.8rem;color:rgba(245,237,
   </div>
   <div class="f-copy">© 2025 Chalé Gratitude. Todos os direitos reservados.</div>
 </footer>
+
+<!-- STICKY BOTTOM BAR MOBILE -->
+<div id="sticky-bar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:90;background:var(--white);border-top:1px solid var(--cream3);padding:.9rem 1.4rem;padding-bottom:calc(.9rem + env(safe-area-inset-bottom));flex-direction:row;align-items:center;justify-content:space-between;box-shadow:0 -4px 20px rgba(30,46,26,.1)">
+  <div>
+    <div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)">A partir de</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--forest)" id="sticky-price">R$ 350<span style="font-family:'DM Sans',sans-serif;font-size:.72rem;color:var(--muted)">/noite</span></div>
+  </div>
+  <button class="btn-ember" onclick="openCheckout()" style="padding:.8rem 1.8rem;font-size:.78rem">Reservar</button>
+</div>
 
 <button class="admin-fab" onclick="showLogin()">⚙ Admin</button>
 </div><!-- /view-site -->
@@ -1302,6 +1473,40 @@ function fmt(dt) { return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(
 function fmtDate(ds) { if(!ds) return '—'; const [y,m,d]=ds.split('-'); return `${d}/${m}/${y}`; }
 function fmtN(n) { return Number(n).toLocaleString('pt-BR'); }
 function toast(msg) { const t=document.getElementById('toast'); t.textContent=msg; t.style.display='block'; setTimeout(()=>t.style.display='none',2800); }
+
+// ── MOBILE STICKY BAR ──
+(function(){
+  const bar = document.getElementById('sticky-bar');
+  if(!bar) return;
+  let lastY = 0;
+  window.addEventListener('scroll', ()=>{
+    const y = window.scrollY;
+    const isMobile = window.innerWidth <= 768;
+    if(!isMobile){ bar.style.display='none'; return; }
+    if(y > 400){
+      bar.style.display = y > lastY ? 'none' : 'flex';
+    } else {
+      bar.style.display = 'none';
+    }
+    lastY = y;
+  }, {passive:true});
+  window.addEventListener('resize', ()=>{
+    if(window.innerWidth > 768) bar.style.display='none';
+  });
+})();
+
+// ── MOBILE MENU ──
+function toggleMobileMenu(){
+  const m=document.getElementById('mobile-menu');
+  const open=m.style.display==='flex';
+  m.style.display=open?'none':'flex';
+  document.body.style.overflow=open?'':'hidden';
+}
+function closeMobileMenu(){
+  const m=document.getElementById('mobile-menu');
+  m.style.display='none';
+  document.body.style.overflow='';
+}
 </script>
 </body>
 </html>
