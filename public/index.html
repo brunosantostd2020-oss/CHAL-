@@ -2,738 +2,804 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chalé Gratitude — Refúgio na natureza para casais</title>
-<meta name="description" content="Mais do que uma hospedagem, uma experiência que você sente.">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Chalé Gratitude — Cataguases, MG</title>
+<meta name="description" content="Um chalé exclusivo em formato A-Frame na natureza de Cataguases, MG. Perfeito para casais que buscam paz, conforto e uma vista privilegiada.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --forest:#1e2e1a;--cream:#f5ede0;--cream2:#ede3d4;--cream3:#ddd0bb;
-  --ember:#c8622a;--ember2:rgba(200,98,42,.15);--ember3:rgba(200,98,42,.6);
-  --secondary:#ede5d8;--card:#f9f4ed;--muted:#7a6a5a;--white:#fffdf8;
-  --green:#2d5c28;--red:#c0392b;--gold:#c8922a;
-  --shadow:0 4px 24px rgba(30,46,26,.1);--shadow2:0 8px 32px rgba(200,98,42,.25);
+  --ink:#1a1a1a;--ink2:#3a3a3a;--ink3:#7a7a7a;
+  --sand:#f5efe6;--sand2:#ede4d6;--sand3:#ddd0be;
+  --forest:#1c2b18;--forest2:#2d4528;
+  --ember:#b85c2c;--ember2:rgba(184,92,44,.15);
+  --gold:#9a7a3a;--white:#fefcf8;
+  --r:6px;--shadow:0 2px 40px rgba(26,26,26,.08);
 }
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--forest);overflow-x:hidden}
-
-/* ── ANIMATIONS ── */
-@keyframes kenburns{0%{transform:scale(1)}100%{transform:scale(1.07) translateX(-1%)}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
-@keyframes spin{to{transform:rotate(360deg)}}
-.kenburns{animation:kenburns 18s ease-in-out alternate infinite}
-.fu{animation:fadeUp .85s ease both}
-.fu2{animation-delay:.14s}.fu3{animation-delay:.28s}.fu4{animation-delay:.42s}.fu5{animation-delay:.56s}
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}
-.reveal.on{opacity:1;transform:none}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Jost',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
 /* ── VIEWS ── */
 .view{display:none}.view.active{display:block}
 
+/* ── SCROLL REVEAL ── */
+.sr{opacity:0;transform:translateY(36px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.sr.on{opacity:1;transform:none}
+.sr-left{opacity:0;transform:translateX(-36px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.sr-left.on{opacity:1;transform:none}
+.sr-right{opacity:0;transform:translateX(36px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.sr-right.on{opacity:1;transform:none}
+.sr-d1{transition-delay:.1s}.sr-d2{transition-delay:.2s}.sr-d3{transition-delay:.3s}.sr-d4{transition-delay:.4s}
+
 /* ── NAV ── */
-header{position:absolute;top:0;left:0;right:0;z-index:50}
-.nav-in{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 2.5rem}
-.logo{display:flex;align-items:baseline;gap:.3rem;text-decoration:none}
-.logo-a{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--cream)}
-.logo-b{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.5rem;color:var(--ember)}
-.nav-ul{display:flex;gap:2rem;list-style:none}
-.nav-ul a{font-size:.74rem;text-transform:uppercase;letter-spacing:.18em;color:rgba(245,237,224,.85);text-decoration:none;transition:color .2s}
-.nav-ul a:hover{color:var(--ember)}
-.nav-cta{background:var(--ember);color:var(--cream);padding:.6rem 1.4rem;border-radius:9999px;font-size:.72rem;text-transform:uppercase;letter-spacing:.16em;text-decoration:none;transition:filter .2s;border:none;cursor:pointer;font-family:'DM Sans',sans-serif}
-.nav-cta:hover{filter:brightness(1.1)}
-@media(max-width:768px){.nav-ul{display:none}}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1.4rem 3rem;display:flex;align-items:center;justify-content:space-between;transition:all .4s ease}
+nav.scrolled{background:rgba(254,252,248,.97);backdrop-filter:blur(12px);padding:1rem 3rem;box-shadow:0 1px 0 rgba(26,26,26,.08)}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:#fff;text-decoration:none;letter-spacing:.06em;transition:color .3s}
+nav.scrolled .logo{color:var(--forest)}
+.logo em{font-style:italic;color:rgba(255,255,255,.7)}
+nav.scrolled .logo em{color:var(--ember)}
+.nav-links{display:flex;gap:2.4rem;list-style:none}
+.nav-links a{font-size:.7rem;text-transform:uppercase;letter-spacing:.22em;color:rgba(255,255,255,.8);text-decoration:none;transition:color .2s}
+nav.scrolled .nav-links a{color:var(--ink3)}
+.nav-links a:hover{color:#fff}
+nav.scrolled .nav-links a:hover{color:var(--ember)}
+.nav-btn{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.4);color:#fff;padding:.55rem 1.5rem;border-radius:99px;font-family:'Jost',sans-serif;font-size:.7rem;text-transform:uppercase;letter-spacing:.18em;cursor:pointer;transition:all .3s;backdrop-filter:blur(8px)}
+.nav-btn:hover{background:rgba(255,255,255,.25)}
+nav.scrolled .nav-btn{background:var(--ember);border-color:var(--ember);color:#fff}
+nav.scrolled .nav-btn:hover{filter:brightness(1.08)}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.4rem}
+.ham span{display:block;width:22px;height:1.5px;background:#fff;transition:all .3s}
+nav.scrolled .ham span{background:var(--ink)}
+
+/* MOBILE NAV DRAWER */
+.nav-drawer{position:fixed;inset:0;background:var(--forest);z-index:1000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2.8rem;opacity:0;pointer-events:none;transition:opacity .35s ease}
+.nav-drawer.open{opacity:1;pointer-events:all}
+.nav-drawer a{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:rgba(245,239,230,.85);text-decoration:none;letter-spacing:.04em;transition:color .2s}
+.nav-drawer a:hover{color:#fff}
+.nd-close{position:absolute;top:1.8rem;right:1.8rem;background:none;border:none;color:rgba(245,239,230,.5);font-size:1.5rem;cursor:pointer;font-family:'Jost',sans-serif}
+.nd-cta{margin-top:.5rem;background:var(--ember);color:#fff;padding:.9rem 3rem;border-radius:99px;font-family:'Jost',sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.18em;border:none;cursor:pointer}
 
 /* ── HERO ── */
-#top{position:relative;height:100svh;overflow:hidden;background:var(--forest)}
-.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero-mist{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(30,46,26,.25) 0%,rgba(30,46,26,.08) 45%,rgba(30,46,26,.78) 100%)}
-.hero-ov{position:absolute;inset:0;background:rgba(30,46,26,.28)}
-.hero-cnt{position:relative;z-index:10;max-width:1100px;margin:0 auto;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:0 2.5rem 6.5rem}
-.hero-eye{font-size:.66rem;text-transform:uppercase;letter-spacing:.4em;color:rgba(245,237,224,.75);margin-bottom:1.3rem}
-.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,7vw,5.5rem);line-height:1.05;color:var(--cream);max-width:820px}
-.hero-h1 em{font-style:italic;color:var(--ember)}
-.hero-p{margin-top:1.6rem;max-width:500px;font-size:1rem;color:rgba(245,237,224,.8);line-height:1.8;font-weight:300}
-.hero-btns{margin-top:2rem;display:flex;flex-wrap:wrap;gap:.9rem}
-.btn-ember{background:var(--ember);color:var(--cream);padding:.95rem 2.2rem;border-radius:9999px;font-size:.77rem;text-transform:uppercase;letter-spacing:.18em;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;box-shadow:var(--shadow2);transition:filter .2s;display:inline-block;text-decoration:none}
-.btn-ember:hover{filter:brightness(1.1)}
-.btn-ghost{background:transparent;color:var(--cream);padding:.95rem 2.2rem;border-radius:9999px;font-size:.77rem;text-transform:uppercase;letter-spacing:.18em;border:1px solid rgba(245,237,224,.4);cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s;display:inline-block;text-decoration:none}
-.btn-ghost:hover{background:rgba(245,237,224,.1)}
-.hero-scroll{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);z-index:10;font-size:.58rem;text-transform:uppercase;letter-spacing:.4em;color:rgba(245,237,224,.5)}
+.hero{position:relative;height:100svh;overflow:hidden;background:var(--forest)}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.06);animation:heroZoom 14s ease-in-out alternate infinite}
+@keyframes heroZoom{0%{transform:scale(1.06) translateX(0)}100%{transform:scale(1) translateX(-1%)}}
+.hero-veil{position:absolute;inset:0;background:linear-gradient(160deg,rgba(26,26,26,.05) 0%,rgba(26,26,26,.2) 40%,rgba(26,26,26,.72) 100%)}
+.hero-body{position:relative;z-index:10;height:100%;display:flex;flex-direction:column;justify-content:flex-end;max-width:1240px;margin:0 auto;padding:0 3rem 6rem}
+.hero-tag{display:inline-flex;align-items:center;gap:.8rem;font-size:.62rem;text-transform:uppercase;letter-spacing:.4em;color:rgba(245,239,230,.6);margin-bottom:1.6rem}
+.hero-tag::before{content:'';width:36px;height:1px;background:rgba(245,239,230,.4)}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,6.5vw,5.8rem);line-height:1.03;color:#fff;max-width:780px;font-weight:300}
+.hero-h1 strong{font-weight:600;font-style:italic;color:rgba(245,239,230,.88)}
+.hero-sub{font-size:1rem;color:rgba(245,239,230,.72);margin-top:1.4rem;max-width:460px;line-height:1.85;font-weight:300}
+.hero-actions{margin-top:2.4rem;display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{background:var(--ember);color:#fff;padding:1rem 2.6rem;border-radius:99px;font-family:'Jost',sans-serif;font-size:.75rem;text-transform:uppercase;letter-spacing:.2em;border:none;cursor:pointer;transition:all .3s;font-weight:500;display:inline-block;text-decoration:none}
+.btn-primary:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.btn-outline-w{background:transparent;color:#fff;padding:1rem 2.6rem;border-radius:99px;font-family:'Jost',sans-serif;font-size:.75rem;text-transform:uppercase;letter-spacing:.2em;border:1px solid rgba(255,255,255,.38);cursor:pointer;transition:all .3s;display:inline-block;text-decoration:none}
+.btn-outline-w:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.6)}
+.hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:.6rem;color:rgba(245,239,230,.45);font-size:.58rem;text-transform:uppercase;letter-spacing:.3em}
+.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,transparent,rgba(245,239,230,.4));animation:scrollAnim 2s ease-in-out infinite}
+@keyframes scrollAnim{0%,100%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}99%{transform:scaleY(0);transform-origin:bottom}}
 
-/* ── WHISPER ── */
-.whisper{background:var(--cream);padding:4.5rem 1.5rem;text-align:center}
-.whisper p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.6rem,3.8vw,2.7rem);color:var(--forest);max-width:720px;margin:0 auto;line-height:1.3}
+/* ── BADGES STRIP ── */
+.strip{background:var(--forest);padding:1.4rem 3rem;display:flex;align-items:center;justify-content:center;gap:3rem;flex-wrap:wrap}
+.strip-item{display:flex;align-items:center;gap:.7rem;font-size:.68rem;text-transform:uppercase;letter-spacing:.18em;color:rgba(245,239,230,.7)}
+.strip-icon{font-size:1rem}
+.strip-sep{width:1px;height:18px;background:rgba(245,239,230,.15)}
 
-/* ── MOSAIC ── */
-#viva{background:var(--cream);padding:5.5rem 2.5rem}
-.sec-in{max-width:1280px;margin:0 auto}
-.sec-top{display:flex;flex-direction:column;gap:1.5rem;margin-bottom:3rem}
-@media(min-width:768px){.sec-top{flex-direction:row;justify-content:space-between;align-items:flex-end}}
-.sec-eye{font-size:.66rem;text-transform:uppercase;letter-spacing:.4em;color:var(--ember);margin-bottom:.6rem}
-.sec-h{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4.5vw,3.5rem);line-height:1.05;color:var(--forest)}
-.sec-h em{font-style:italic}
-.sec-p{max-width:400px;color:var(--muted);line-height:1.8;font-size:.9rem}
-.mosaic{display:grid;grid-template-columns:repeat(12,1fr);gap:10px}
-.tile{position:relative;overflow:hidden;border-radius:5px;background:var(--cream3)}
-.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .65s ease}
-.tile:hover img{transform:scale(1.05)}
-.tile-g{position:absolute;inset:0;background:linear-gradient(to top,rgba(30,46,26,.8) 0%,rgba(30,46,26,.08) 55%,transparent 100%);opacity:.7;transition:opacity .3s}
-.tile:hover .tile-g{opacity:.9}
-.tile figcaption{position:absolute;bottom:.9rem;left:1.1rem;right:1.1rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;color:var(--cream)}
-.ta{grid-column:span 12;aspect-ratio:16/10}.tb{grid-column:span 12;aspect-ratio:4/5}
-.tc,.td{grid-column:span 6;aspect-ratio:1}.te{grid-column:span 12;aspect-ratio:1}
-@media(min-width:768px){.ta{grid-column:span 8}.tb{grid-column:span 4}.tc,.td,.te{grid-column:span 4}}
+/* ── APRESENTAÇÃO ── */
+.apresent{display:grid;grid-template-columns:1fr 1fr;min-height:90vh}
+.ap-imgs{position:relative;overflow:hidden}
+.ap-img-main{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.ap-img-badge{position:absolute;bottom:2.5rem;right:-1px;background:var(--white);padding:1.4rem 1.8rem;border-radius:8px 0 0 8px;box-shadow:var(--shadow)}
+.ap-badge-num{font-family:'Cormorant Garamond',serif;font-size:2.4rem;color:var(--forest);line-height:1;display:block}
+.ap-badge-txt{font-size:.62rem;text-transform:uppercase;letter-spacing:.15em;color:var(--ink3);margin-top:.3rem}
+.ap-content{display:flex;flex-direction:column;justify-content:center;padding:6rem 5rem}
+.label-tag{font-size:.62rem;text-transform:uppercase;letter-spacing:.35em;color:var(--ember);margin-bottom:1rem;display:flex;align-items:center;gap:.7rem}
+.label-tag::before{content:'';width:24px;height:1px;background:var(--ember)}
+.section-h{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);color:var(--forest);line-height:1.12;font-weight:300}
+.section-h em{font-style:italic}
+.section-p{font-size:.95rem;color:var(--ink3);line-height:1.9;font-weight:300;margin-top:1.2rem;max-width:440px}
+.ap-features{display:flex;flex-direction:column;gap:1rem;margin-top:2.5rem}
+.ap-feat{display:flex;align-items:flex-start;gap:1rem;padding:1rem 1.2rem;border:1px solid var(--sand3);border-radius:var(--r);transition:border-color .2s,background .2s}
+.ap-feat:hover{border-color:var(--sand2);background:var(--sand)}
+.ap-feat-ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}
+.ap-feat-t{font-size:.88rem;font-weight:500;color:var(--forest);margin-bottom:.2rem}
+.ap-feat-p{font-size:.78rem;color:var(--ink3);line-height:1.6}
 
-/* ── EXPERIENCIA ── */
-#experiencia{background:var(--forest);padding:5.5rem 2.5rem;color:var(--cream)}
-.exp-h{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4.5vw,3.5rem);line-height:1.05;margin-bottom:3.5rem;max-width:640px}
-.exp-h em{font-style:italic;color:var(--ember)}
-.steps{display:grid;gap:3rem}
-@media(min-width:768px){.steps{grid-template-columns:1fr 1fr;gap:4rem 5rem}}
-.step-img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:5px;margin-bottom:1.3rem;display:block;transition:transform .5s}
-.step:hover .step-img{transform:scale(1.02)}
-.step-ico{font-size:1.3rem;margin-bottom:.5rem}
-.step-t{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--cream);margin-bottom:.4rem}
-.step-p{font-size:.88rem;color:rgba(245,237,224,.8);line-height:1.8;font-weight:300}
+/* ── GALERIA ── */
+.galeria{padding:8rem 3rem}
+.gal-header{text-align:center;margin-bottom:4rem}
+.gal-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;grid-template-rows:360px 360px;gap:12px;max-width:1240px;margin:0 auto}
+.gal-item{overflow:hidden;border-radius:var(--r);position:relative;cursor:pointer}
+.gal-item img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .8s cubic-bezier(.16,1,.3,1),filter .4s}
+.gal-item:hover img{transform:scale(1.05);filter:brightness(1.04)}
+.gal-item:first-child{grid-row:span 2}
+.gal-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(28,43,24,.85) 0%,transparent 55%);opacity:0;transition:opacity .35s;display:flex;align-items:flex-end;padding:1.4rem}
+.gal-item:hover .gal-overlay{opacity:1}
+.gal-cap{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:#fff}
 
-/* ── FEED ── */
-#feed{background:var(--cream);padding:5.5rem 2.5rem}
-.feed-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-@media(min-width:768px){.feed-grid{grid-template-columns:repeat(3,1fr);gap:14px}}
-.fi{position:relative;display:block;aspect-ratio:1;overflow:hidden}
-.fi img{width:100%;height:100%;object-fit:cover;transition:transform .65s}
-.fi:hover img{transform:scale(1.1)}
-.fi-ov{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1.1rem;background:rgba(30,46,26,0);color:var(--cream);opacity:0;transition:all .3s}
-.fi:hover .fi-ov{opacity:1;background:rgba(30,46,26,.72)}
-.fi-stats{display:flex;gap:.9rem;font-size:.8rem;margin-bottom:.4rem}
-.fi-cap{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem}
-.feed-ig{font-size:.76rem;text-transform:uppercase;letter-spacing:.2em;color:var(--forest);text-decoration:none}
-.feed-ig:hover{text-decoration:underline;text-underline-offset:3px}
+/* ── FULLSCREEN LIGHTBOX ── */
+.lightbox{display:none;position:fixed;inset:0;z-index:9999;background:rgba(26,26,26,.96);align-items:center;justify-content:center}
+.lightbox.open{display:flex}
+.lb-img{max-width:90vw;max-height:88vh;object-fit:contain;border-radius:4px}
+.lb-close{position:absolute;top:1.5rem;right:1.8rem;background:none;border:none;color:rgba(255,255,255,.6);font-size:2rem;cursor:pointer;font-family:'Jost',sans-serif;line-height:1;transition:color .2s}
+.lb-close:hover{color:#fff}
 
-/* ── REVIEWS ── */
-#provas{background:var(--secondary);padding:5.5rem 2.5rem}
-.provas-hd{text-align:center;margin-bottom:3.5rem}
-.stars-line{font-size:.66rem;text-transform:uppercase;letter-spacing:.4em;color:var(--ember);margin-bottom:.7rem}
-.provas-h{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4.5vw,3.5rem);line-height:1.05;color:var(--forest);max-width:640px;margin:0 auto}
-.provas-h em{font-style:italic}
-.reviews{display:grid;gap:1.8rem}
-@media(min-width:768px){.reviews{grid-template-columns:repeat(3,1fr)}}
-.rv-card{background:var(--card);border-radius:5px;overflow:hidden;box-shadow:var(--shadow)}
-.rv-img{aspect-ratio:4/3;overflow:hidden}
-.rv-img img{width:100%;height:100%;object-fit:cover}
-.rv-body{padding:1.6rem}
-.rv-q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:var(--forest);line-height:1.4;margin-bottom:1.2rem}
-.rv-name{font-size:.86rem;font-weight:500;color:var(--forest)}
-.rv-city{font-size:.68rem;text-transform:uppercase;letter-spacing:.18em;color:var(--muted);margin-top:.15rem}
+/* ── EXPERIENCIAS ── */
+.experiencias{background:var(--forest);padding:8rem 3rem;color:#fff}
+.exp-inner{max-width:1240px;margin:0 auto}
+.exp-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:5rem}
+.exp-h{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3.2rem);color:#fff;line-height:1.12;font-weight:300}
+.exp-h em{font-style:italic;color:rgba(245,239,230,.7)}
+.exp-p{font-size:.93rem;color:rgba(245,239,230,.6);line-height:1.9;font-weight:300;align-self:end}
+.exp-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(245,239,230,.08);border:1px solid rgba(245,239,230,.08);border-radius:var(--r);overflow:hidden}
+.exp-card{padding:2.4rem 2rem;background:transparent;transition:background .3s}
+.exp-card:hover{background:rgba(245,239,230,.04)}
+.exp-num{font-family:'Cormorant Garamond',serif;font-size:3rem;color:rgba(245,239,230,.12);line-height:1;margin-bottom:1.2rem;font-weight:600}
+.exp-icon{font-size:1.6rem;margin-bottom:1rem}
+.exp-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:#fff;margin-bottom:.6rem}
+.exp-desc{font-size:.82rem;color:rgba(245,239,230,.55);line-height:1.8;font-weight:300}
+.exp-img-wrap{margin-top:5rem;border-radius:var(--r);overflow:hidden;position:relative}
+.exp-img-wrap img{width:100%;height:480px;object-fit:cover;object-position:center top;display:block}
+.exp-img-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(28,43,24,.85) 0%,transparent 55%);display:flex;align-items:center;padding:4rem}
+.exp-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.4rem,2.8vw,2.2rem);color:#fff;max-width:480px;line-height:1.35;font-weight:300}
 
-/* ── URGENCIA ── */
-.urgencia{position:relative;overflow:hidden;padding:5.5rem 2.5rem}
-.urg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.urg-ov{position:absolute;inset:0;background:rgba(30,46,26,.83)}
-.urg-in{position:relative;z-index:10;max-width:820px;margin:0 auto;text-align:center;color:var(--cream)}
-.urg-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin-bottom:1.8rem}
-.urg-tag{font-size:.66rem;text-transform:uppercase;letter-spacing:.22em;padding:.45rem .95rem;border-radius:9999px}
-.tag-hot{border:1px solid var(--ember3);background:var(--ember2)}
-.tag-plain{border:1px solid rgba(245,237,224,.28)}
-.urg-h{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,5.5vw,4.2rem);line-height:1.05}
-.urg-h em{font-style:italic;color:var(--ember)}
-.urg-p{margin:1.4rem auto;max-width:450px;color:rgba(245,237,224,.78);font-size:.93rem;font-weight:300;line-height:1.7}
+/* ── DEPOIMENTOS ── */
+.depoimentos{padding:8rem 3rem;background:var(--sand)}
+.dep-inner{max-width:1240px;margin:0 auto}
+.dep-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4rem}
+.dep-rating{display:flex;align-items:center;gap:.6rem;font-size:.72rem;color:var(--gold);letter-spacing:.1em}
+.dep-stars{font-size:1rem;letter-spacing:.1rem}
+.dep-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.dep-card{background:var(--white);border-radius:10px;overflow:hidden;box-shadow:0 2px 24px rgba(26,26,26,.06)}
+.dep-img{height:240px;overflow:hidden}
+.dep-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .6s}
+.dep-card:hover .dep-img img{transform:scale(1.04)}
+.dep-body{padding:1.8rem}
+.dep-q{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--forest);line-height:1.5;margin-bottom:1.3rem}
+.dep-author{display:flex;align-items:center;justify-content:space-between}
+.dep-name{font-size:.85rem;font-weight:500;color:var(--forest)}
+.dep-city{font-size:.68rem;text-transform:uppercase;letter-spacing:.15em;color:var(--ink3);margin-top:.15rem}
+.dep-g-badge{font-size:.65rem;color:var(--gold);letter-spacing:.05em;opacity:.8}
+
+/* ── CTA ── */
+.cta-section{position:relative;overflow:hidden;padding:10rem 3rem}
+.cta-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.cta-veil{position:absolute;inset:0;background:rgba(28,43,24,.82)}
+.cta-body{position:relative;z-index:10;max-width:700px;margin:0 auto;text-align:center;color:#fff}
+.cta-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;margin-bottom:2.4rem}
+.cta-tag{font-size:.62rem;text-transform:uppercase;letter-spacing:.22em;padding:.45rem 1.1rem;border-radius:99px}
+.cta-tag-hot{border:1px solid rgba(184,92,44,.6);background:rgba(184,92,44,.18);color:rgba(245,239,230,.9)}
+.cta-tag-plain{border:1px solid rgba(245,239,230,.22);color:rgba(245,239,230,.65)}
+.cta-h{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,5vw,4rem);line-height:1.06;font-weight:300}
+.cta-h em{font-style:italic;color:rgba(245,239,230,.8)}
+.cta-p{font-size:.95rem;color:rgba(245,239,230,.65);margin:1.4rem auto;max-width:420px;line-height:1.8;font-weight:300}
 
 /* ── FOOTER ── */
-footer{background:var(--forest);padding:3.5rem 2.5rem 1.8rem;color:rgba(245,237,224,.78)}
-.footer-in{max-width:1280px;margin:0 auto;display:grid;gap:2rem}
-@media(min-width:768px){.footer-in{grid-template-columns:repeat(3,1fr)}}
-.fl1{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--cream)}
-.fl2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.5rem;color:var(--ember)}
-.f-desc{font-size:.83rem;line-height:1.75;color:rgba(245,237,224,.55);max-width:270px;margin-top:.7rem}
-.f-label{font-size:.62rem;text-transform:uppercase;letter-spacing:.3em;color:var(--ember);margin-bottom:.7rem}
-.f-links{display:flex;flex-direction:column;gap:.45rem}
-.f-links a{color:rgba(245,237,224,.78);text-decoration:none;font-size:.86rem;transition:color .2s}
+footer{background:#111;color:rgba(245,239,230,.6);padding:4rem 3rem 2rem}
+.footer-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.f-logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:rgba(245,239,230,.9);margin-bottom:.8rem}
+.f-logo em{font-style:italic;color:var(--ember)}
+.f-desc{font-size:.82rem;line-height:1.75;color:rgba(245,239,230,.42);max-width:260px}
+.f-label{font-size:.6rem;text-transform:uppercase;letter-spacing:.3em;color:var(--ember);margin-bottom:.9rem}
+.f-links{display:flex;flex-direction:column;gap:.5rem}
+.f-links a{font-size:.84rem;color:rgba(245,239,230,.55);text-decoration:none;transition:color .2s}
 .f-links a:hover{color:var(--ember)}
-.f-txt{font-size:.86rem;line-height:1.75}
-.f-mut{color:rgba(245,237,224,.38);margin-top:.25rem}
-.f-copy{max-width:1280px;margin:2.5rem auto 0;border-top:1px solid rgba(245,237,224,.08);padding-top:1.3rem;font-size:.7rem;color:rgba(245,237,224,.3)}
+.f-txt{font-size:.84rem;line-height:1.8}
+.f-mut{color:rgba(245,239,230,.35);margin-top:.3rem}
+.footer-copy{max-width:1240px;margin:0 auto;padding-top:1.8rem;border-top:1px solid rgba(245,239,230,.06);font-size:.68rem;color:rgba(245,239,230,.25);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
 
 /* ── FAB ── */
-.admin-fab{position:fixed;bottom:1.4rem;right:1.4rem;z-index:9999;background:var(--forest);color:var(--cream);padding:.65rem 1.25rem;border-radius:9999px;border:none;font-family:'DM Sans',sans-serif;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,.28);transition:background .2s}
-.admin-fab:hover{background:#2d4a26}
+.fab{position:fixed;bottom:1.6rem;right:1.6rem;z-index:500;background:var(--forest);color:rgba(245,239,230,.7);padding:.6rem 1.2rem;border-radius:99px;border:none;font-family:'Jost',sans-serif;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:all .2s}
+.fab:hover{background:var(--forest2);color:rgba(245,239,230,.9)}
 
-/* ══════════ CHECKOUT MODAL ══════════ */
-.modal-bd{display:none;position:fixed;inset:0;background:rgba(30,46,26,.72);z-index:10000;align-items:flex-start;justify-content:center;padding:1rem;overflow-y:auto}
-.modal-bd.open{display:flex}
-.modal-box{background:var(--white);border-radius:8px;width:100%;max-width:680px;margin:auto;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.25);position:relative}
-.modal-hd{background:var(--forest);padding:1.6rem 2rem;display:flex;align-items:center;justify-content:space-between}
-.modal-hd-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--cream)}
-.modal-hd-sub{font-size:.72rem;color:rgba(245,237,224,.6);margin-top:.15rem}
-.modal-x{background:none;border:none;color:rgba(245,237,224,.6);font-size:1.3rem;cursor:pointer;transition:color .2s;line-height:1}
-.modal-x:hover{color:var(--cream)}
-.modal-body{padding:1.8rem 2rem}
+/* ── STICKY BAR MOBILE ── */
+.sticky-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;background:var(--white);border-top:1px solid var(--sand3);padding:1rem 1.4rem;padding-bottom:calc(1rem + env(safe-area-inset-bottom));flex-direction:row;align-items:center;justify-content:space-between;box-shadow:0 -4px 24px rgba(26,26,26,.1)}
+.sb-price{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--forest)}
+.sb-from{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);margin-bottom:.1rem}
+.sb-per{font-family:'Jost',sans-serif;font-size:.7rem;color:var(--ink3)}
 
-/* STEPS NAV */
-.steps-nav{display:flex;align-items:center;gap:0;margin-bottom:2rem}
-.sn-item{display:flex;align-items:center;gap:.5rem;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);flex:1}
-.sn-item.active{color:var(--ember);font-weight:500}
-.sn-item.done{color:var(--green)}
-.sn-dot{width:26px;height:26px;border-radius:50%;border:2px solid var(--cream3);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--muted);flex-shrink:0;transition:all .3s}
-.sn-item.active .sn-dot{border-color:var(--ember);color:var(--ember);background:var(--ember2)}
-.sn-item.done .sn-dot{border-color:var(--green);background:var(--green);color:#fff}
-.sn-line{flex:1;height:1px;background:var(--cream3);margin:0 .4rem}
+/* ── CHECKOUT MODAL ── */
+.ck-bd{display:none;position:fixed;inset:0;background:rgba(26,26,26,.7);z-index:10000;align-items:flex-end;justify-content:center;padding:0}
+@media(min-width:769px){.ck-bd{align-items:center;padding:1rem}}
+.ck-bd.open{display:flex}
+.ck-box{background:var(--white);width:100%;max-width:640px;border-radius:16px 16px 0 0;max-height:93svh;display:flex;flex-direction:column;overflow:hidden}
+@media(min-width:769px){.ck-box{border-radius:12px;max-height:90vh}}
+.ck-top{background:var(--forest);padding:1.5rem 1.8rem;flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
+.ck-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:#fff}
+.ck-sub{font-size:.7rem;color:rgba(245,239,230,.5);margin-top:.15rem}
+.ck-x{background:none;border:none;color:rgba(245,239,230,.5);font-size:1.3rem;cursor:pointer;line-height:1;transition:color .2s}
+.ck-x:hover{color:#fff}
+.ck-body{padding:1.6rem 1.8rem;overflow-y:auto;flex:1}
+.ck-foot{padding:1.1rem 1.8rem;padding-bottom:calc(1.1rem + env(safe-area-inset-bottom));border-top:1px solid var(--sand3);display:flex;gap:.6rem;flex-shrink:0}
 
-/* CHECKOUT STEPS */
-.ck-step{display:none}.ck-step.active{display:block}
+/* STEP NAV */
+.sn{display:flex;align-items:center;margin-bottom:1.8rem}
+.sn-dot{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--sand3);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--ink3);transition:all .3s;flex-shrink:0}
+.sn-dot.active{border-color:var(--ember);color:var(--ember);background:var(--ember2)}
+.sn-dot.done{border-color:var(--forest);background:var(--forest);color:#fff}
+.sn-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);margin-left:.5rem;transition:color .2s}
+.sn-label.active{color:var(--ember);font-weight:500}
+.sn-label.done{color:var(--forest)}
+.sn-line{flex:1;height:1px;background:var(--sand3);margin:0 .6rem}
 
 /* CALENDAR */
-.cal-wrap{user-select:none}
-.cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem}
-.cal-nav-btn{background:none;border:1px solid var(--cream3);border-radius:3px;padding:.35rem .8rem;font-size:.82rem;cursor:pointer;color:var(--forest);transition:all .2s}
+.cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.cal-nav-btn{background:none;border:1px solid var(--sand3);border-radius:4px;padding:.38rem .85rem;font-size:.82rem;cursor:pointer;color:var(--ink);transition:all .2s}
 .cal-nav-btn:hover{border-color:var(--ember);color:var(--ember)}
-.cal-month{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--forest)}
+.cal-month{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--forest)}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
-.cal-dow{text-align:center;font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);padding:.4rem 0;font-weight:500}
-.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:4px;font-size:.82rem;cursor:pointer;transition:all .2s;position:relative;border:1px solid transparent}
-.cal-day.empty{cursor:default}
-.cal-day.past{color:var(--cream3);cursor:not-allowed}
-.cal-day.blocked{background:#fde8e7;color:#c0392b;cursor:not-allowed;text-decoration:line-through;font-size:.72rem}
-.cal-day.weekend{background:rgba(200,146,42,.08);color:var(--gold)}
-.cal-day.available:hover{background:var(--ember2);border-color:var(--ember3);color:var(--ember)}
-.cal-day.check-in{background:var(--ember)!important;color:#fff!important;border-color:var(--ember)!important;border-radius:4px 0 0 4px}
-.cal-day.check-out{background:var(--ember)!important;color:#fff!important;border-color:var(--ember)!important;border-radius:0 4px 4px 0}
-.cal-day.in-range{background:var(--ember2);color:var(--ember);border-color:transparent;border-radius:0}
-.cal-day.same-day{border-radius:4px!important}
-.cal-legend{display:flex;gap:1rem;margin-top:.9rem;flex-wrap:wrap}
-.cal-leg-item{display:flex;align-items:center;gap:.4rem;font-size:.7rem;color:var(--muted)}
-.cal-leg-dot{width:12px;height:12px;border-radius:2px}
+.cal-dow{text-align:center;font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);padding:.35rem 0;font-weight:500}
+.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:4px;font-size:.82rem;cursor:pointer;transition:all .18s;border:1px solid transparent;min-height:36px}
+.cal-day.empty,.cal-day.past{cursor:default}
+.cal-day.past{color:var(--sand3)}
+.cal-day.blocked{background:#fdf0ee;color:#c0392b;cursor:not-allowed;font-size:.72rem;text-decoration:line-through}
+.cal-day.weekend{color:var(--gold);font-weight:500}
+.cal-day.available:hover{background:var(--ember2);border-color:rgba(184,92,44,.35);color:var(--ember)}
+.cal-day.cin{background:var(--ember)!important;color:#fff!important;border-color:var(--ember)!important;border-radius:4px 0 0 4px}
+.cal-day.cout{background:var(--ember)!important;color:#fff!important;border-color:var(--ember)!important;border-radius:0 4px 4px 0}
+.cal-day.inrange{background:var(--ember2);color:var(--ember);border-radius:0}
+.cal-day.same{border-radius:4px!important}
 
-/* PRICE TABLE */
-.price-tiers{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.7rem;margin-bottom:1.2rem}
-@media(max-width:500px){.price-tiers{grid-template-columns:1fr}}
-.pt-card{border:1px solid var(--cream3);border-radius:5px;padding:.9rem 1rem}
-.pt-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:.3rem}
-.pt-price{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--forest)}
-.pt-sub{font-size:.7rem;color:var(--muted);margin-top:.1rem}
+/* PRICE TIERS */
+.pt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-top:1.2rem}
+.pt-card{border:1px solid var(--sand3);border-radius:var(--r);padding:.85rem 1rem;background:var(--sand)}
+.pt-label{font-size:.6rem;text-transform:uppercase;letter-spacing:.12em;color:var(--ink3);margin-bottom:.3rem}
+.pt-price{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--forest);font-weight:400}
+.pt-sub{font-size:.62rem;color:var(--ink3);margin-top:.1rem}
 
-/* SUMMARY BOX */
-.sum-box{background:var(--cream);border-radius:5px;padding:1.1rem 1.2rem;margin:1rem 0}
-.sum-row{display:flex;justify-content:space-between;font-size:.84rem;color:var(--muted);padding:.22rem 0}
-.sum-row.total{border-top:1px solid var(--cream3);margin-top:.5rem;padding-top:.6rem;font-weight:500;color:var(--forest)}
-.sum-row.total .sv{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--ember)}
+/* SUMMARY */
+.sum{background:var(--sand);border-radius:var(--r);padding:1rem 1.2rem;margin:1rem 0}
+.sum-row{display:flex;justify-content:space-between;font-size:.82rem;color:var(--ink3);padding:.2rem 0}
+.sum-row.tot{border-top:1px solid var(--sand3);margin-top:.4rem;padding-top:.55rem;color:var(--forest);font-weight:500}
+.sum-row.tot .sv{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--ember)}
 
 /* FORM */
 .fg{margin-bottom:.9rem}
-.fg label{display:block;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.38rem;font-weight:500}
-.fg input,.fg select,.fg textarea{width:100%;padding:.68rem .9rem;border:1px solid var(--cream3);border-radius:4px;background:var(--cream);font-family:'DM Sans',sans-serif;font-size:.88rem;color:var(--forest);outline:none;transition:border-color .2s}
+.fg label{display:block;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:.38rem;font-weight:500}
+.fg input,.fg select,.fg textarea{width:100%;padding:.7rem .95rem;border:1px solid var(--sand3);border-radius:4px;background:var(--sand);font-family:'Jost',sans-serif;font-size:.88rem;color:var(--ink);outline:none;transition:border-color .2s}
 .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--ember)}
-.fg textarea{height:70px;resize:none}
+.fg textarea{height:68px;resize:none}
 .fg-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
 @media(max-width:480px){.fg-row{grid-template-columns:1fr}}
 
-/* CONFIRM CARD */
-.conf-card{background:var(--forest);border-radius:6px;padding:1.4rem 1.6rem;color:var(--cream);margin-bottom:1.2rem}
-.conf-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;margin-bottom:1rem}
-.conf-row{display:flex;justify-content:space-between;font-size:.83rem;padding:.25rem 0;border-bottom:1px solid rgba(245,237,224,.1)}
+/* CONFIRM */
+.conf{background:var(--forest);border-radius:var(--r);padding:1.3rem 1.5rem;color:#fff;margin-bottom:1.1rem}
+.conf-ttl{font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:.9rem;color:rgba(245,239,230,.9)}
+.conf-row{display:flex;justify-content:space-between;font-size:.82rem;padding:.22rem 0;border-bottom:1px solid rgba(245,239,230,.08)}
 .conf-row:last-child{border:none}
-.conf-label{color:rgba(245,237,224,.6)}
-.conf-val{color:var(--cream);font-weight:500}
-
-/* WHATSAPP BTN */
-.btn-wa{width:100%;padding:1rem;background:#25D366;color:#fff;border:none;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:.83rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:background .2s}
+.cl{color:rgba(245,239,230,.5)}
+.cv{color:#fff;font-weight:500}
+.info-box{background:var(--ember2);border:1px solid rgba(184,92,44,.25);border-radius:4px;padding:.8rem 1rem;margin-bottom:1rem;font-size:.8rem;color:var(--ember);line-height:1.6}
+.btn-wa{width:100%;padding:1rem;background:#25D366;color:#fff;border:none;border-radius:6px;font-family:'Jost',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:background .2s}
 .btn-wa:hover{background:#1da851}
-.btn-next{width:100%;padding:.9rem;background:var(--ember);color:#fff;border:none;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:filter .2s}
-.btn-next:hover{filter:brightness(1.1)}
-.btn-back{background:none;border:1px solid var(--cream3);color:var(--muted);padding:.7rem 1.6rem;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:.78rem;cursor:pointer;transition:all .2s;margin-right:.7rem}
-.btn-back:hover{border-color:var(--forest);color:var(--forest)}
-.modal-footer{display:flex;align-items:center;padding:1.2rem 2rem;border-top:1px solid var(--cream3);gap:.5rem}
-.fn{text-align:center;font-size:.72rem;color:var(--muted);margin-top:.6rem}
+.fn{text-align:center;font-size:.7rem;color:var(--ink3);margin-top:.7rem}
+.ck-step{display:none}.ck-step.active{display:block}
+.btn-next{flex:1;padding:.9rem;background:var(--ember);color:#fff;border:none;border-radius:4px;font-family:'Jost',sans-serif;font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:filter .2s}
+.btn-next:hover{filter:brightness(1.08)}
+.btn-back{padding:.9rem 1.4rem;background:none;border:1px solid var(--sand3);border-radius:4px;color:var(--ink3);font-family:'Jost',sans-serif;font-size:.76rem;cursor:pointer;transition:all .2s}
+.btn-back:hover{border-color:var(--ink);color:var(--ink)}
 
-/* ══════════ LOGIN ══════════ */
-.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--secondary);padding:1rem}
-.login-box{background:var(--white);border-radius:8px;padding:2.5rem 2rem;max-width:340px;width:100%;text-align:center;box-shadow:var(--shadow)}
-.login-err{background:#fde8e7;border:1px solid #f5c6c4;color:var(--red);font-size:.8rem;padding:.6rem;border-radius:3px;margin-bottom:1rem;display:none}
-.btn-login{width:100%;padding:.9rem;background:var(--forest);color:var(--cream);border:none;border-radius:4px;font-family:'DM Sans',sans-serif;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s}
-.btn-login:hover{background:#2d4a26}
+/* ── LOGIN ── */
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--sand);padding:1rem}
+.login-box{background:var(--white);border-radius:10px;padding:2.8rem 2.2rem;max-width:360px;width:100%;text-align:center;box-shadow:var(--shadow)}
+.login-err{background:#fdf0ee;border:1px solid #f5c6c4;color:#c0392b;font-size:.8rem;padding:.6rem;border-radius:4px;margin-bottom:1rem;display:none}
+.btn-login{width:100%;padding:.9rem;background:var(--forest);color:rgba(245,239,230,.9);border:none;border-radius:4px;font-family:'Jost',sans-serif;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.btn-login:hover{background:var(--forest2)}
 
-/* ══════════ ADMIN ══════════ */
-.admin-wrap{background:#f0ece3;min-height:100vh}
-.admin-topbar{background:var(--forest);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:58px;position:sticky;top:0;z-index:100}
-.admin-logo{display:flex;align-items:baseline;gap:.3rem}
-.adm-a{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--cream)}
-.adm-b{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;color:var(--ember)}
-.adm-badge{font-size:.58rem;text-transform:uppercase;letter-spacing:.12em;color:var(--ember);border:1px solid rgba(200,98,42,.5);padding:.18rem .65rem;border-radius:3px;margin-left:.7rem}
-.adm-actions{display:flex;gap:.5rem}
-.adm-btn{background:none;border:1px solid rgba(245,237,224,.22);color:rgba(245,237,224,.7);padding:.4rem 1rem;border-radius:3px;font-size:.7rem;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.06em;transition:all .2s}
-.adm-btn:hover{border-color:rgba(245,237,224,.55);color:var(--cream)}
-.admin-body{max-width:1060px;margin:0 auto;padding:2rem 1.5rem}
-
-/* ADMIN STATS */
+/* ── ADMIN ── */
+.adm-wrap{background:#f2ede5;min-height:100vh}
+.adm-bar{background:var(--forest);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;position:sticky;top:0;z-index:100}
+.adm-logo{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:rgba(245,239,230,.9)}
+.adm-logo em{font-style:italic;color:var(--ember)}
+.adm-badge{font-size:.58rem;text-transform:uppercase;letter-spacing:.12em;color:var(--ember);border:1px solid rgba(184,92,44,.4);padding:.2rem .65rem;border-radius:3px;margin-left:.6rem}
+.adm-acts{display:flex;gap:.5rem}
+.adm-abtn{background:none;border:1px solid rgba(245,239,230,.18);color:rgba(245,239,230,.6);padding:.38rem .95rem;border-radius:3px;font-size:.68rem;cursor:pointer;font-family:'Jost',sans-serif;transition:all .2s}
+.adm-abtn:hover{border-color:rgba(245,239,230,.45);color:rgba(245,239,230,.9)}
+.adm-inner{max-width:1020px;margin:0 auto;padding:2rem 1.5rem}
 .adm-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem}
 @media(max-width:640px){.adm-stats{grid-template-columns:1fr 1fr}}
-.adm-stat{background:var(--white);border:1px solid var(--cream3);border-radius:5px;padding:1.1rem 1.2rem}
+.adm-stat{background:var(--white);border:1px solid var(--sand3);border-radius:var(--r);padding:1.1rem 1.2rem}
 .adm-stat-n{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--forest);line-height:1}
-.adm-stat-l{font-size:.64rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-top:.3rem}
-.adm-stat-sub{font-size:.75rem;color:var(--ember);margin-top:.2rem;font-weight:500}
-
-/* ADMIN TABS */
-.adm-tabs{display:flex;gap:0;border-bottom:2px solid var(--cream3);margin-bottom:1.8rem;overflow-x:auto}
-.adm-tab{background:none;border:none;padding:.75rem 1.3rem;font-family:'DM Sans',sans-serif;font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+.adm-stat-l{font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);margin-top:.3rem}
+.adm-stat-s{font-size:.72rem;color:var(--ember);margin-top:.2rem;font-weight:500}
+.adm-tabs{display:flex;border-bottom:1px solid var(--sand3);margin-bottom:1.8rem;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.adm-tab{background:none;border:none;padding:.7rem 1.2rem;font-family:'Jost',sans-serif;font-size:.75rem;text-transform:uppercase;letter-spacing:.09em;color:var(--ink3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap;transition:all .2s}
 .adm-tab.active{color:var(--forest);border-bottom-color:var(--ember);font-weight:500}
 .adm-sec{display:none}.adm-sec.active{display:block}
-
-/* ADMIN CARDS */
-.adm-card{background:var(--white);border:1px solid var(--cream3);border-radius:6px;padding:1.4rem;margin-bottom:1.2rem}
-.adm-card-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--forest);font-weight:600;margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--cream3)}
+.adm-card{background:var(--white);border:1px solid var(--sand3);border-radius:var(--r);padding:1.4rem;margin-bottom:1.1rem}
+.adm-card-lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--forest);font-weight:600;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:1px solid var(--sand3)}
 .afg{margin-bottom:.85rem}
-.afg label{display:block;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem;font-weight:500}
-.afg input,.afg select,.afg textarea{width:100%;padding:.62rem .88rem;border:1px solid var(--cream3);border-radius:3px;background:var(--cream);font-family:'DM Sans',sans-serif;font-size:.87rem;color:var(--forest);outline:none;transition:border-color .2s}
+.afg label{display:block;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:.35rem;font-weight:500}
+.afg input,.afg select,.afg textarea{width:100%;padding:.62rem .88rem;border:1px solid var(--sand3);border-radius:3px;background:var(--sand);font-family:'Jost',sans-serif;font-size:.87rem;color:var(--ink);outline:none;transition:border-color .2s}
 .afg input:focus,.afg select:focus{border-color:var(--ember)}
 .afg textarea{height:62px;resize:none}
 .afg-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
 @media(max-width:480px){.afg-row{grid-template-columns:1fr}}
-.btn-save{background:var(--ember);color:#fff;border:none;padding:.68rem 1.8rem;border-radius:3px;font-family:'DM Sans',sans-serif;font-size:.76rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:filter .2s}
-.btn-save:hover{filter:brightness(1.1)}
-.btn-sm-green{background:var(--green);color:#fff;border:none;padding:.32rem .8rem;border-radius:3px;font-size:.68rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:filter .2s;margin-right:.35rem}
-.btn-sm-green:hover{filter:brightness(1.2)}
-.btn-sm-red{background:none;border:1px solid #d9534f;color:#d9534f;padding:.32rem .8rem;border-radius:3px;font-size:.68rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
-.btn-sm-red:hover{background:#d9534f;color:#fff}
-.btn-sm-amber{background:none;border:1px solid var(--gold);color:var(--gold);padding:.32rem .8rem;border-radius:3px;font-size:.68rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
-.btn-sm-amber:hover{background:var(--gold);color:#fff}
-
-/* RESERVATION LIST */
-.resv-item{background:var(--white);border:1px solid var(--cream3);border-radius:5px;padding:1rem 1.2rem;margin-bottom:.8rem;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:start}
-.resv-name{font-weight:500;font-size:.92rem;color:var(--forest);margin-bottom:.2rem}
-.resv-room{font-size:.78rem;color:var(--ember);font-weight:500}
-.resv-dates{font-size:.78rem;color:var(--muted);margin-top:.2rem}
-.resv-guests{font-size:.76rem;color:var(--muted)}
+.afg input,.afg select{font-size:16px}
+.fg input,.fg select{font-size:16px}
+.btn-save{background:var(--ember);color:#fff;border:none;padding:.65rem 1.8rem;border-radius:3px;font-family:'Jost',sans-serif;font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:filter .2s}
+.btn-save:hover{filter:brightness(1.08)}
+.btn-sm-g{background:var(--forest);color:#fff;border:none;padding:.3rem .78rem;border-radius:3px;font-size:.68rem;cursor:pointer;font-family:'Jost',sans-serif;transition:filter .2s;margin-right:.35rem}
+.btn-sm-g:hover{filter:brightness(1.2)}
+.btn-sm-r{background:none;border:1px solid #d9534f;color:#d9534f;padding:.3rem .78rem;border-radius:3px;font-size:.68rem;cursor:pointer;font-family:'Jost',sans-serif;transition:all .2s}
+.btn-sm-r:hover{background:#d9534f;color:#fff}
+.btn-sm-a{background:none;border:1px solid var(--gold);color:var(--gold);padding:.3rem .78rem;border-radius:3px;font-size:.68rem;cursor:pointer;font-family:'Jost',sans-serif;transition:all .2s}
+.btn-sm-a:hover{background:var(--gold);color:#fff}
+.resv-item{background:var(--white);border:1px solid var(--sand3);border-radius:var(--r);padding:1rem 1.2rem;margin-bottom:.8rem;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:start}
+@media(max-width:640px){.resv-item{grid-template-columns:1fr}}
+.resv-name{font-weight:500;font-size:.9rem;color:var(--forest);margin-bottom:.15rem}
+.resv-room{font-size:.76rem;color:var(--ember);font-weight:500}
+.resv-dates,.resv-guests{font-size:.76rem;color:var(--ink3);margin-top:.15rem}
+.resv-acts{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.6rem}
 .resv-total{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--forest);text-align:right}
-.resv-badge{display:inline-block;font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;padding:.2rem .7rem;border-radius:9999px;margin-top:.3rem}
-.badge-pending{background:rgba(200,146,42,.12);color:var(--gold);border:1px solid rgba(200,146,42,.3)}
-.badge-confirmed{background:rgba(45,92,40,.1);color:var(--green);border:1px solid rgba(45,92,40,.3)}
-.badge-cancelled{background:#fde8e7;color:var(--red);border:1px solid rgba(192,57,43,.3)}
-.resv-actions{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.6rem}
-
-/* PRICE MANAGER */
-.price-manager{display:grid;gap:1rem}
-.pm-row{background:var(--white);border:1px solid var(--cream3);border-radius:5px;padding:1rem 1.2rem;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center}
-.pm-label{font-weight:500;font-size:.9rem;color:var(--forest);margin-bottom:.15rem}
-.pm-sub{font-size:.75rem;color:var(--muted)}
+.rbadge{display:inline-block;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;padding:.2rem .7rem;border-radius:99px;margin-top:.3rem}
+.rb-p{background:rgba(154,122,58,.1);color:var(--gold);border:1px solid rgba(154,122,58,.3)}
+.rb-c{background:rgba(45,69,40,.1);color:var(--forest);border:1px solid rgba(45,69,40,.25)}
+.rb-x{background:#fdf0ee;color:#c0392b;border:1px solid rgba(192,57,43,.25)}
+.pm-row{background:var(--white);border:1px solid var(--sand3);border-radius:var(--r);padding:.95rem 1.1rem;margin-bottom:.8rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.pm-lbl{font-weight:500;font-size:.88rem;color:var(--forest)}
+.pm-sub{font-size:.72rem;color:var(--ink3);margin-top:.12rem}
 .pm-price{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--ember)}
-.pm-edit-wrap{display:flex;align-items:center;gap:.5rem}
-.pm-edit-input{width:100px;padding:.45rem .7rem;border:1px solid var(--cream3);border-radius:3px;background:var(--cream);font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--forest);outline:none;text-align:center}
-.pm-edit-input:focus{border-color:var(--ember)}
+.pm-inp{width:110px;padding:.42rem .7rem;border:1px solid var(--sand3);border-radius:3px;background:var(--sand);font-family:'Jost',sans-serif;font-size:.9rem;color:var(--ink);outline:none;text-align:center}
+.pm-inp:focus{border-color:var(--ember)}
+.adm-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.adm-dow{text-align:center;font-size:.58rem;text-transform:uppercase;color:var(--ink3);padding:.3rem 0}
+.adm-cday{aspect-ratio:1;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:.76rem;min-height:32px;border:1px solid transparent}
+.adm-cday.past{color:var(--sand3)}
+.adm-cday.free:hover{background:var(--sand2);cursor:pointer}
+.adm-cday.blocked-adm{background:#fdf0ee;color:#c0392b}
+.adm-cday.reserved{background:rgba(45,69,40,.1);color:var(--forest)}
+.adm-cday.we{border-color:rgba(154,122,58,.2)}
+.toast{position:fixed;bottom:5rem;right:1.5rem;background:var(--forest);color:rgba(245,239,230,.9);padding:.85rem 1.5rem;border-radius:6px;font-size:.84rem;z-index:99999;display:none;box-shadow:0 4px 24px rgba(0,0,0,.22)}
 
-/* CALENDAR ADMIN */
-.adm-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-top:1rem}
-.adm-dow{text-align:center;font-size:.6rem;text-transform:uppercase;color:var(--muted);padding:.35rem 0}
-.adm-cday{aspect-ratio:1;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:.78rem;cursor:pointer;border:1px solid transparent;transition:all .2s;position:relative}
-.adm-cday.past{color:var(--cream3);cursor:default}
-.adm-cday.free:hover{background:var(--cream2);border-color:var(--cream3)}
-.adm-cday.blocked-adm{background:#fde8e7;color:var(--red)}
-.adm-cday.reserved{background:rgba(45,92,40,.1);color:var(--green);cursor:default}
-.adm-cday.weekend-adm{border:1px solid rgba(200,146,42,.3)}
-.adm-cday .day-dot{position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%}
-
-/* TOAST */
-.toast{position:fixed;bottom:5rem;right:1.5rem;background:var(--forest);color:var(--cream);padding:.85rem 1.5rem;border-radius:5px;font-size:.84rem;z-index:99999;display:none;box-shadow:0 4px 20px rgba(0,0,0,.2)}
-
-
-/* HAMBURGER */
-.hb-line{display:block;width:22px;height:2px;background:var(--cream);border-radius:2px;transition:all .3s}
+/* ════ MOBILE ════ */
 @media(max-width:768px){
-  #hamburger{display:flex!important}
-  .nav-cta{padding:.48rem .9rem;font-size:.68rem}
-}
-
-/* ══════════════════════════════
-   MOBILE FIRST — tudo abaixo de 768px
-══════════════════════════════ */
-@media(max-width:768px){
-
-  /* NAV MOBILE */
-  .nav-in{padding:1rem 1.2rem}
-  .logo-a,.logo-b{font-size:1.2rem}
-  .nav-cta{padding:.5rem 1rem;font-size:.68rem}
-
-  /* HERO MOBILE */
-  .hero-cnt{padding:0 1.2rem 5rem}
-  .hero-eye{font-size:.6rem;letter-spacing:.25em}
-  .hero-h1{font-size:clamp(2.2rem,9vw,3.2rem)}
-  .hero-p{font-size:.92rem;margin-top:1rem}
-  .hero-btns{flex-direction:column;gap:.7rem;margin-top:1.4rem}
-  .btn-ember{width:100%;text-align:center;padding:.95rem 1.5rem;font-size:.8rem}
-  .btn-ghost{width:100%;text-align:center;padding:.85rem 1.5rem;font-size:.8rem}
-
-  /* SECTIONS MOBILE */
-  #viva,#experiencia,#feed,#provas,#top{padding:4rem 1.2rem}
-  .urgencia{padding:4rem 1.2rem}
-  .whisper{padding:3rem 1.2rem}
-  .whisper p{font-size:clamp(1.3rem,5vw,1.8rem)}
-  .sec-h,.exp-h,.provas-h,.feed-h2,.urg-h{font-size:clamp(1.8rem,6vw,2.6rem)}
-
-  /* MOSAIC MOBILE — empilhado */
-  .mosaic{gap:6px}
-  .ta,.tb,.tc,.td,.te{grid-column:span 12;aspect-ratio:16/9}
-  .tb{aspect-ratio:16/9}
-
-  /* STEPS MOBILE */
-  .step-img{aspect-ratio:16/9}
-
-  /* FEED MOBILE — 2 colunas */
-  .feed-grid{grid-template-columns:1fr 1fr;gap:4px}
-
-  /* REVIEWS MOBILE — 1 coluna */
-  .reviews{grid-template-columns:1fr}
-  .rv-img{aspect-ratio:16/9}
-
-  /* URGÊNCIA MOBILE */
-  .urg-tags{gap:.4rem}
-  .urg-tag{font-size:.6rem;padding:.35rem .7rem}
-
-  /* FOOTER MOBILE */
-  footer{padding:2.5rem 1.2rem 1.5rem}
-  .footer-in{grid-template-columns:1fr;gap:1.5rem}
-
-  /* FAB MOBILE */
-  .admin-fab{bottom:1rem;right:1rem;padding:.55rem 1rem;font-size:.65rem}
-
-  /* ── CHECKOUT MODAL MOBILE ── */
-  .modal-bd{padding:0;align-items:flex-end}
-  .modal-box{border-radius:16px 16px 0 0;max-width:100%;max-height:92svh;display:flex;flex-direction:column}
-  .modal-hd{padding:1.2rem 1.4rem;flex-shrink:0}
-  .modal-hd-title{font-size:1.2rem}
-  .modal-body{padding:1.2rem 1.4rem;overflow-y:auto;flex:1}
-  .modal-footer{padding:1rem 1.4rem;padding-bottom:calc(1rem + env(safe-area-inset-bottom))}
-
-  /* Steps nav compacto */
-  .steps-nav{margin-bottom:1.4rem}
-  .sn-item span{display:none}
-  .sn-dot{width:30px;height:30px;font-size:.75rem}
-  .sn-line{flex:1;margin:0 .2rem}
-
-  /* Calendário dias maiores no toque */
-  .cal-day{font-size:.85rem;min-height:38px;border-radius:6px}
-  .cal-dow{font-size:.6rem;padding:.3rem 0}
-  .cal-nav{margin-bottom:.9rem}
-  .cal-month{font-size:1.05rem}
-  .cal-nav-btn{padding:.4rem .7rem;font-size:.8rem}
-
-  /* Price tiers mobile — 3 colunas compactas */
-  .price-tiers{grid-template-columns:1fr 1fr 1fr;gap:.4rem}
-  .pt-card{padding:.6rem .7rem}
-  .pt-label{font-size:.6rem}
-  .pt-price{font-size:1.1rem}
-  .pt-sub{font-size:.6rem}
-
-  /* Form mobile */
-  .fg-row{grid-template-columns:1fr}
-  .fg input,.fg select,.fg textarea{font-size:16px} /* evita zoom no iOS */
-  .fg label{font-size:.65rem}
-
-  /* Botão WhatsApp grande no mobile */
-  .btn-wa{padding:1.1rem;font-size:.88rem;border-radius:8px}
-  .btn-next{padding:1rem;font-size:.82rem}
-  .btn-back{padding:.7rem 1.2rem;font-size:.75rem}
-
-  /* Summary box */
-  .sum-box{padding:.9rem}
-  .sum-row{font-size:.8rem}
-
-  /* Confirm card */
-  .conf-card{padding:1.1rem 1.2rem}
-  .conf-row{flex-direction:column;gap:.1rem;padding:.35rem 0}
-  .conf-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.06em}
-  .conf-val{font-size:.9rem}
-
-  /* ── ADMIN MOBILE ── */
-  .admin-topbar{padding:0 1rem}
-  .adm-a,.adm-b{font-size:1.1rem}
-  .adm-badge{display:none}
-  .admin-body{padding:1.2rem 1rem}
+  nav{padding:1.1rem 1.4rem}
+  nav.scrolled{padding:.85rem 1.4rem}
+  .logo{font-size:1.15rem}
+  .nav-links{display:none}
+  .ham{display:flex}
+  .nav-btn{padding:.48rem .9rem;font-size:.65rem}
+  .hero-body{padding:0 1.4rem 5.5rem}
+  .hero-h1{font-size:clamp(2.2rem,9.5vw,3.2rem)}
+  .hero-sub{font-size:.88rem}
+  .hero-actions{flex-direction:column;gap:.7rem}
+  .btn-primary,.btn-outline-w{width:100%;text-align:center;padding:.95rem 1.5rem}
+  .strip{padding:1.2rem 1.4rem;gap:1.4rem}
+  .strip-sep{display:none}
+  .apresent{grid-template-columns:1fr;min-height:auto}
+  .ap-content{padding:3.5rem 1.6rem}
+  .ap-imgs{height:65vw;min-height:260px}
+  .ap-badge-num{font-size:1.8rem}
+  .galeria{padding:5rem 1.4rem}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:8px}
+  .gal-item:first-child{grid-column:span 2;height:260px}
+  .gal-item:not(:first-child){height:200px}
+  .experiencias{padding:5rem 1.4rem}
+  .exp-header{grid-template-columns:1fr;gap:1.5rem;margin-bottom:3rem}
+  .exp-cards{grid-template-columns:1fr 1fr}
+  .exp-card{padding:1.6rem 1.2rem}
+  .exp-img-wrap img{height:300px}
+  .exp-img-overlay{padding:2rem 1.5rem}
+  .exp-quote{font-size:1.3rem}
+  .depoimentos{padding:5rem 1.4rem}
+  .dep-header{flex-direction:column;gap:1rem;align-items:flex-start;margin-bottom:2.5rem}
+  .dep-grid{grid-template-columns:1fr}
+  .dep-img{height:220px}
+  .cta-section{padding:6rem 1.4rem}
+  footer{padding:3rem 1.4rem 1.5rem}
+  .footer-inner{grid-template-columns:1fr;gap:2rem}
+  .footer-copy{flex-direction:column;gap:.3rem}
+  .fab{bottom:calc(4.5rem + env(safe-area-inset-bottom));right:1.2rem;padding:.5rem 1rem;font-size:.62rem}
+  .sticky-bar{display:flex}
+  .adm-inner{padding:1.2rem 1rem}
   .adm-stats{grid-template-columns:1fr 1fr;gap:.7rem}
-  .adm-stat{padding:.9rem}
-  .adm-stat-n{font-size:1.6rem}
-  .adm-tabs{gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:2px}
-  .adm-tab{padding:.65rem .9rem;font-size:.7rem;white-space:nowrap}
-  .adm-card{padding:1.1rem}
-  .afg-row{grid-template-columns:1fr}
-  .afg input,.afg select,.afg textarea{font-size:16px} /* evita zoom iOS */
-  .resv-item{grid-template-columns:1fr;gap:.6rem}
-  .resv-total{text-align:left}
-  .pm-row{flex-direction:column;gap:.7rem;align-items:flex-start}
-  .pm-edit-wrap{width:100%;justify-content:flex-start}
-  .pm-edit-input{width:120px}
-  .adm-cal{gap:2px}
-  .adm-cday{font-size:.72rem;min-height:34px}
-  .adm-dow{font-size:.58rem;padding:.25rem 0}
+  .adm-tabs{gap:0}
+  .adm-tab{padding:.6rem .85rem;font-size:.68rem}
+  .pt-grid{grid-template-columns:1fr 1fr 1fr}
 }
-
-/* Telas muito pequenas (iPhone SE, etc) */
-@media(max-width:375px){
+@media(max-width:480px){
+  .exp-cards{grid-template-columns:1fr}
   .hero-h1{font-size:2rem}
-  .cal-day{font-size:.78rem;min-height:34px}
-  .price-tiers{grid-template-columns:1fr 1fr 1fr}
-  .pt-price{font-size:1rem}
-}
-
-/* iOS safe area para o modal */
-@supports(padding-bottom: env(safe-area-inset-bottom)){
-  .modal-footer{padding-bottom:calc(.9rem + env(safe-area-inset-bottom))}
-  .admin-fab{bottom:calc(1rem + env(safe-area-inset-bottom))}
 }
 </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════
-     SITE PÚBLICO
-══════════════════════════════════════ -->
+<!-- ══════════════ SITE ══════════════ -->
 <div class="view active" id="view-site">
 
-<section id="top">
-  <img class="hero-img kenburns" src="/images/chale-exterior-1.jpg" alt="Chalé Gratitude — Vista externa">
-  <div class="hero-mist"></div><div class="hero-ov"></div>
-  <header>
-    <div class="nav-in">
-      <a href="#top" class="logo"><span class="logo-a">Chalé</span><span class="logo-b">Gratitude</span></a>
-      <ul class="nav-ul" id="nav-ul">
-        <li><a href="#viva" onclick="closeMobileMenu()">Viva</a></li>
-        <li><a href="#experiencia" onclick="closeMobileMenu()">Experiência</a></li>
-        <li><a href="#feed" onclick="closeMobileMenu()">Feed</a></li>
-        <li><a href="#provas" onclick="closeMobileMenu()">Hóspedes</a></li>
-      </ul>
-      <div style="display:flex;align-items:center;gap:.8rem">
-        <button class="nav-cta" onclick="openCheckout()">Reservar</button>
-        <button id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu" style="background:none;border:none;cursor:pointer;padding:.4rem;display:flex;flex-direction:column;gap:5px;display:none">
-          <span class="hb-line"></span><span class="hb-line"></span><span class="hb-line"></span>
-        </button>
-      </div>
-    </div>
-  </header>
-  <!-- MOBILE MENU OVERLAY -->
-  <div id="mobile-menu" style="display:none;position:fixed;inset:0;background:var(--forest);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:2.5rem">
-    <a href="#top" onclick="closeMobileMenu()" style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--cream);text-decoration:none">Chalé <em style="color:var(--ember)">Gratitude</em></a>
-    <nav style="display:flex;flex-direction:column;align-items:center;gap:1.8rem">
-      <a href="#viva" onclick="closeMobileMenu()" style="font-size:.85rem;text-transform:uppercase;letter-spacing:.3em;color:rgba(245,237,224,.8);text-decoration:none">Viva</a>
-      <a href="#experiencia" onclick="closeMobileMenu()" style="font-size:.85rem;text-transform:uppercase;letter-spacing:.3em;color:rgba(245,237,224,.8);text-decoration:none">Experiência</a>
-      <a href="#feed" onclick="closeMobileMenu()" style="font-size:.85rem;text-transform:uppercase;letter-spacing:.3em;color:rgba(245,237,224,.8);text-decoration:none">Feed</a>
-      <a href="#provas" onclick="closeMobileMenu()" style="font-size:.85rem;text-transform:uppercase;letter-spacing:.3em;color:rgba(245,237,224,.8);text-decoration:none">Hóspedes</a>
-    </nav>
-    <button onclick="openCheckout();closeMobileMenu()" class="btn-ember" style="min-width:220px;text-align:center">Reservar agora</button>
-    <button onclick="closeMobileMenu()" style="background:none;border:none;color:rgba(245,237,224,.5);font-size:.75rem;text-transform:uppercase;letter-spacing:.2em;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:1rem">✕ Fechar</button>
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="logo">Chalé <em>Gratitude</em></a>
+  <ul class="nav-links">
+    <li><a href="#apresent">O Chalé</a></li>
+    <li><a href="#galeria">Galeria</a></li>
+    <li><a href="#experiencias">Experiência</a></li>
+    <li><a href="#depoimentos">Hóspedes</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:.8rem">
+    <button class="nav-btn" onclick="openCheckout()">Reservar</button>
+    <button class="ham" id="ham" onclick="openDrawer()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
-  <div class="hero-cnt">
-    <p class="hero-eye fu">Refúgio · Natureza · Casal</p>
-    <h1 class="hero-h1 fu fu2">Onde o silêncio<br><em>se torna lembrança.</em></h1>
-    <p class="hero-p fu fu3">Um chalé escondido entre montanhas, onde o tempo desacelera e cada detalhe é um convite para sentir.</p>
-    <div class="hero-btns fu fu4">
-      <button class="btn-ember" onclick="openCheckout()">Verificar disponibilidade</button>
-      <a href="#viva" class="btn-ghost">Conhecer o chalé</a>
-    </div>
-  </div>
-  <div class="hero-scroll">role para descer</div>
-</section>
+</nav>
 
-<div class="whisper reveal"><p>"Silêncio, natureza e paz."</p></div>
-
-<section id="viva">
-  <div class="sec-in">
-    <div class="sec-top reveal">
-      <div><p class="sec-eye">A experiência</p><h2 class="sec-h">Viva o <em>Chalé Gratitude</em></h2></div>
-      <p class="sec-p">Mais do que uma hospedagem — uma experiência que você sente em cada respiro, em cada paisagem.</p>
-    </div>
-    <div class="mosaic reveal">
-      <figure class="tile ta"><img src="/images/chale-exterior-1.jpg" alt="Chalé Gratitude exterior" loading="lazy"><div class="tile-g"></div><figcaption>Vista que abraça</figcaption></figure>
-      <figure class="tile tb"><img src="/images/chale-quarto-1.jpg" alt="Interior do chalé" loading="lazy"><div class="tile-g"></div><figcaption>Aconchego especial</figcaption></figure>
-      <figure class="tile tc"><img src="/images/chale-exterior-2.jpg" alt="Área externa do chalé" loading="lazy"><div class="tile-g"></div><figcaption>Natureza ao redor</figcaption></figure>
-      <figure class="tile td"><img src="/images/chale-quarto-2.jpg" alt="Quarto do chalé" loading="lazy"><div class="tile-g"></div><figcaption>Seu quarto especial</figcaption></figure>
-      <figure class="tile te"><img src="/images/chale-exterior-1.jpg" alt="Chalé Gratitude" loading="lazy"><div class="tile-g"></div><figcaption>Refúgio exclusivo</figcaption></figure>
-    </div>
-  </div>
-</section>
-
-<div class="whisper reveal"><p>"Um refúgio longe do caos."</p></div>
-
-<section id="experiencia">
-  <div class="sec-in">
-    <p class="sec-eye reveal" style="color:var(--ember)">Como é se hospedar aqui?</p>
-    <h2 class="exp-h reveal">Quatro momentos<br><em>que ficam na memória.</em></h2>
-    <div class="steps">
-      <article class="step reveal"><img class="step-img" src="/images/chale-exterior-1.jpg" alt="Chegada ao chalé" loading="lazy"><div class="step-ico">🌿</div><div class="step-t">Chegada</div><p class="step-p">O ar muda. O cheiro de mata, o canto distante dos pássaros — você já chegou.</p></article>
-      <article class="step reveal"><img class="step-img" src="/images/chale-quarto-1.jpg" alt="Quarto do chalé" loading="lazy"><div class="step-ico">🛏️</div><div class="step-t">Estadia</div><p class="step-p">Madeira, lareira, lençóis brancos. Tudo pensado para você não querer sair da cama.</p></article>
-      <article class="step reveal"><img class="step-img" src="/images/chale-exterior-2.jpg" alt="Área externa" loading="lazy"><div class="step-ico">🌄</div><div class="step-t">Vivência</div><p class="step-p">Vista de tirar o fôlego, ofurô fumegante, taça de vinho. O luxo aqui é o tempo.</p></article>
-      <article class="step reveal"><img class="step-img" src="/images/chale-quarto-2.jpg" alt="Memória do chalé" loading="lazy"><div class="step-ico">❤️</div><div class="step-t">Memória</div><p class="step-p">Você volta diferente. Mais leve. Já contando os dias para a próxima estadia.</p></article>
-    </div>
-  </div>
-</section>
-
-<div class="whisper reveal" style="background:var(--secondary)"><p>"Perfeito para desacelerar."</p></div>
-
-<section id="feed">
-  <div class="sec-in">
-    <div class="sec-top reveal">
-      <div><p class="sec-eye">@chale.gratitude</p><h2 class="sec-h">Direto do nosso <em>feed</em></h2></div>
-      <a href="https://www.instagram.com/chale.gratitude/" target="_blank" class="feed-ig">Seguir no Instagram →</a>
-    </div>
-    <div class="feed-grid reveal">
-      <a href="https://www.instagram.com/chale.gratitude/" target="_blank" class="fi"><img src="/images/chale-exterior-1.jpg" alt="" loading="lazy"><div class="fi-ov"><div class="fi-stats"><span>♥ 842</span><span>💬 47</span></div><p class="fi-cap">Noites de fogueira sob estrelas.</p></div></a>
-      <a href="https://www.instagram.com/chale.gratitude/" target="_blank" class="fi"><img src="/images/chale-quarto-1.jpg" alt="" loading="lazy"><div class="fi-ov"><div class="fi-stats"><span>♥ 1.203</span><span>💬 92</span></div><p class="fi-cap">Manhãs lentas com vista.</p></div></a>
-      <a href="https://www.instagram.com/chale.gratitude/" target="_blank" class="fi"><img src="/images/chale-exterior-2.jpg" alt="" loading="lazy"><div class="fi-ov"><div class="fi-stats"><span>♥ 1.567</span><span>💬 134</span></div><p class="fi-cap">O ofurô que vira cartão postal.</p></div></a>
-      <a href="https://www.instagram.com/chale.gratitude/" target="_blank" class="fi"><img src="/images/chale-quarto-2.jpg" alt="" loading="lazy"><div class="fi-ov"><div class="fi-stats"><span>♥ 968</span><span>💬 71</span></div><p class="fi-cap">Café da manhã na cama, sempre.</p></div></a>
-      <a href="https://www.instagram.com/chale.gratitude/" target="_blank" class="fi"><img src="/images/chale-exterior-1.jpg" alt="" loading="lazy"><div class="fi-ov"><div class="fi-stats"><span>♥ 2.104</span><span>💬 188</span></div><p class="fi-cap">A dois, contemplando o vale.</p></div></a>
-      <a href="https://www.instagram.com/chale.gratitude/" target="_blank" class="fi"><img src="/images/chale-quarto-1.jpg" alt="" loading="lazy"><div class="fi-ov"><div class="fi-stats"><span>♥ 1.342</span><span>💬 84</span></div><p class="fi-cap">O aconchego que abraça.</p></div></a>
-    </div>
-  </div>
-</section>
-
-<section id="provas">
-  <div class="sec-in">
-    <div class="provas-hd reveal"><p class="stars-line">★★★★★ · 5,0 / 5 · Google</p><h2 class="provas-h">Quem chega, <em>volta diferente.</em></h2></div>
-    <div class="reviews reveal">
-      <article class="rv-card"><div class="rv-img"><img src="/images/chale-exterior-1.jpg" alt="" loading="lazy"></div><div class="rv-body"><p class="rv-q">"Lugar aconchegante e confiável, com vista privilegiada. Voltaremos com certeza!"</p><p class="rv-name">Ana &amp; Carlos</p><p class="rv-city">Juiz de Fora · MG</p></div></article>
-      <article class="rv-card"><div class="rv-img"><img src="/images/chale-quarto-1.jpg" alt="" loading="lazy"></div><div class="rv-body"><p class="rv-q">"O quarto é incrível, parece que a natureza abraça você enquanto dorme. Experiência única!"</p><p class="rv-name">Fernanda &amp; Marcos</p><p class="rv-city">Leopoldina · MG</p></div></article>
-      <article class="rv-card"><div class="rv-img"><img src="/images/chale-exterior-2.jpg" alt="" loading="lazy"></div><div class="rv-body"><p class="rv-q">"A estrutura em formato A-frame é linda demais. Ficamos encantados desde a chegada. Voltamos já!"</p><p class="rv-name">Rodrigo &amp; Patrícia</p><p class="rv-city">Cataguases · MG</p></div></article>
-    </div>
-  </div>
-</section>
-
-<section class="urgencia">
-  <img src="/images/chale-exterior-2.jpg" alt="Chalé Gratitude" class="urg-img">
-  <div class="urg-ov"></div>
-  <div class="urg-in reveal">
-    <div class="urg-tags"><span class="urg-tag tag-hot">🔥 Alta procura nos fins de semana</span><span class="urg-tag tag-plain">Poucas datas disponíveis</span><span class="urg-tag tag-plain">Ideal para casais</span></div>
-    <h2 class="urg-h">Sua próxima memória<br><em>começa com um sim.</em></h2>
-    <p class="urg-p">Verifique a disponibilidade agora — respondemos pelo WhatsApp em minutos.</p>
-    <button class="btn-ember" onclick="openCheckout()" style="margin-top:2.2rem">Reservar pelo WhatsApp</button>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-in">
-    <div><div style="display:flex;align-items:baseline;gap:.3rem;margin-bottom:.7rem"><span class="fl1">Chalé </span><span class="fl2">Gratitude</span></div><p class="f-desc">Um refúgio longe do caos. Natureza, silêncio e aconchego para quem precisa desacelerar.</p></div>
-    <div><p class="f-label">Contato</p><div class="f-links"><a href="#" onclick="openCheckout();return false;">WhatsApp · (32) 98500-3002</a><a href="https://www.instagram.com/chale.gratitude/" target="_blank">@chale.gratitude</a><a href="https://maps.google.com/?q=Chalé+Gratitude+Cataguases+MG" target="_blank">Ver no Google Maps ↗</a></div></div>
-    <div><p class="f-label">Visite</p><div class="f-txt"><p>Rodovia MG 120, km 715<br>Zona Rural · Cataguases - MG</p><p class="f-mut">Check-in 15h · Check-out 12h</p></div></div>
-  </div>
-  <div class="f-copy">© 2025 Chalé Gratitude. Todos os direitos reservados.</div>
-</footer>
-
-<!-- STICKY BOTTOM BAR MOBILE -->
-<div id="sticky-bar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:90;background:var(--white);border-top:1px solid var(--cream3);padding:.9rem 1.4rem;padding-bottom:calc(.9rem + env(safe-area-inset-bottom));flex-direction:row;align-items:center;justify-content:space-between;box-shadow:0 -4px 20px rgba(30,46,26,.1)">
-  <div>
-    <div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)">A partir de</div>
-    <div style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--forest)" id="sticky-price">R$ 350<span style="font-family:'DM Sans',sans-serif;font-size:.72rem;color:var(--muted)">/noite</span></div>
-  </div>
-  <button class="btn-ember" onclick="openCheckout()" style="padding:.8rem 1.8rem;font-size:.78rem">Reservar</button>
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="drawer">
+  <button class="nd-close" onclick="closeDrawer()">✕</button>
+  <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:rgba(245,239,230,.4);letter-spacing:.2em;text-transform:uppercase;font-style:italic">Menu</span>
+  <a href="#apresent" onclick="closeDrawer()">O Chalé</a>
+  <a href="#galeria" onclick="closeDrawer()">Galeria</a>
+  <a href="#experiencias" onclick="closeDrawer()">Experiência</a>
+  <a href="#depoimentos" onclick="closeDrawer()">Hóspedes</a>
+  <button class="nd-cta" onclick="openCheckout();closeDrawer()">Reservar agora</button>
 </div>
 
-<button class="admin-fab" onclick="showLogin()">⚙ Admin</button>
+<!-- HERO -->
+<section class="hero" id="top">
+  <img class="hero-img" src="/images/chale-exterior-1.jpg" alt="Chalé Gratitude A-Frame entre a natureza de Cataguases MG">
+  <div class="hero-veil"></div>
+  <div class="hero-body">
+    <span class="hero-tag">Cataguases · Minas Gerais · ⭐ 5.0 Google</span>
+    <h1 class="hero-h1">Um refúgio que<br><strong>você não esquece.</strong></h1>
+    <p class="hero-sub">Chalé exclusivo em formato A-Frame, cercado pela natureza. Silêncio, conforto e vistas que tiram o fôlego — para você desacelerar a dois.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="openCheckout()">Verificar disponibilidade</button>
+      <a href="#galeria" class="btn-outline-w">Ver o chalé</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div>Explorar</div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-item"><span class="strip-icon">🏡</span>Chalé A-Frame exclusivo</div>
+  <div class="strip-sep"></div>
+  <div class="strip-item"><span class="strip-icon">☕</span>Café da manhã incluso</div>
+  <div class="strip-sep"></div>
+  <div class="strip-item"><span class="strip-icon">🌿</span>Natureza preservada</div>
+  <div class="strip-sep"></div>
+  <div class="strip-item"><span class="strip-icon">⭐</span>5,0 · 4 avaliações Google</div>
+</div>
+
+<!-- APRESENTAÇÃO -->
+<section class="apresent" id="apresent">
+  <div class="ap-imgs sr-left">
+    <img class="ap-img-main" src="/images/chale-exterior-2.jpg" alt="Estrutura A-Frame do Chalé Gratitude">
+    <div class="ap-img-badge">
+      <span class="ap-badge-num">A-Frame</span>
+      <div class="ap-badge-txt">Arquitetura única</div>
+    </div>
+  </div>
+  <div class="ap-content sr-right">
+    <p class="label-tag">Sobre o chalé</p>
+    <h2 class="section-h">Feito para quem<br>busca o <em>extraordinário.</em></h2>
+    <p class="section-p">O Chalé Gratitude é um refúgio de design único em formato A-Frame, localizado na Rodovia MG 120, em Cataguases. Um espaço pensado nos mínimos detalhes para proporcionar uma experiência de aconchego, natureza e memórias inesquecíveis.</p>
+    <div class="ap-features">
+      <div class="ap-feat">
+        <span class="ap-feat-ico">🛏️</span>
+        <div>
+          <div class="ap-feat-t">Cama Queen Size</div>
+          <div class="ap-feat-p">Roupa de cama premium com almofadas decorativas para o máximo conforto</div>
+        </div>
+      </div>
+      <div class="ap-feat">
+        <span class="ap-feat-ico">❄️</span>
+        <div>
+          <div class="ap-feat-t">Ar condicionado quente e frio</div>
+          <div class="ap-feat-p">Temperatura perfeita em qualquer estação do ano</div>
+        </div>
+      </div>
+      <div class="ap-feat">
+        <span class="ap-feat-ico">📺</span>
+        <div>
+          <div class="ap-feat-t">Smart TV + Cozinha completa</div>
+          <div class="ap-feat-p">Entretenimento e praticidade para toda a estadia</div>
+        </div>
+      </div>
+      <div class="ap-feat">
+        <span class="ap-feat-ico">🌄</span>
+        <div>
+          <div class="ap-feat-t">Vista privilegiada</div>
+          <div class="ap-feat-p">Paisagem verde exuberante de Minas Gerais ao redor</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section class="galeria" id="galeria">
+  <div class="gal-header sr">
+    <p class="label-tag" style="justify-content:center">Galeria</p>
+    <h2 class="section-h" style="text-align:center">O chalé em <em>imagens</em></h2>
+  </div>
+  <div class="gal-grid sr">
+    <div class="gal-item" onclick="openLb('/images/chale-exterior-1.jpg')">
+      <img src="/images/chale-exterior-1.jpg" alt="Chalé Gratitude vista externa">
+      <div class="gal-overlay"><span class="gal-cap">Vista externa do chalé</span></div>
+    </div>
+    <div class="gal-item" onclick="openLb('/images/chale-quarto-1.jpg')">
+      <img src="/images/chale-quarto-1.jpg" alt="Interior do quarto">
+      <div class="gal-overlay"><span class="gal-cap">Interior aconchegante</span></div>
+    </div>
+    <div class="gal-item" onclick="openLb('/images/chale-exterior-2.jpg')">
+      <img src="/images/chale-exterior-2.jpg" alt="Área externa">
+      <div class="gal-overlay"><span class="gal-cap">Estrutura A-Frame</span></div>
+    </div>
+    <div class="gal-item" onclick="openLb('/images/chale-quarto-2.jpg')">
+      <img src="/images/chale-quarto-2.jpg" alt="Quarto do chalé">
+      <div class="gal-overlay"><span class="gal-cap">Quarto com vista</span></div>
+    </div>
+    <div class="gal-item" onclick="openLb('/images/chale-exterior-1.jpg')">
+      <img src="/images/chale-exterior-1.jpg" alt="Chalé na natureza" style="object-position:center 30%">
+      <div class="gal-overlay"><span class="gal-cap">Natureza ao redor</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lb" onclick="closeLb()">
+  <button class="lb-close" onclick="closeLb()">✕</button>
+  <img class="lb-img" id="lb-img" src="" alt="">
+</div>
+
+<!-- EXPERIÊNCIA -->
+<section class="experiencias" id="experiencias">
+  <div class="exp-inner">
+    <div class="exp-header">
+      <div class="sr-left">
+        <p class="label-tag" style="color:rgba(245,239,230,.4)">Como é se hospedar aqui</p>
+        <h2 class="exp-h">Momentos que<br><em>ficam para sempre.</em></h2>
+      </div>
+      <p class="exp-p sr-right">Cada detalhe do Chalé Gratitude foi pensado para criar uma experiência completa — da chegada à partida, você vai querer voltar.</p>
+    </div>
+    <div class="exp-cards sr">
+      <div class="exp-card">
+        <div class="exp-num">01</div>
+        <div class="exp-icon">🌿</div>
+        <div class="exp-title">Chegada</div>
+        <p class="exp-desc">O ar muda ao entrar na propriedade. Mata, pássaros, silêncio — você já chegou a outro ritmo.</p>
+      </div>
+      <div class="exp-card">
+        <div class="exp-num">02</div>
+        <div class="exp-icon">🛏️</div>
+        <div class="exp-title">Descanso</div>
+        <p class="exp-desc">A cama queen, o teto triangular do A-Frame e a vista verde pela janela. Um quarto que abraça.</p>
+      </div>
+      <div class="exp-card">
+        <div class="exp-num">03</div>
+        <div class="exp-icon">☕</div>
+        <div class="exp-title">Manhã especial</div>
+        <p class="exp-desc">Café da manhã completo todos os dias. O melhor jeito de começar uma manhã tranquila.</p>
+      </div>
+      <div class="exp-card">
+        <div class="exp-num">04</div>
+        <div class="exp-icon">❤️</div>
+        <div class="exp-title">Memória</div>
+        <p class="exp-desc">Você vai embora diferente. Mais leve. Já planejando a próxima estadia.</p>
+      </div>
+    </div>
+    <div class="exp-img-wrap sr">
+      <img src="/images/chale-quarto-1.jpg" alt="Interior do Chalé Gratitude">
+      <div class="exp-img-overlay">
+        <p class="exp-quote">"Aconchegante, confiável,<br>com vista privilegiada."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="depoimentos" id="depoimentos">
+  <div class="dep-inner">
+    <div class="dep-header sr">
+      <div>
+        <p class="label-tag">Hóspedes</p>
+        <h2 class="section-h">Quem veio,<br><em>voltou diferente.</em></h2>
+      </div>
+      <div>
+        <div class="dep-rating">
+          <span class="dep-stars">★★★★★</span>
+          <span>5,0 · Google Reviews</span>
+        </div>
+        <div style="font-size:.75rem;color:var(--ink3);margin-top:.3rem">4 avaliações verificadas</div>
+      </div>
+    </div>
+    <div class="dep-grid">
+      <div class="dep-card sr sr-d1">
+        <div class="dep-img"><img src="/images/chale-exterior-1.jpg" alt=""></div>
+        <div class="dep-body">
+          <p class="dep-q">"Lugar aconchegante e confiável, com vista privilegiada. Não queríamos ir embora!"</p>
+          <div class="dep-author">
+            <div>
+              <div class="dep-name">Ana &amp; Carlos</div>
+              <div class="dep-city">Juiz de Fora · MG</div>
+            </div>
+            <div class="dep-g-badge">★★★★★ Google</div>
+          </div>
+        </div>
+      </div>
+      <div class="dep-card sr sr-d2">
+        <div class="dep-img"><img src="/images/chale-quarto-1.jpg" alt=""></div>
+        <div class="dep-body">
+          <p class="dep-q">"O quarto em formato A-Frame é simplesmente lindo. Uma experiência única que eu nunca tinha vivido."</p>
+          <div class="dep-author">
+            <div>
+              <div class="dep-name">Fernanda &amp; Marcos</div>
+              <div class="dep-city">Leopoldina · MG</div>
+            </div>
+            <div class="dep-g-badge">★★★★★ Google</div>
+          </div>
+        </div>
+      </div>
+      <div class="dep-card sr sr-d3">
+        <div class="dep-img"><img src="/images/chale-exterior-2.jpg" alt=""></div>
+        <div class="dep-body">
+          <p class="dep-q">"Estrutura linda, natureza ao redor e atendimento impecável. Voltaremos com certeza!"</p>
+          <div class="dep-author">
+            <div>
+              <div class="dep-name">Rodrigo &amp; Patrícia</div>
+              <div class="dep-city">Cataguases · MG</div>
+            </div>
+            <div class="dep-g-badge">★★★★★ Google</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <img src="/images/chale-quarto-2.jpg" alt="" class="cta-img">
+  <div class="cta-veil"></div>
+  <div class="cta-body sr">
+    <div class="cta-tags">
+      <span class="cta-tag cta-tag-hot">🔥 Alta procura nos fins de semana</span>
+      <span class="cta-tag cta-tag-plain">Para casais</span>
+      <span class="cta-tag cta-tag-plain">Datas limitadas</span>
+    </div>
+    <h2 class="cta-h">Sua próxima memória<br><em>começa com um sim.</em></h2>
+    <p class="cta-p">Verifique a disponibilidade agora e garanta sua data. Respondemos em minutos pelo WhatsApp.</p>
+    <button class="btn-primary" onclick="openCheckout()" style="margin-top:2.2rem">Reservar agora</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="f-logo">Chalé <em>Gratitude</em></div>
+      <p class="f-desc">Um refúgio exclusivo em formato A-Frame na natureza de Cataguases, MG. Ideal para casais que buscam paz e experiências únicas.</p>
+    </div>
+    <div>
+      <p class="f-label">Contato</p>
+      <div class="f-links">
+        <a href="#" onclick="openCheckout();return false;">WhatsApp · (32) 98500-3002</a>
+        <a href="https://www.instagram.com/chale.gratitude/" target="_blank">@chale.gratitude</a>
+        <a href="https://maps.google.com/?q=Chalé+Gratitude+Cataguases+MG" target="_blank">Ver no Google Maps ↗</a>
+      </div>
+    </div>
+    <div>
+      <p class="f-label">Localização</p>
+      <div class="f-txt">
+        <p>Rodovia MG 120, km 715<br>Zona Rural · Cataguases - MG</p>
+        <p class="f-mut">Check-in 15h · Check-out 12h</p>
+        <p class="f-mut">Reservas com antecedência recomendadas</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copy">
+    <span>© 2025 Chalé Gratitude · Todos os direitos reservados</span>
+    <button onclick="showLogin()" style="background:none;border:none;color:rgba(245,239,230,.2);font-size:.65rem;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:.1em;text-transform:uppercase">Admin</button>
+  </div>
+</footer>
+
+<!-- STICKY BAR MOBILE -->
+<div class="sticky-bar" id="sticky-bar">
+  <div>
+    <div class="sb-from">A partir de</div>
+    <div class="sb-price" id="sb-price">R$ 350<span class="sb-per">/noite</span></div>
+  </div>
+  <button class="btn-primary" onclick="openCheckout()" style="padding:.8rem 1.8rem">Reservar</button>
+</div>
+
+<button class="fab" onclick="showLogin()">⚙ Admin</button>
+
 </div><!-- /view-site -->
 
-<!-- ══════════════════════════════════════
-     LOGIN
-══════════════════════════════════════ -->
+<!-- ══════════════ LOGIN ══════════════ -->
 <div class="view" id="view-login">
   <div class="login-wrap">
     <div class="login-box">
-      <div style="margin-bottom:.3rem"><span style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--forest)">Chalé </span><span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.5rem;color:var(--ember)">Gratitude</span></div>
-      <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;color:var(--muted);margin-bottom:1.8rem">Painel Administrativo</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--forest);margin-bottom:.2rem">Chalé <em style="font-style:italic;color:var(--ember)">Gratitude</em></div>
+      <div style="font-size:.68rem;text-transform:uppercase;letter-spacing:.15em;color:var(--ink3);margin-bottom:1.8rem">Painel Admin</div>
       <div class="login-err" id="login-err">Senha incorreta. Tente novamente.</div>
       <div class="afg"><label>Senha</label><input type="password" id="login-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
-      <button class="btn-login" onclick="doLogin()">Entrar no Painel</button>
-      <br><button onclick="showView('view-site')" style="background:none;border:none;color:var(--muted);font-size:.76rem;margin-top:1rem;cursor:pointer;font-family:'DM Sans',sans-serif">← Voltar ao site</button>
+      <button class="btn-login" onclick="doLogin()">Entrar</button>
+      <br><button onclick="showView('view-site')" style="background:none;border:none;color:var(--ink3);font-size:.76rem;margin-top:1rem;cursor:pointer;font-family:'Jost',sans-serif">← Voltar ao site</button>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     ADMIN
-══════════════════════════════════════ -->
+<!-- ══════════════ ADMIN ══════════════ -->
 <div class="view" id="view-admin">
-  <div class="admin-wrap">
-    <div class="admin-topbar">
+  <div class="adm-wrap">
+    <div class="adm-bar">
       <div style="display:flex;align-items:center">
-        <div class="admin-logo"><span class="adm-a">Chalé </span><span class="adm-b">Gratitude</span></div>
+        <div class="adm-logo">Chalé <em>Gratitude</em></div>
         <span class="adm-badge">Admin</span>
       </div>
-      <div class="adm-actions">
-        <button class="adm-btn" onclick="showView('view-site')">Ver Site</button>
-        <button class="adm-btn" onclick="showView('view-site')">Sair</button>
+      <div class="adm-acts">
+        <button class="adm-abtn" onclick="showView('view-site')">Ver site</button>
+        <button class="adm-abtn" onclick="showView('view-site')">Sair</button>
       </div>
     </div>
-    <div class="admin-body">
-
-      <!-- STATS -->
+    <div class="adm-inner">
       <div class="adm-stats" id="adm-stats"></div>
-
-      <!-- TABS -->
       <div class="adm-tabs">
-        <button class="adm-tab active" onclick="switchTab('tab-reservas',this)">📋 Reservas</button>
-        <button class="adm-tab" onclick="switchTab('tab-calendario',this)">📅 Calendário</button>
-        <button class="adm-tab" onclick="switchTab('tab-precos',this)">💰 Preços</button>
-        <button class="adm-tab" onclick="switchTab('tab-acomodacoes',this)">🛏 Acomodações</button>
-        <button class="adm-tab" onclick="switchTab('tab-servicos',this)">✨ Serviços</button>
-        <button class="adm-tab" onclick="switchTab('tab-config',this)">⚙ Config</button>
+        <button class="adm-tab active" onclick="switchTab('tab-r',this)">📋 Reservas</button>
+        <button class="adm-tab" onclick="switchTab('tab-cal',this)">📅 Calendário</button>
+        <button class="adm-tab" onclick="switchTab('tab-p',this)">💰 Preços</button>
+        <button class="adm-tab" onclick="switchTab('tab-rooms',this)">🛏 Acomodações</button>
+        <button class="adm-tab" onclick="switchTab('tab-svcs',this)">✨ Serviços</button>
+        <button class="adm-tab" onclick="switchTab('tab-cfg',this)">⚙ Config</button>
       </div>
 
-      <!-- TAB: RESERVAS -->
-      <div class="adm-sec active" id="tab-reservas">
-        <div class="adm-card" style="margin-bottom:1.2rem">
-          <div class="adm-card-label">Filtrar reservas</div>
+      <!-- RESERVAS -->
+      <div class="adm-sec active" id="tab-r">
+        <div class="adm-card" style="margin-bottom:1rem">
+          <div class="adm-card-lbl">Filtros</div>
           <div class="afg-row">
-            <div class="afg"><label>Status</label>
-              <select id="filter-status" onchange="renderReservations()">
-                <option value="">Todas</option>
-                <option value="pending">Pendentes</option>
-                <option value="confirmed">Confirmadas</option>
-                <option value="cancelled">Canceladas</option>
-              </select>
-            </div>
-            <div class="afg"><label>Buscar nome</label>
-              <input type="text" id="filter-search" placeholder="Nome do hóspede..." oninput="renderReservations()">
-            </div>
+            <div class="afg"><label>Status</label><select id="f-status" onchange="renderReservations()"><option value="">Todas</option><option value="pending">Pendentes</option><option value="confirmed">Confirmadas</option><option value="cancelled">Canceladas</option></select></div>
+            <div class="afg"><label>Buscar</label><input type="text" id="f-search" placeholder="Nome do hóspede..." oninput="renderReservations()"></div>
           </div>
         </div>
-        <div id="reservations-list"></div>
+        <div id="resv-list"></div>
       </div>
 
-      <!-- TAB: CALENDÁRIO -->
-      <div class="adm-sec" id="tab-calendario">
+      <!-- CALENDÁRIO -->
+      <div class="adm-sec" id="tab-cal">
         <div class="adm-card">
-          <div class="adm-card-label">Calendário de disponibilidade</div>
+          <div class="adm-card-lbl">Disponibilidade</div>
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
-            <button class="adm-btn" style="border:1px solid var(--cream3);color:var(--muted);padding:.35rem .9rem;background:none;border-radius:3px;font-family:'DM Sans',sans-serif;font-size:.8rem;cursor:pointer" onclick="prevAdmMonth()">← Anterior</button>
-            <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--forest)" id="adm-cal-title"></div>
-            <button class="adm-btn" style="border:1px solid var(--cream3);color:var(--muted);padding:.35rem .9rem;background:none;border-radius:3px;font-family:'DM Sans',sans-serif;font-size:.8rem;cursor:pointer" onclick="nextAdmMonth()">Próximo →</button>
+            <button class="adm-abtn" style="border:1px solid var(--sand3);color:var(--ink3);padding:.32rem .85rem;background:none;border-radius:3px;font-family:'Jost',sans-serif;font-size:.78rem;cursor:pointer" onclick="prevAdmMonth()">← Anterior</button>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--forest)" id="adm-cal-title"></div>
+            <button class="adm-abtn" style="border:1px solid var(--sand3);color:var(--ink3);padding:.32rem .85rem;background:none;border-radius:3px;font-family:'Jost',sans-serif;font-size:.78rem;cursor:pointer" onclick="nextAdmMonth()">Próximo →</button>
           </div>
-          <div class="adm-cal" id="adm-cal-grid"></div>
-          <div style="display:flex;gap:1.2rem;margin-top:1rem;flex-wrap:wrap">
-            <div style="display:flex;align-items:center;gap:.4rem;font-size:.72rem;color:var(--muted)"><div style="width:12px;height:12px;border-radius:2px;background:rgba(45,92,40,.1);border:1px solid rgba(45,92,40,.3)"></div>Reservado</div>
-            <div style="display:flex;align-items:center;gap:.4rem;font-size:.72rem;color:var(--muted)"><div style="width:12px;height:12px;border-radius:2px;background:#fde8e7"></div>Bloqueado</div>
-            <div style="display:flex;align-items:center;gap:.4rem;font-size:.72rem;color:var(--muted)"><div style="width:12px;height:12px;border-radius:2px;border:1px solid rgba(200,146,42,.3)"></div>Fim de semana</div>
-            <div style="display:flex;align-items:center;gap:.4rem;font-size:.72rem;color:var(--muted)"><div style="width:12px;height:12px;border-radius:2px;background:var(--cream2);border:1px solid var(--cream3)"></div>Disponível</div>
+          <div class="adm-cal" id="adm-cal"></div>
+          <div style="display:flex;gap:1rem;margin-top:.8rem;flex-wrap:wrap">
+            <div style="display:flex;align-items:center;gap:.35rem;font-size:.7rem;color:var(--ink3)"><div style="width:11px;height:11px;border-radius:2px;background:rgba(45,69,40,.1);border:1px solid rgba(45,69,40,.25)"></div>Reservado</div>
+            <div style="display:flex;align-items:center;gap:.35rem;font-size:.7rem;color:var(--ink3)"><div style="width:11px;height:11px;border-radius:2px;background:#fdf0ee"></div>Bloqueado</div>
+            <div style="display:flex;align-items:center;gap:.35rem;font-size:.7rem;color:var(--ink3)"><div style="width:11px;height:11px;border-radius:2px;border:1px solid rgba(154,122,58,.2)"></div>Fim de semana</div>
           </div>
-          <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--cream3)">
-            <div class="adm-card-label" style="margin-bottom:.8rem">Bloquear / desbloquear datas manualmente</div>
+          <div style="margin-top:1.4rem;padding-top:1rem;border-top:1px solid var(--sand3)">
+            <div class="adm-card-lbl" style="margin-bottom:.7rem">Bloquear / Desbloquear datas</div>
             <div class="afg-row">
-              <div class="afg"><label>Data inicial</label><input type="date" id="block-start"></div>
-              <div class="afg"><label>Data final</label><input type="date" id="block-end"></div>
+              <div class="afg"><label>Data inicial</label><input type="date" id="bl-start"></div>
+              <div class="afg"><label>Data final</label><input type="date" id="bl-end"></div>
             </div>
             <div style="display:flex;gap:.6rem">
-              <button class="btn-save" onclick="blockDates()">Bloquear datas</button>
-              <button class="btn-save" style="background:var(--green)" onclick="unblockDates()">Desbloquear</button>
+              <button class="btn-save" onclick="blockDates()">Bloquear</button>
+              <button class="btn-save" style="background:var(--forest)" onclick="unblockDates()">Desbloquear</button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- TAB: PREÇOS -->
-      <div class="adm-sec" id="tab-precos">
+      <!-- PREÇOS -->
+      <div class="adm-sec" id="tab-p">
         <div class="adm-card">
-          <div class="adm-card-label">Tabela de preços por período</div>
-          <div class="price-manager" id="price-manager"></div>
-          <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--cream3)">
-            <div class="adm-card-label" style="margin-bottom:.8rem">Adicionar período especial</div>
+          <div class="adm-card-lbl">Preços por período</div>
+          <div id="price-mgr"></div>
+          <div style="margin-top:1.4rem;padding-top:1rem;border-top:1px solid var(--sand3)">
+            <div class="adm-card-lbl" style="margin-bottom:.7rem">Adicionar período especial</div>
             <div class="afg-row">
-              <div class="afg"><label>Nome do período</label><input type="text" id="pt-name" placeholder="Alta Temporada Carnaval"></div>
-              <div class="afg"><label>Preço / noite (R$)</label><input type="number" id="pt-price" placeholder="450"></div>
+              <div class="afg"><label>Nome</label><input type="text" id="pt-name" placeholder="Alta Temporada Carnaval"></div>
+              <div class="afg"><label>Preço / noite (R$)</label><input type="number" id="pt-price" placeholder="480"></div>
             </div>
             <div class="afg-row">
               <div class="afg"><label>Data início</label><input type="date" id="pt-start"></div>
@@ -744,168 +810,131 @@ footer{background:var(--forest);padding:3.5rem 2.5rem 1.8rem;color:rgba(245,237,
         </div>
       </div>
 
-      <!-- TAB: ACOMODAÇÕES -->
-      <div class="adm-sec" id="tab-acomodacoes">
+      <!-- ACOMODAÇÕES -->
+      <div class="adm-sec" id="tab-rooms">
         <div class="adm-card">
-          <div class="adm-card-label">+ Nova acomodação</div>
-          <div class="afg-row">
-            <div class="afg"><label>Nome</label><input id="r-name" type="text" placeholder="Suíte Natureza"></div>
-            <div class="afg"><label>Preço base / noite</label><input id="r-price" type="number" placeholder="350"></div>
-          </div>
-          <div class="afg-row">
-            <div class="afg"><label>Capacidade</label><input id="r-cap" type="number" placeholder="2" min="1"></div>
-            <div class="afg"><label>Emoji</label><input id="r-emoji" type="text" placeholder="🛏️" maxlength="2"></div>
-          </div>
-          <div class="afg"><label>Descrição</label><textarea id="r-desc" placeholder="Descreva a acomodação..."></textarea></div>
+          <div class="adm-card-lbl">+ Nova acomodação</div>
+          <div class="afg-row"><div class="afg"><label>Nome</label><input id="r-name" type="text" placeholder="Suíte Natureza"></div><div class="afg"><label>Preço / noite</label><input id="r-price" type="number" placeholder="350"></div></div>
+          <div class="afg-row"><div class="afg"><label>Capacidade</label><input id="r-cap" type="number" placeholder="2"></div><div class="afg"><label>Emoji</label><input id="r-emoji" type="text" placeholder="🛏️" maxlength="2"></div></div>
+          <div class="afg"><label>Descrição</label><textarea id="r-desc" placeholder="Descreva..."></textarea></div>
           <div class="afg"><label>URL da foto</label><input id="r-img" type="url" placeholder="https://..."></div>
           <div class="afg" style="display:flex;align-items:center;gap:.5rem"><input type="checkbox" id="r-bf" style="width:auto"><label for="r-bf" style="font-size:.82rem;text-transform:none;letter-spacing:0;cursor:pointer;margin:0">Café da manhã incluso</label></div>
-          <button class="btn-save" onclick="addRoom()">Salvar acomodação</button>
+          <button class="btn-save" onclick="addRoom()">Salvar</button>
         </div>
         <div id="admin-rooms"></div>
       </div>
 
-      <!-- TAB: SERVIÇOS -->
-      <div class="adm-sec" id="tab-servicos">
+      <!-- SERVIÇOS -->
+      <div class="adm-sec" id="tab-svcs">
         <div class="adm-card">
-          <div class="adm-card-label">+ Novo serviço</div>
-          <div class="afg-row">
-            <div class="afg"><label>Nome</label><input id="s-name" type="text" placeholder="Café da manhã"></div>
-            <div class="afg"><label>Preço (0 = incluso)</label><input id="s-price" type="number" placeholder="0"></div>
-          </div>
-          <div class="afg-row">
-            <div class="afg"><label>Emoji</label><input id="s-emoji" type="text" placeholder="☕" maxlength="2"></div>
-            <div class="afg"><label>Categoria</label><select id="s-cat"><option>Alimentação</option><option>Lazer</option><option>Comodidade</option><option>Passeio</option><option>Outro</option></select></div>
-          </div>
-          <div class="afg"><label>Descrição</label><textarea id="s-desc" placeholder="Descreva o serviço..."></textarea></div>
-          <button class="btn-save" onclick="addService()">Salvar serviço</button>
+          <div class="adm-card-lbl">+ Novo serviço</div>
+          <div class="afg-row"><div class="afg"><label>Nome</label><input id="s-name" type="text" placeholder="Café da manhã"></div><div class="afg"><label>Preço (0=incluso)</label><input id="s-price" type="number" placeholder="0"></div></div>
+          <div class="afg-row"><div class="afg"><label>Emoji</label><input id="s-emoji" type="text" placeholder="☕" maxlength="2"></div><div class="afg"><label>Categoria</label><select id="s-cat"><option>Alimentação</option><option>Lazer</option><option>Comodidade</option><option>Passeio</option><option>Outro</option></select></div></div>
+          <div class="afg"><label>Descrição</label><textarea id="s-desc" placeholder="Descreva..."></textarea></div>
+          <button class="btn-save" onclick="addService()">Salvar</button>
         </div>
         <div id="admin-svcs"></div>
       </div>
 
-      <!-- TAB: CONFIG -->
-      <div class="adm-sec" id="tab-config">
+      <!-- CONFIG -->
+      <div class="adm-sec" id="tab-cfg">
         <div class="adm-card">
-          <div class="adm-card-label">Informações do chalé</div>
-          <div class="afg-row">
-            <div class="afg"><label>WhatsApp (com DDI 55)</label><input id="cfg-w" type="text" placeholder="5532985003002"></div>
-            <div class="afg"><label>E-mail</label><input id="cfg-e" type="email"></div>
-          </div>
+          <div class="adm-card-lbl">Configurações</div>
+          <div class="afg-row"><div class="afg"><label>WhatsApp (com DDI 55)</label><input id="cfg-w" type="text"></div><div class="afg"><label>E-mail</label><input id="cfg-e" type="email"></div></div>
           <div class="afg"><label>Endereço</label><input id="cfg-a" type="text"></div>
-          <div class="afg"><label>Check-in / Check-out</label><input id="cfg-ci" type="text" placeholder="Check-in 15h · Check-out 12h"></div>
+          <div class="afg"><label>Check-in / Check-out</label><input id="cfg-ci" type="text"></div>
           <div class="afg"><label>Nova senha (vazio = manter)</label><input id="cfg-p" type="password" placeholder="••••••••"></div>
           <button class="btn-save" onclick="saveConfig()">Salvar configurações</button>
         </div>
       </div>
 
-    </div><!-- /admin-body -->
+    </div>
   </div>
 </div><!-- /view-admin -->
 
-<!-- ══════════════════════════════════════
-     CHECKOUT MODAL (3 steps)
-══════════════════════════════════════ -->
-<div class="modal-bd" id="checkout-modal" onclick="if(event.target===this)closeCheckout()">
-  <div class="modal-box">
-    <div class="modal-hd">
+<!-- ══════════════ CHECKOUT MODAL ══════════════ -->
+<div class="ck-bd" id="ck-bd" onclick="if(event.target===this)closeCheckout()">
+  <div class="ck-box">
+    <div class="ck-top">
       <div>
-        <div class="modal-hd-title">Reservar Chalé Gratitude</div>
-        <div class="modal-hd-sub">Rodovia MG 120, km 715 · Cataguases - MG</div>
+        <div class="ck-title">Reservar · Chalé Gratitude</div>
+        <div class="ck-sub">Rodovia MG 120, km 715 · Cataguases - MG</div>
       </div>
-      <button class="modal-x" onclick="closeCheckout()">✕</button>
+      <button class="ck-x" onclick="closeCheckout()">✕</button>
     </div>
-    <div class="modal-body">
-      <!-- Steps nav -->
-      <div class="steps-nav">
-        <div class="sn-item active" id="sn1"><div class="sn-dot">1</div><span>Datas</span></div>
+    <div class="ck-body">
+      <!-- Step nav -->
+      <div class="sn">
+        <div class="sn-dot active" id="sn1">1</div>
+        <span class="sn-label active" id="sl1">Datas</span>
         <div class="sn-line"></div>
-        <div class="sn-item" id="sn2"><div class="sn-dot">2</div><span>Dados</span></div>
+        <div class="sn-dot" id="sn2">2</div>
+        <span class="sn-label" id="sl2">Dados</span>
         <div class="sn-line"></div>
-        <div class="sn-item" id="sn3"><div class="sn-dot">3</div><span>Confirmar</span></div>
+        <div class="sn-dot" id="sn3">3</div>
+        <span class="sn-label" id="sl3">Confirmar</span>
       </div>
 
-      <!-- STEP 1: CALENDAR + ROOM SELECTION -->
+      <!-- STEP 1 -->
       <div class="ck-step active" id="ck1">
-        <div class="fg" style="margin-bottom:1.2rem">
-          <label>Acomodação</label>
-          <select id="ck-room" onchange="ckUpdatePrice()">
-            <option value="">Selecione...</option>
-          </select>
+        <div class="fg"><label>Acomodação</label><select id="ck-room" onchange="ckPrice()"><option value="">Selecione...</option></select></div>
+        <div class="cal-nav">
+          <button class="cal-nav-btn" onclick="prevMonth()">←</button>
+          <div class="cal-month" id="cal-title"></div>
+          <button class="cal-nav-btn" onclick="nextMonth()">→</button>
         </div>
-
-        <!-- Calendar -->
-        <div class="cal-wrap">
-          <div class="cal-nav">
-            <button class="cal-nav-btn" onclick="prevMonth()">←</button>
-            <div class="cal-month" id="cal-month-title"></div>
-            <button class="cal-nav-btn" onclick="nextMonth()">→</button>
-          </div>
-          <div class="cal-grid" id="cal-grid"></div>
-          <div class="cal-legend">
-            <div class="cal-leg-item"><div class="cal-leg-dot" style="background:#fde8e7;border:1px solid #f5c6c4"></div>Indisponível</div>
-            <div class="cal-leg-item"><div class="cal-leg-dot" style="background:rgba(200,146,42,.12);border:1px solid rgba(200,146,42,.3)"></div>Fim de semana (preço maior)</div>
-            <div class="cal-leg-item"><div class="cal-leg-dot" style="background:var(--ember);"></div>Selecionado</div>
-          </div>
+        <div class="cal-grid" id="cal-grid"></div>
+        <div style="display:flex;gap:1rem;margin-top:.8rem;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:.35rem;font-size:.7rem;color:var(--ink3)"><div style="width:11px;height:11px;border-radius:2px;background:#fdf0ee;border:1px solid #f5c6c4"></div>Indisponível</div>
+          <div style="display:flex;align-items:center;gap:.35rem;font-size:.7rem;color:var(--ink3)"><div style="width:11px;height:11px;border-radius:2px;background:rgba(154,122,58,.1);border:1px solid rgba(154,122,58,.3)"></div>Fim de semana</div>
+          <div style="display:flex;align-items:center;gap:.35rem;font-size:.7rem;color:var(--ink3)"><div style="width:11px;height:11px;border-radius:2px;background:var(--ember)"></div>Selecionado</div>
         </div>
-
-        <!-- Price tiers display -->
-        <div id="ck-price-tiers" style="margin-top:1.2rem;display:none">
-          <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.6rem">Preços vigentes</div>
-          <div class="price-tiers" id="ck-tiers-grid"></div>
+        <div id="ck-tiers" style="display:none">
+          <div style="font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);margin-top:1.2rem;margin-bottom:.5rem">Preços</div>
+          <div class="pt-grid" id="ck-tiers-grid"></div>
         </div>
-
-        <!-- Summary -->
-        <div class="sum-box" id="ck-summary" style="display:none">
-          <div class="sum-row"><span>Check-in</span><span class="sv" id="ck-sum-in">—</span></div>
-          <div class="sum-row"><span>Check-out</span><span class="sv" id="ck-sum-out">—</span></div>
-          <div class="sum-row"><span>Noites</span><span class="sv" id="ck-sum-nights">—</span></div>
-          <div class="sum-row total"><span>Total estimado</span><span class="sv" id="ck-sum-total">—</span></div>
+        <div class="sum" id="ck-sum" style="display:none">
+          <div class="sum-row"><span>Check-in</span><span class="sv" id="s-in">—</span></div>
+          <div class="sum-row"><span>Check-out</span><span class="sv" id="s-out">—</span></div>
+          <div class="sum-row"><span>Noites</span><span class="sv" id="s-nights">—</span></div>
+          <div class="sum-row tot"><span>Total estimado</span><span class="sv" id="s-total">—</span></div>
         </div>
       </div>
 
-      <!-- STEP 2: GUEST DATA -->
+      <!-- STEP 2 -->
       <div class="ck-step" id="ck2">
-        <div class="fg-row">
-          <div class="fg"><label>Nome completo</label><input type="text" id="ck-name" placeholder="Seu nome"></div>
-          <div class="fg"><label>WhatsApp</label><input type="tel" id="ck-phone" placeholder="(32) 98500-3002"></div>
-        </div>
-        <div class="fg-row">
-          <div class="fg"><label>E-mail</label><input type="email" id="ck-email" placeholder="seu@email.com"></div>
-          <div class="fg"><label>Hóspedes</label><select id="ck-guests"><option>1 pessoa</option><option selected>2 pessoas</option><option>3 pessoas</option><option>4 pessoas</option></select></div>
-        </div>
-        <div class="fg"><label>Pedido especial (opcional)</label><textarea id="ck-obs" placeholder="Aniversário, lua de mel, dieta especial..."></textarea></div>
-        <!-- Mini summary -->
-        <div class="sum-box">
-          <div class="sum-row"><span>Acomodação</span><span class="sv" id="ck2-room">—</span></div>
-          <div class="sum-row"><span>Período</span><span class="sv" id="ck2-period">—</span></div>
-          <div class="sum-row total"><span>Total</span><span class="sv" id="ck2-total">—</span></div>
+        <div class="fg-row"><div class="fg"><label>Nome completo</label><input type="text" id="ck-name" placeholder="Seu nome"></div><div class="fg"><label>WhatsApp</label><input type="tel" id="ck-phone" placeholder="(32) 00000-0000"></div></div>
+        <div class="fg-row"><div class="fg"><label>E-mail</label><input type="email" id="ck-email" placeholder="seu@email.com"></div><div class="fg"><label>Hóspedes</label><select id="ck-guests"><option>1 pessoa</option><option selected>2 pessoas</option><option>3 pessoas</option><option>4 pessoas</option></select></div></div>
+        <div class="fg"><label>Pedido especial (opcional)</label><textarea id="ck-obs" placeholder="Aniversário, lua de mel..."></textarea></div>
+        <div class="sum">
+          <div class="sum-row"><span>Acomodação</span><span class="sv" id="s2-room">—</span></div>
+          <div class="sum-row"><span>Período</span><span class="sv" id="s2-period">—</span></div>
+          <div class="sum-row tot"><span>Total</span><span class="sv" id="s2-total">—</span></div>
         </div>
       </div>
 
-      <!-- STEP 3: CONFIRM -->
+      <!-- STEP 3 -->
       <div class="ck-step" id="ck3">
-        <div class="conf-card" id="conf-card">
-          <div class="conf-title">📋 Resumo da reserva</div>
-          <div class="conf-row"><span class="conf-label">Hóspede</span><span class="conf-val" id="cf-name">—</span></div>
-          <div class="conf-row"><span class="conf-label">WhatsApp</span><span class="conf-val" id="cf-phone">—</span></div>
-          <div class="conf-row"><span class="conf-label">Acomodação</span><span class="conf-val" id="cf-room">—</span></div>
-          <div class="conf-row"><span class="conf-label">Check-in</span><span class="conf-val" id="cf-in">—</span></div>
-          <div class="conf-row"><span class="conf-label">Check-out</span><span class="conf-val" id="cf-out">—</span></div>
-          <div class="conf-row"><span class="conf-label">Noites</span><span class="conf-val" id="cf-nights">—</span></div>
-          <div class="conf-row"><span class="conf-label">Hóspedes</span><span class="conf-val" id="cf-guests">—</span></div>
-          <div class="conf-row"><span class="conf-label">Total estimado</span><span class="conf-val" id="cf-total" style="color:var(--ember)">—</span></div>
+        <div class="conf" id="conf-card">
+          <div class="conf-ttl">📋 Resumo da reserva</div>
+          <div class="conf-row"><span class="cl">Hóspede</span><span class="cv" id="cf-name">—</span></div>
+          <div class="conf-row"><span class="cl">WhatsApp</span><span class="cv" id="cf-phone">—</span></div>
+          <div class="conf-row"><span class="cl">Acomodação</span><span class="cv" id="cf-room">—</span></div>
+          <div class="conf-row"><span class="cl">Check-in</span><span class="cv" id="cf-in">—</span></div>
+          <div class="conf-row"><span class="cl">Check-out</span><span class="cv" id="cf-out">—</span></div>
+          <div class="conf-row"><span class="cl">Noites</span><span class="cv" id="cf-nights">—</span></div>
+          <div class="conf-row"><span class="cl">Hóspedes</span><span class="cv" id="cf-guests">—</span></div>
+          <div class="conf-row"><span class="cl">Total estimado</span><span class="cv" id="cf-total" style="color:#7fc99a">—</span></div>
         </div>
-        <div style="background:rgba(200,98,42,.08);border:1px solid rgba(200,98,42,.2);border-radius:4px;padding:.85rem 1rem;margin-bottom:1rem;font-size:.82rem;color:var(--ember)">
-          ℹ️ Esta é uma solicitação de reserva. Confirmaremos disponibilidade e enviaremos os dados de pagamento via WhatsApp em até 1h.
-        </div>
+        <div class="info-box">ℹ️ Esta é uma solicitação de reserva. Confirmaremos a disponibilidade e enviaremos os dados pelo WhatsApp em até 1h.</div>
         <button class="btn-wa" onclick="submitReservation()">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.524 5.855L0 24l6.29-1.506A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.376l-.36-.213-3.733.894.938-3.63-.234-.373A9.818 9.818 0 012.182 12C2.182 6.578 6.578 2.182 12 2.182c5.421 0 9.818 4.396 9.818 9.818 0 5.421-4.397 9.818-9.818 9.818z"/></svg>
           Confirmar e enviar pelo WhatsApp
         </button>
-        <p class="fn">🔒 Seus dados são protegidos · Sem cobrança antecipada</p>
+        <p class="fn">🔒 Sem cobrança antecipada · Respondemos em minutos</p>
       </div>
-    </div><!-- /modal-body -->
-
-    <div class="modal-footer">
+    </div>
+    <div class="ck-foot">
       <button class="btn-back" id="btn-back" onclick="ckBack()" style="display:none">← Voltar</button>
       <button class="btn-next" id="btn-next" onclick="ckNext()">Continuar →</button>
     </div>
@@ -914,599 +943,324 @@ footer{background:var(--forest);padding:3.5rem 2.5rem 1.8rem;color:rgba(245,237,
 
 <div class="toast" id="toast"></div>
 
-<!-- ══════════════════════════════════════
-     JAVASCRIPT
-══════════════════════════════════════ -->
-
 <script>
-// ════════════════════════════════════════
-//  API CLIENT — conecta ao servidor Node.js
-// ════════════════════════════════════════
-const API = '/api';
-let adminToken = sessionStorage.getItem('adm_token') || null;
+const API='/api';
+let adminToken=sessionStorage.getItem('adm_token')||null;
 
-async function api(method, path, body) {
-  const opts = {
-    method,
-    headers: { 'Content-Type': 'application/json' },
-  };
-  if (adminToken) opts.headers['Authorization'] = 'Bearer ' + adminToken;
-  if (body) opts.body = JSON.stringify(body);
-  const res = await fetch(API + path, opts);
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.error || 'Erro na requisição');
+async function api(method,path,body){
+  const opts={method,headers:{'Content-Type':'application/json'}};
+  if(adminToken)opts.headers['Authorization']='Bearer '+adminToken;
+  if(body)opts.body=JSON.stringify(body);
+  const res=await fetch(API+path,opts);
+  const data=await res.json().catch(()=>({}));
+  if(!res.ok)throw new Error(data.error||'Erro');
   return data;
 }
 
-// ════════════════ VIEWS ════════════════
-function showView(id) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  window.scrollTo(0, 0);
-  if (id === 'view-admin') renderAdmin();
-}
-function showLogin() { showView('view-login'); }
+// ── VIEWS ──
+function showView(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);if(id==='view-admin')renderAdmin();}
+function showLogin(){showView('view-login');}
 
-async function doLogin() {
-  const pass = document.getElementById('login-pass').value;
-  const err = document.getElementById('login-err');
-  try {
-    const data = await api('POST', '/auth/login', { password: pass });
-    adminToken = data.token;
-    sessionStorage.setItem('adm_token', adminToken);
-    err.style.display = 'none';
-    document.getElementById('login-pass').value = '';
-    showView('view-admin');
-  } catch {
-    err.style.display = 'block';
-  }
-}
+// ── NAV SCROLL ──
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>60)},{passive:true});
 
-// ════════════════ SCROLL REVEAL ════════════════
-const revObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+// ── MOBILE DRAWER ──
+function openDrawer(){document.getElementById('drawer').classList.add('open');document.body.style.overflow='hidden';}
+function closeDrawer(){document.getElementById('drawer').classList.remove('open');document.body.style.overflow='';}
 
-// ════════════════ CHECKOUT MODAL ════════════════
-let ckStep = 1;
-let selCheckIn = null, selCheckOut = null, selecting = 'in';
-let calYear, calMonth;
-let cachedRooms = [], cachedTiers = [], cachedBlocked = [];
+// ── LIGHTBOX ──
+function openLb(src){document.getElementById('lb-img').src=src;document.getElementById('lb').classList.add('open');document.body.style.overflow='hidden';}
+function closeLb(){document.getElementById('lb').classList.remove('open');document.body.style.overflow='';}
 
-async function openCheckout(rid) {
-  // load rooms + tiers + blocked
-  [cachedRooms, cachedTiers, cachedBlocked] = await Promise.all([
-    api('GET', '/rooms'),
-    api('GET', '/price-tiers'),
-    api('GET', '/blocked-dates')
-  ]);
-  const sel = document.getElementById('ck-room');
-  sel.innerHTML = '<option value="">Selecione...</option>' +
-    cachedRooms.map(r => `<option value="${r.id}">${r.emoji} ${r.name} — a partir R$ ${fmtN(r.price)}/noite</option>`).join('');
-  if (rid) sel.value = rid;
-  const now = new Date();
-  calYear = now.getFullYear(); calMonth = now.getMonth();
-  selCheckIn = null; selCheckOut = null; selecting = 'in';
-  renderCalendar();
-  ckStep = 1; updateStepUI();
-  document.getElementById('checkout-modal').classList.add('open');
-  ckUpdatePrice();
-}
-function closeCheckout() { document.getElementById('checkout-modal').classList.remove('open'); }
+// ── SCROLL REVEAL ──
+const sro=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on');});},{threshold:0.1});
+document.querySelectorAll('.sr,.sr-left,.sr-right').forEach(el=>sro.observe(el));
 
-function updateStepUI() {
-  document.querySelectorAll('.ck-step').forEach((s, i) => s.classList.toggle('active', i + 1 === ckStep));
-  for (let i = 1; i <= 3; i++) {
-    const el = document.getElementById('sn' + i);
-    el.classList.remove('active', 'done');
-    if (i === ckStep) el.classList.add('active');
-    else if (i < ckStep) el.classList.add('done');
-    el.querySelector('.sn-dot').textContent = i < ckStep ? '✓' : i;
-  }
-  document.getElementById('btn-back').style.display = ckStep > 1 ? '' : 'none';
-  document.getElementById('btn-next').style.display = ckStep < 3 ? '' : 'none';
-  if (ckStep >= 2) fillStep2();
-  if (ckStep === 3) fillStep3();
+// ── STICKY BAR ──
+(function(){
+  const bar=document.getElementById('sticky-bar');
+  if(!bar)return;
+  let lastY=0;
+  window.addEventListener('scroll',()=>{
+    const y=window.scrollY,mob=window.innerWidth<=768;
+    if(!mob){bar.style.display='none';return;}
+    bar.style.display=y>400?(y>lastY?'none':'flex'):'none';
+    lastY=y;
+  },{passive:true});
+})();
+
+// ── AUTH ──
+async function doLogin(){
+  const p=document.getElementById('login-pass').value;
+  const err=document.getElementById('login-err');
+  try{const d=await api('POST','/auth/login',{password:p});adminToken=d.token;sessionStorage.setItem('adm_token',adminToken);err.style.display='none';document.getElementById('login-pass').value='';showView('view-admin');}
+  catch{err.style.display='block';}
 }
 
-function ckNext() {
-  if (ckStep === 1) {
-    if (!document.getElementById('ck-room').value) { toast('⚠️ Selecione uma acomodação'); return; }
-    if (!selCheckIn) { toast('⚠️ Selecione a data de check-in'); return; }
-    if (!selCheckOut) { toast('⚠️ Selecione a data de check-out'); return; }
-  }
-  if (ckStep === 2) {
-    if (!document.getElementById('ck-name').value.trim()) { toast('⚠️ Informe seu nome'); return; }
-    if (!document.getElementById('ck-phone').value.trim()) { toast('⚠️ Informe seu WhatsApp'); return; }
-  }
-  ckStep++; updateStepUI();
+// ── CHECKOUT ──
+let ckStep=1,selIn=null,selOut=null,selecting='in',calY,calM,cachedRooms=[],cachedTiers=[],cachedBlocked=[];
+
+async function openCheckout(rid){
+  [cachedRooms,cachedTiers,cachedBlocked]=await Promise.all([api('GET','/rooms'),api('GET','/price-tiers'),api('GET','/blocked-dates')]);
+  const sel=document.getElementById('ck-room');
+  sel.innerHTML='<option value="">Selecione...</option>'+cachedRooms.map(r=>`<option value="${r.id}">${r.emoji} ${r.name} — R$ ${fmtN(r.price)}/noite</option>`).join('');
+  if(rid)sel.value=rid;
+  const now=new Date();calY=now.getFullYear();calM=now.getMonth();
+  selIn=null;selOut=null;selecting='in';
+  renderCal();ckStep=1;updStepUI();
+  document.getElementById('ck-bd').classList.add('open');
+  document.body.style.overflow='hidden';
+  ckPrice();
 }
-function ckBack() { ckStep--; updateStepUI(); }
+function closeCheckout(){document.getElementById('ck-bd').classList.remove('open');document.body.style.overflow='';}
 
-// ── CALENDAR ──
-const MONTHS_PT = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
-const DAYS_PT   = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
-
-function renderCalendar() {
-  document.getElementById('cal-month-title').textContent = MONTHS_PT[calMonth] + ' ' + calYear;
-  const grid = document.getElementById('cal-grid');
-  let html = DAYS_PT.map(d => `<div class="cal-dow">${d}</div>`).join('');
-  const first = new Date(calYear, calMonth, 1).getDay();
-  for (let i = 0; i < first; i++) html += `<div class="cal-day empty"></div>`;
-  const days = new Date(calYear, calMonth + 1, 0).getDate();
-  const today = new Date(); today.setHours(0,0,0,0);
-  for (let d = 1; d <= days; d++) {
-    const dt = new Date(calYear, calMonth, d);
-    const ds = fmt(dt);
-    const isPast = dt < today;
-    const isBlocked = cachedBlocked.includes(ds);
-    const dow = dt.getDay();
-    const isWE = dow === 0 || dow === 6;
-    const isCin = selCheckIn && ds === selCheckIn;
-    const isCout = selCheckOut && ds === selCheckOut;
-    const inRange = selCheckIn && selCheckOut && ds > selCheckIn && ds < selCheckOut;
-    let cls = 'cal-day';
-    if (isPast)            cls += ' past';
-    else if (isBlocked)    cls += ' blocked';
-    else if (isCin)        cls += ' check-in';
-    else if (isCout)       cls += ' check-out';
-    else if (inRange)      cls += ' in-range';
-    else if (isWE)         cls += ' weekend available';
-    else                   cls += ' available';
-    if (isCin && isCout)   cls += ' same-day';
-    const clickable = !isPast && !isBlocked;
-    html += `<div class="${cls}" ${clickable ? `onclick="selectDay('${ds}')"` : ''}>${d}</div>`;
+function updStepUI(){
+  document.querySelectorAll('.ck-step').forEach((s,i)=>s.classList.toggle('active',i+1===ckStep));
+  for(let i=1;i<=3;i++){
+    const d=document.getElementById('sn'+i),l=document.getElementById('sl'+i);
+    d.className='sn-dot'+(i===ckStep?' active':i<ckStep?' done':'');
+    l.className='sn-label'+(i===ckStep?' active':i<ckStep?' done':'');
+    d.textContent=i<ckStep?'✓':i;
   }
-  grid.innerHTML = html;
+  document.getElementById('btn-back').style.display=ckStep>1?'':'none';
+  document.getElementById('btn-next').style.display=ckStep<3?'':'none';
+  if(ckStep>=2)fillS2();
+  if(ckStep===3)fillS3();
 }
-
-function selectDay(ds) {
-  if (selecting === 'in' || selCheckOut) {
-    selCheckIn = ds; selCheckOut = null; selecting = 'out';
-  } else {
-    if (ds <= selCheckIn) { selCheckIn = ds; selCheckOut = null; selecting = 'out'; }
-    else { selCheckOut = ds; selecting = 'in'; }
-  }
-  renderCalendar(); ckUpdatePrice();
+function ckNext(){
+  if(ckStep===1){if(!document.getElementById('ck-room').value){toast('⚠️ Selecione uma acomodação');return;}if(!selIn){toast('⚠️ Selecione o check-in');return;}if(!selOut){toast('⚠️ Selecione o check-out');return;}}
+  if(ckStep===2){if(!document.getElementById('ck-name').value.trim()){toast('⚠️ Informe seu nome');return;}if(!document.getElementById('ck-phone').value.trim()){toast('⚠️ Informe seu WhatsApp');return;}}
+  ckStep++;updStepUI();
 }
-function prevMonth() { calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } renderCalendar(); }
-function nextMonth() { calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; } renderCalendar(); }
+function ckBack(){ckStep--;updStepUI();}
 
-// ── PRICING ──
-function getPriceForDate(ds) {
-  const dt = new Date(ds + 'T12:00:00');
-  const dow = dt.getDay();
-  for (const t of cachedTiers) {
-    if (t.date_start && t.date_end && ds >= t.date_start && ds <= t.date_end) return t.price;
+// CALENDAR
+const MP=['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+const DP=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+
+function renderCal(){
+  document.getElementById('cal-title').textContent=MP[calM]+' '+calY;
+  const g=document.getElementById('cal-grid');
+  let h=DP.map(d=>`<div class="cal-dow">${d}</div>`).join('');
+  const first=new Date(calY,calM,1).getDay();
+  for(let i=0;i<first;i++)h+=`<div class="cal-day empty"></div>`;
+  const days=new Date(calY,calM+1,0).getDate();
+  const today=new Date();today.setHours(0,0,0,0);
+  for(let d=1;d<=days;d++){
+    const dt=new Date(calY,calM,d),ds=fmt(dt);
+    const past=dt<today,blocked=cachedBlocked.includes(ds);
+    const dow=dt.getDay(),we=dow===0||dow===6;
+    const isCin=selIn&&ds===selIn,isCout=selOut&&ds===selOut;
+    const inR=selIn&&selOut&&ds>selIn&&ds<selOut;
+    let cls='cal-day';
+    if(past)cls+=' past';
+    else if(blocked)cls+=' blocked';
+    else if(isCin)cls+=' cin';
+    else if(isCout)cls+=' cout';
+    else if(inR)cls+=' inrange';
+    else if(we)cls+=' weekend available';
+    else cls+=' available';
+    if(isCin&&isCout)cls+=' same';
+    const click=!past&&!blocked;
+    h+=`<div class="${cls}" ${click?`onclick="selDay('${ds}')"`:''}>${d}</div>`;
   }
-  if (dow === 0 || dow === 6) {
-    const wt = cachedTiers.find(x => x.type === 'weekend');
-    return wt ? wt.price : 420;
-  }
-  const wk = cachedTiers.find(x => x.type === 'week');
-  return wk ? wk.price : 350;
+  g.innerHTML=h;
 }
-
-function calcTotal(checkIn, checkOut) {
-  let total = 0, nights = 0;
-  const cur = new Date(checkIn + 'T12:00:00');
-  const end = new Date(checkOut + 'T12:00:00');
-  while (cur < end) {
-    total += getPriceForDate(fmt(cur));
-    nights++;
-    cur.setDate(cur.getDate() + 1);
-  }
-  return { total, nights };
+function selDay(ds){
+  if(selecting==='in'||selOut){selIn=ds;selOut=null;selecting='out';}
+  else{if(ds<=selIn){selIn=ds;selOut=null;selecting='out';}else{selOut=ds;selecting='in';}}
+  renderCal();ckPrice();
 }
+function prevMonth(){calM--;if(calM<0){calM=11;calY--;}renderCal();}
+function nextMonth(){calM++;if(calM>11){calM=0;calY++;}renderCal();}
 
-function ckUpdatePrice() {
-  const rid = document.getElementById('ck-room').value;
-  const tiersBox = document.getElementById('ck-price-tiers');
-  const sumBox   = document.getElementById('ck-summary');
-  if (rid && cachedTiers.length) {
-    tiersBox.style.display = 'block';
-    const wk  = cachedTiers.find(x => x.type === 'week')?.price || 350;
-    const we  = cachedTiers.find(x => x.type === 'weekend')?.price || 420;
-    const hol = cachedTiers.find(x => x.type === 'holiday')?.price || 480;
-    document.getElementById('ck-tiers-grid').innerHTML = `
+function getDatePrice(ds){
+  const dt=new Date(ds+'T12:00:00'),dow=dt.getDay();
+  for(const t of cachedTiers){if(t.date_start&&t.date_end&&ds>=t.date_start&&ds<=t.date_end)return t.price;}
+  if(dow===0||dow===6){const wt=cachedTiers.find(x=>x.type==='weekend');return wt?wt.price:420;}
+  const wk=cachedTiers.find(x=>x.type==='week');return wk?wk.price:350;
+}
+function calcTotal(ci,co){
+  let total=0,nights=0;
+  const cur=new Date(ci+'T12:00:00'),end=new Date(co+'T12:00:00');
+  while(cur<end){total+=getDatePrice(fmt(cur));nights++;cur.setDate(cur.getDate()+1);}
+  return{total,nights};
+}
+function ckPrice(){
+  const rid=document.getElementById('ck-room').value;
+  const tb=document.getElementById('ck-tiers'),sb=document.getElementById('ck-sum');
+  if(rid&&cachedTiers.length){
+    tb.style.display='block';
+    const wk=cachedTiers.find(x=>x.type==='week')?.price||350;
+    const we=cachedTiers.find(x=>x.type==='weekend')?.price||420;
+    const hl=cachedTiers.find(x=>x.type==='holiday')?.price||480;
+    document.getElementById('ck-tiers-grid').innerHTML=`
       <div class="pt-card"><div class="pt-label">Semana</div><div class="pt-price">R$ ${fmtN(wk)}</div><div class="pt-sub">Seg a Qui</div></div>
-      <div class="pt-card"><div class="pt-label">Fim de semana</div><div class="pt-price">R$ ${fmtN(we)}</div><div class="pt-sub">Sex, Sáb e Dom</div></div>
-      <div class="pt-card"><div class="pt-label">Feriados</div><div class="pt-price">R$ ${fmtN(hol)}</div><div class="pt-sub">Datas especiais</div></div>`;
-  } else tiersBox.style.display = 'none';
-
-  if (selCheckIn && selCheckOut && rid) {
-    const { total, nights } = calcTotal(selCheckIn, selCheckOut);
-    document.getElementById('ck-sum-in').textContent    = fmtDate(selCheckIn);
-    document.getElementById('ck-sum-out').textContent   = fmtDate(selCheckOut);
-    document.getElementById('ck-sum-nights').textContent = nights + ' noite' + (nights > 1 ? 's' : '');
-    document.getElementById('ck-sum-total').textContent = 'R$ ' + fmtN(total);
-    sumBox.style.display = 'block';
-  } else sumBox.style.display = 'none';
+      <div class="pt-card"><div class="pt-label">Fim de semana</div><div class="pt-price">R$ ${fmtN(we)}</div><div class="pt-sub">Sex, Sáb, Dom</div></div>
+      <div class="pt-card"><div class="pt-label">Feriados</div><div class="pt-price">R$ ${fmtN(hl)}</div><div class="pt-sub">Datas especiais</div></div>`;
+  }else tb.style.display='none';
+  if(selIn&&selOut&&rid){
+    const{total,nights}=calcTotal(selIn,selOut);
+    document.getElementById('s-in').textContent=fmtD(selIn);
+    document.getElementById('s-out').textContent=fmtD(selOut);
+    document.getElementById('s-nights').textContent=nights+' noite'+(nights>1?'s':'');
+    document.getElementById('s-total').textContent='R$ '+fmtN(total);
+    sb.style.display='block';
+  }else sb.style.display='none';
+}
+function fillS2(){
+  const room=cachedRooms.find(r=>r.id==document.getElementById('ck-room').value)||{name:'—'};
+  const{total}=selIn&&selOut?calcTotal(selIn,selOut):{total:0};
+  document.getElementById('s2-room').textContent=room.name;
+  document.getElementById('s2-period').textContent=selIn&&selOut?fmtD(selIn)+' → '+fmtD(selOut):'—';
+  document.getElementById('s2-total').textContent='R$ '+fmtN(total);
+}
+function fillS3(){
+  const room=cachedRooms.find(r=>r.id==document.getElementById('ck-room').value)||{name:'—'};
+  const{total,nights}=selIn&&selOut?calcTotal(selIn,selOut):{total:0,nights:0};
+  document.getElementById('cf-name').textContent=document.getElementById('ck-name').value;
+  document.getElementById('cf-phone').textContent=document.getElementById('ck-phone').value;
+  document.getElementById('cf-room').textContent=room.name;
+  document.getElementById('cf-in').textContent=fmtD(selIn);
+  document.getElementById('cf-out').textContent=fmtD(selOut);
+  document.getElementById('cf-nights').textContent=nights+' noite'+(nights>1?'s':'');
+  document.getElementById('cf-guests').textContent=document.getElementById('ck-guests').value;
+  document.getElementById('cf-total').textContent='R$ '+fmtN(total);
+}
+async function submitReservation(){
+  const rid=document.getElementById('ck-room').value;
+  const room=cachedRooms.find(r=>r.id==rid);
+  const name=document.getElementById('ck-name').value.trim();
+  const phone=document.getElementById('ck-phone').value.trim();
+  const email=document.getElementById('ck-email').value.trim();
+  const guests=document.getElementById('ck-guests').value;
+  const obs=document.getElementById('ck-obs').value.trim();
+  const{total,nights}=calcTotal(selIn,selOut);
+  try{await api('POST','/reservations',{guest_name:name,guest_phone:phone,guest_email:email,guests,observation:obs,room_id:Number(rid),check_in:selIn,check_out:selOut,nights,total});}
+  catch(e){toast('Erro: '+e.message);return;}
+  const cfg=await api('GET','/admin/config').catch(()=>({whatsapp:'5532985003002'}));
+  const msg=`Olá! Quero reservar o *Chalé Gratitude* 🌿\n\n👤 *Nome:* ${name}\n📱 *WhatsApp:* ${phone}`+(email?`\n📧 *E-mail:* ${email}`:'')+`\n🛏️ *Acomodação:* ${room?.name}\n📅 *Check-in:* ${fmtD(selIn)}\n📅 *Check-out:* ${fmtD(selOut)}\n🌙 *Noites:* ${nights}\n👥 *Hóspedes:* ${guests}\n💰 *Total:* R$ ${fmtN(total)}`+(obs?`\n📝 ${obs}`:'')+`\n\nAguardo a confirmação! 😊`;
+  window.open(`https://wa.me/${cfg.whatsapp||'5532985003002'}?text=${encodeURIComponent(msg)}`,'_blank');
+  closeCheckout();toast('✓ Reserva enviada! Confirmaremos em breve pelo WhatsApp.');
 }
 
-function fillStep2() {
-  const room = cachedRooms.find(r => r.id == document.getElementById('ck-room').value) || { name: '—' };
-  const { total, nights } = selCheckIn && selCheckOut ? calcTotal(selCheckIn, selCheckOut) : { total: 0, nights: 0 };
-  document.getElementById('ck2-room').textContent   = room.name;
-  document.getElementById('ck2-period').textContent = selCheckIn && selCheckOut ? fmtDate(selCheckIn) + ' → ' + fmtDate(selCheckOut) : '—';
-  document.getElementById('ck2-total').textContent  = 'R$ ' + fmtN(total);
+// ── ADMIN ──
+let aCalY,aCalM,aBlocked=[];
+async function renderAdmin(){
+  const[stats,rooms,svcs,tiers,blocked,cfg]=await Promise.all([api('GET','/admin/stats'),api('GET','/rooms'),api('GET','/services'),api('GET','/admin/price-tiers'),api('GET','/blocked-dates'),api('GET','/admin/config')]);
+  aBlocked=blocked;
+  document.getElementById('adm-stats').innerHTML=`
+    <div class="adm-stat"><div class="adm-stat-n">${stats.total}</div><div class="adm-stat-l">Total reservas</div></div>
+    <div class="adm-stat"><div class="adm-stat-n">${stats.pending}</div><div class="adm-stat-l">Pendentes</div><div class="adm-stat-s">Aguardando confirmação</div></div>
+    <div class="adm-stat"><div class="adm-stat-n">${stats.confirmed}</div><div class="adm-stat-l">Confirmadas</div></div>
+    <div class="adm-stat"><div class="adm-stat-n">R$ ${fmtN(stats.revenue)}</div><div class="adm-stat-l">Receita estimada</div></div>`;
+  renderRooms(rooms);renderSvcs(svcs);renderPriceMgr(tiers);loadCfg(cfg);
+  const now=new Date();aCalY=aCalY||now.getFullYear();aCalM=aCalM!=null?aCalM:now.getMonth();
+  await renderAdmCal();await renderReservations();
+  // update sticky price
+  if(rooms.length){const mn=Math.min(...rooms.map(r=>r.price));document.getElementById('sb-price').innerHTML='R$ '+fmtN(mn)+'<span class="sb-per">/noite</span>';}
 }
 
-function fillStep3() {
-  const room    = cachedRooms.find(r => r.id == document.getElementById('ck-room').value) || { name: '—' };
-  const name    = document.getElementById('ck-name').value.trim();
-  const phone   = document.getElementById('ck-phone').value.trim();
-  const guests  = document.getElementById('ck-guests').value;
-  const { total, nights } = selCheckIn && selCheckOut ? calcTotal(selCheckIn, selCheckOut) : { total: 0, nights: 0 };
-  document.getElementById('cf-name').textContent   = name;
-  document.getElementById('cf-phone').textContent  = phone;
-  document.getElementById('cf-room').textContent   = room.name;
-  document.getElementById('cf-in').textContent     = fmtDate(selCheckIn);
-  document.getElementById('cf-out').textContent    = fmtDate(selCheckOut);
-  document.getElementById('cf-nights').textContent = nights + ' noite' + (nights > 1 ? 's' : '');
-  document.getElementById('cf-guests').textContent = guests;
-  document.getElementById('cf-total').textContent  = 'R$ ' + fmtN(total);
-}
-
-async function submitReservation() {
-  const rid    = document.getElementById('ck-room').value;
-  const room   = cachedRooms.find(r => r.id == rid);
-  const name   = document.getElementById('ck-name').value.trim();
-  const phone  = document.getElementById('ck-phone').value.trim();
-  const email  = document.getElementById('ck-email').value.trim();
-  const guests = document.getElementById('ck-guests').value;
-  const obs    = document.getElementById('ck-obs').value.trim();
-  const { total, nights } = calcTotal(selCheckIn, selCheckOut);
-
-  try {
-    await api('POST', '/reservations', {
-      guest_name: name, guest_phone: phone, guest_email: email,
-      guests, observation: obs, room_id: Number(rid),
-      check_in: selCheckIn, check_out: selCheckOut, nights, total
-    });
-  } catch(e) { toast('Erro: ' + e.message); return; }
-
-  // WhatsApp
-  const cfg = await api('GET', '/admin/config').catch(() => ({ whatsapp: '5532985003002' }));
-  const wn  = cfg.whatsapp || '5532985003002';
-  const msg = `Olá! Quero reservar uma estadia no *Chalé Gratitude* 🌿\n\n`+
-    `👤 *Nome:* ${name}\n📱 *WhatsApp:* ${phone}\n`+
-    (email?`📧 *E-mail:* ${email}\n`:'')+
-    `🛏️ *Acomodação:* ${room?.name}\n`+
-    `📅 *Check-in:* ${fmtDate(selCheckIn)}\n`+
-    `📅 *Check-out:* ${fmtDate(selCheckOut)}\n`+
-    `🌙 *Noites:* ${nights}\n👥 *Hóspedes:* ${guests}\n`+
-    `💰 *Total estimado:* R$ ${fmtN(total)}\n`+
-    (obs?`📝 *Obs:* ${obs}\n`:'')+`\nAguardo a confirmação! 😊`;
-  window.open(`https://wa.me/${wn}?text=${encodeURIComponent(msg)}`, '_blank');
-  closeCheckout();
-  toast('✓ Reserva enviada! Confirmaremos pelo WhatsApp em breve.');
-}
-
-// ════════════════ ADMIN ════════════════
-let admCalYear, admCalMonth;
-let admBlocked = [], admReservations = [];
-
-async function renderAdmin() {
-  const [stats, rooms, svcs, tiers, blocked, config] = await Promise.all([
-    api('GET', '/admin/stats'),
-    api('GET', '/rooms'),
-    api('GET', '/services'),
-    api('GET', '/admin/price-tiers'),
-    api('GET', '/blocked-dates'),
-    api('GET', '/admin/config'),
-  ]);
-  admBlocked = blocked;
-  renderStats(stats);
-  renderAdminRooms(rooms);
-  renderAdminSvcs(svcs);
-  renderPriceManager(tiers);
-  loadConfig(config);
-  const now = new Date();
-  admCalYear  = admCalYear  || now.getFullYear();
-  admCalMonth = admCalMonth != null ? admCalMonth : now.getMonth();
-  await renderAdminCal();
-  await renderReservations();
-}
-
-function renderStats(s) {
-  document.getElementById('adm-stats').innerHTML = `
-    <div class="adm-stat"><div class="adm-stat-n">${s.total}</div><div class="adm-stat-l">Total reservas</div></div>
-    <div class="adm-stat"><div class="adm-stat-n">${s.pending}</div><div class="adm-stat-l">Pendentes</div><div class="adm-stat-sub">Aguardando confirmação</div></div>
-    <div class="adm-stat"><div class="adm-stat-n">${s.confirmed}</div><div class="adm-stat-l">Confirmadas</div></div>
-    <div class="adm-stat"><div class="adm-stat-n">R$ ${fmtN(s.revenue)}</div><div class="adm-stat-l">Receita estimada</div></div>`;
-}
-
-async function renderReservations() {
-  const status = document.getElementById('filter-status')?.value || '';
-  const search = document.getElementById('filter-search')?.value || '';
-  let qs = '?';
-  if (status) qs += 'status=' + status + '&';
-  if (search) qs += 'search=' + encodeURIComponent(search);
-  const list = await api('GET', '/admin/reservations' + qs);
-  admReservations = list;
-  const el = document.getElementById('reservations-list');
-  if (!list.length) { el.innerHTML = '<div style="color:var(--muted);font-size:.88rem;padding:1rem">Nenhuma reserva encontrada.</div>'; return; }
-  el.innerHTML = list.map(r => `
+async function renderReservations(){
+  const st=document.getElementById('f-status')?.value||'';
+  const sr=(document.getElementById('f-search')?.value||'');
+  let qs='?';if(st)qs+='status='+st+'&';if(sr)qs+='search='+encodeURIComponent(sr);
+  const list=await api('GET','/admin/reservations'+qs);
+  const el=document.getElementById('resv-list');
+  if(!list.length){el.innerHTML='<div style="color:var(--ink3);font-size:.86rem;padding:1rem">Nenhuma reserva encontrada.</div>';return;}
+  el.innerHTML=list.map(r=>`
     <div class="resv-item">
       <div>
         <div class="resv-name">${r.guest_name}</div>
         <div class="resv-room">🛏️ ${r.room_name}</div>
-        <div class="resv-dates">📅 ${fmtDate(r.check_in)} → ${fmtDate(r.check_out)} · ${r.nights} noite${r.nights>1?'s':''}</div>
+        <div class="resv-dates">📅 ${fmtD(r.check_in)} → ${fmtD(r.check_out)} · ${r.nights} noite${r.nights>1?'s':''}</div>
         <div class="resv-guests">👥 ${r.guests} · 📱 ${r.guest_phone}</div>
-        ${r.observation?`<div style="font-size:.76rem;color:var(--muted);margin-top:.2rem">📝 ${r.observation}</div>`:''}
-        <div class="resv-actions">
-          ${r.status==='pending'?`<button class="btn-sm-green" onclick="setStatus(${r.id},'confirmed')">✓ Confirmar</button>`:''}
-          ${r.status!=='cancelled'?`<button class="btn-sm-red" onclick="setStatus(${r.id},'cancelled')">✕ Cancelar</button>`:''}
-          <button class="btn-sm-amber" onclick="contactGuest('${r.guest_phone}','${r.guest_name}','${r.room_name}','${fmtDate(r.check_in)}')">💬 WhatsApp</button>
+        ${r.observation?`<div style="font-size:.74rem;color:var(--ink3);margin-top:.2rem">📝 ${r.observation}</div>`:''}
+        <div class="resv-acts">
+          ${r.status==='pending'?`<button class="btn-sm-g" onclick="setStatus(${r.id},'confirmed')">✓ Confirmar</button>`:''}
+          ${r.status!=='cancelled'?`<button class="btn-sm-r" onclick="setStatus(${r.id},'cancelled')">✕ Cancelar</button>`:''}
+          <button class="btn-sm-a" onclick="contactGuest('${r.guest_phone}','${r.guest_name}','${r.room_name}','${fmtD(r.check_in)}')">💬 WhatsApp</button>
         </div>
       </div>
       <div style="text-align:right">
         <div class="resv-total">R$ ${fmtN(r.total)}</div>
-        <div class="resv-badge ${r.status==='pending'?'badge-pending':r.status==='confirmed'?'badge-confirmed':'badge-cancelled'}">${r.status==='pending'?'Pendente':r.status==='confirmed'?'Confirmada':'Cancelada'}</div>
-        <div style="font-size:.68rem;color:var(--muted);margin-top:.4rem">${new Date(r.created_at).toLocaleDateString('pt-BR')}</div>
+        <div class="rbadge ${r.status==='pending'?'rb-p':r.status==='confirmed'?'rb-c':'rb-x'}">${r.status==='pending'?'Pendente':r.status==='confirmed'?'Confirmada':'Cancelada'}</div>
+        <div style="font-size:.65rem;color:var(--ink3);margin-top:.3rem">${new Date(r.created_at).toLocaleDateString('pt-BR')}</div>
       </div>
     </div>`).join('');
 }
+async function setStatus(id,status){if(!confirm('Alterar status?'))return;await api('PATCH','/admin/reservations/'+id+'/status',{status});toast('✓ Status atualizado!');await renderAdmin();}
+function contactGuest(ph,name,room,ci){const msg=`Olá, ${name}! 🌿 Sua reserva no *Chalé Gratitude*.\nAcomodação: ${room}\nCheck-in: ${ci}\n\nComo podemos ajudar?`;window.open(`https://wa.me/${ph.replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`,'_blank');}
 
-async function setStatus(id, status) {
-  if (!confirm('Alterar status para "' + status + '"?')) return;
-  await api('PATCH', '/admin/reservations/' + id + '/status', { status });
-  toast('✓ Status atualizado!');
-  await renderAdmin();
-}
-
-function contactGuest(phone, name, room, checkin) {
-  const msg = `Olá, ${name}! 🌿 Entrando em contato sobre sua reserva no *Chalé Gratitude*.\n\nAcomodação: ${room}\nCheck-in: ${checkin}\n\nComo podemos ajudar?`;
-  window.open(`https://wa.me/${phone.replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`, '_blank');
-}
-
-// ── ADMIN CALENDAR ──
-async function renderAdminCal() {
-  admBlocked = await api('GET', '/blocked-dates');
-  const reservations = await api('GET', '/admin/reservations');
-  document.getElementById('adm-cal-title').textContent = MONTHS_PT[admCalMonth] + ' ' + admCalYear;
-  const grid = document.getElementById('adm-cal-grid');
-  let html = DAYS_PT.map(d => `<div class="adm-dow">${d}</div>`).join('');
-  const first = new Date(admCalYear, admCalMonth, 1).getDay();
-  for (let i = 0; i < first; i++) html += `<div class="adm-cday"></div>`;
-  const days = new Date(admCalYear, admCalMonth + 1, 0).getDate();
-  const today = new Date(); today.setHours(0,0,0,0);
-  for (let d = 1; d <= days; d++) {
-    const dt = new Date(admCalYear, admCalMonth, d);
-    const ds = fmt(dt);
-    const isPast = dt < today;
-    const isBlocked  = admBlocked.includes(ds);
-    const isReserved = reservations.filter(r=>r.status!=='cancelled').some(r=>ds>=r.check_in&&ds<r.check_out);
-    const dow = dt.getDay(); const isWE = dow===0||dow===6;
-    let cls = 'adm-cday';
-    if (isPast)       cls += ' past';
-    else if (isReserved) cls += ' reserved';
-    else if (isBlocked)  cls += ' blocked-adm';
-    else { cls += ' free'; if (isWE) cls += ' weekend-adm'; }
-    html += `<div class="${cls}" title="${isReserved?'Reservado':isBlocked?'Bloqueado':isWE?'Fim de semana':'Disponível'}">${d}</div>`;
+async function renderAdmCal(){
+  aBlocked=await api('GET','/blocked-dates');
+  const resvs=await api('GET','/admin/reservations');
+  document.getElementById('adm-cal-title').textContent=MP[aCalM]+' '+aCalY;
+  const g=document.getElementById('adm-cal');
+  let h=DP.map(d=>`<div class="adm-dow">${d}</div>`).join('');
+  const first=new Date(aCalY,aCalM,1).getDay();
+  for(let i=0;i<first;i++)h+=`<div class="adm-cday"></div>`;
+  const days=new Date(aCalY,aCalM+1,0).getDate();
+  const today=new Date();today.setHours(0,0,0,0);
+  for(let d=1;d<=days;d++){
+    const dt=new Date(aCalY,aCalM,d),ds=fmt(dt);
+    const past=dt<today,blocked=aBlocked.includes(ds);
+    const reserved=resvs.filter(r=>r.status!=='cancelled').some(r=>ds>=r.check_in&&ds<r.check_out);
+    const we=(dt.getDay()===0||dt.getDay()===6);
+    let cls='adm-cday';
+    if(past)cls+=' past';
+    else if(reserved)cls+=' reserved';
+    else if(blocked)cls+=' blocked-adm';
+    else{cls+=' free';if(we)cls+=' we';}
+    h+=`<div class="${cls}">${d}</div>`;
   }
-  grid.innerHTML = html;
+  g.innerHTML=h;
 }
-async function prevAdmMonth() { admCalMonth--; if(admCalMonth<0){admCalMonth=11;admCalYear--;} await renderAdminCal(); }
-async function nextAdmMonth() { admCalMonth++; if(admCalMonth>11){admCalMonth=0;admCalYear++;} await renderAdminCal(); }
+async function prevAdmMonth(){aCalM--;if(aCalM<0){aCalM=11;aCalY--;}await renderAdmCal();}
+async function nextAdmMonth(){aCalM++;if(aCalM>11){aCalM=0;aCalY++;}await renderAdmCal();}
+async function blockDates(){const s=document.getElementById('bl-start').value,e=document.getElementById('bl-end').value;if(!s||!e){toast('⚠️ Informe as datas');return;}await api('POST','/admin/blocked-dates',{start:s,end:e});toast('✓ Datas bloqueadas!');await renderAdmCal();}
+async function unblockDates(){const s=document.getElementById('bl-start').value,e=document.getElementById('bl-end').value;if(!s||!e){toast('⚠️ Informe as datas');return;}await api('DELETE','/admin/blocked-dates',{start:s,end:e});toast('✓ Datas desbloqueadas!');await renderAdmCal();}
 
-async function blockDates() {
-  const start = document.getElementById('block-start').value;
-  const end   = document.getElementById('block-end').value;
-  if (!start || !end) { toast('⚠️ Informe as datas'); return; }
-  await api('POST', '/admin/blocked-dates', { start, end });
-  toast('✓ Datas bloqueadas!'); await renderAdminCal();
+function renderPriceMgr(tiers){
+  const el=document.getElementById('price-mgr');
+  const wk=tiers.find(x=>x.type==='week')||{price:350};
+  const we=tiers.find(x=>x.type==='weekend')||{price:420};
+  const hl=tiers.find(x=>x.type==='holiday')||{price:480};
+  const custom=tiers.filter(x=>x.date_start&&x.date_start!=='');
+  let h=`
+    <div class="pm-row"><div><div class="pm-lbl">Semana (Seg–Qui)</div><div class="pm-sub">Preço padrão para dias úteis</div></div><div style="display:flex;align-items:center;gap:.5rem"><span style="font-size:.8rem;color:var(--ink3)">R$</span><input class="pm-inp" type="number" id="pm-wk" value="${wk.price}"><button class="btn-save" style="padding:.42rem 1rem;font-size:.7rem" onclick="saveTier('week')">Salvar</button></div></div>
+    <div class="pm-row"><div><div class="pm-lbl">Fim de semana (Sex–Dom)</div><div class="pm-sub">Preço para sexta, sábado e domingo</div></div><div style="display:flex;align-items:center;gap:.5rem"><span style="font-size:.8rem;color:var(--ink3)">R$</span><input class="pm-inp" type="number" id="pm-we" value="${we.price}"><button class="btn-save" style="padding:.42rem 1rem;font-size:.7rem" onclick="saveTier('weekend')">Salvar</button></div></div>
+    <div class="pm-row"><div><div class="pm-lbl">Feriados e datas especiais</div><div class="pm-sub">Aplicado a períodos configurados</div></div><div style="display:flex;align-items:center;gap:.5rem"><span style="font-size:.8rem;color:var(--ink3)">R$</span><input class="pm-inp" type="number" id="pm-hl" value="${hl.price}"><button class="btn-save" style="padding:.42rem 1rem;font-size:.7rem" onclick="saveTier('holiday')">Salvar</button></div></div>`;
+  if(custom.length){h+=`<div style="font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);margin:.6rem 0 .3rem">Períodos especiais</div>`;h+=custom.map(t=>`<div class="pm-row"><div><div class="pm-lbl">${t.name}</div><div class="pm-sub">${fmtD(t.date_start)} → ${fmtD(t.date_end)}</div></div><div style="display:flex;align-items:center;gap:.5rem"><div class="pm-price">R$ ${fmtN(t.price)}</div><button class="btn-sm-r" onclick="removeTier(${t.id})">✕</button></div></div>`).join('');}
+  el.innerHTML=h;
 }
-async function unblockDates() {
-  const start = document.getElementById('block-start').value;
-  const end   = document.getElementById('block-end').value;
-  if (!start || !end) { toast('⚠️ Informe as datas'); return; }
-  await api('DELETE', '/admin/blocked-dates', { start, end });
-  toast('✓ Datas desbloqueadas!'); await renderAdminCal();
-}
+async function saveTier(type){const m={week:'pm-wk',weekend:'pm-we',holiday:'pm-hl'};const n={week:'Semana (Seg–Qui)',weekend:'Fim de semana (Sex–Dom)',holiday:'Feriados'};const price=parseFloat(document.getElementById(m[type]).value);if(isNaN(price)){toast('⚠️ Valor inválido');return;}await api('POST','/admin/price-tiers',{name:n[type],type,price});toast('✓ Preço salvo!');const t=await api('GET','/admin/price-tiers');renderPriceMgr(t);}
+async function addPriceTier(){const name=document.getElementById('pt-name').value.trim(),price=parseFloat(document.getElementById('pt-price').value),start=document.getElementById('pt-start').value,end=document.getElementById('pt-end').value;if(!name||isNaN(price)||!start||!end){toast('⚠️ Preencha todos os campos');return;}await api('POST','/admin/price-tiers',{name,type:'custom',price,date_start:start,date_end:end});['pt-name','pt-price','pt-start','pt-end'].forEach(id=>document.getElementById(id).value='');toast('✓ Período adicionado!');const t=await api('GET','/admin/price-tiers');renderPriceMgr(t);}
+async function removeTier(id){if(!confirm('Remover?'))return;await api('DELETE','/admin/price-tiers/'+id);toast('✓ Removido!');const t=await api('GET','/admin/price-tiers');renderPriceMgr(t);}
 
-// ── PRICE MANAGER ──
-function renderPriceManager(tiers) {
-  const el = document.getElementById('price-manager');
-  const wk  = tiers.find(x=>x.type==='week')   || {price:350};
-  const we  = tiers.find(x=>x.type==='weekend') || {price:420};
-  const hol = tiers.find(x=>x.type==='holiday') || {price:480};
-  const custom = tiers.filter(x=>x.type==='custom'||x.date_start);
-  let html = `
-    <div class="pm-row"><div><div class="pm-label">Semana (Seg–Qui)</div><div class="pm-sub">Preço padrão para dias úteis</div></div>
-      <div class="pm-edit-wrap"><span style="font-size:.82rem;color:var(--muted)">R$</span><input class="pm-edit-input" type="number" id="pm-week" value="${wk.price}"><button class="btn-save" style="padding:.45rem 1rem;font-size:.72rem" onclick="saveTier('week')">Salvar</button></div></div>
-    <div class="pm-row"><div><div class="pm-label">Fim de semana (Sex–Dom)</div><div class="pm-sub">Preço para sexta, sábado e domingo</div></div>
-      <div class="pm-edit-wrap"><span style="font-size:.82rem;color:var(--muted)">R$</span><input class="pm-edit-input" type="number" id="pm-wend" value="${we.price}"><button class="btn-save" style="padding:.45rem 1rem;font-size:.72rem" onclick="saveTier('weekend')">Salvar</button></div></div>
-    <div class="pm-row"><div><div class="pm-label">Feriados & datas especiais</div><div class="pm-sub">Aplicado a períodos configurados</div></div>
-      <div class="pm-edit-wrap"><span style="font-size:.82rem;color:var(--muted)">R$</span><input class="pm-edit-input" type="number" id="pm-hol" value="${hol.price}"><button class="btn-save" style="padding:.45rem 1rem;font-size:.72rem" onclick="saveTier('holiday')">Salvar</button></div></div>`;
-  if (custom.length) {
-    html += `<div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:.5rem 0 .3rem">Períodos especiais</div>`;
-    html += custom.map(t=>`
-      <div class="pm-row"><div><div class="pm-label">${t.name}</div><div class="pm-sub">${fmtDate(t.date_start)} → ${fmtDate(t.date_end)}</div></div>
-      <div style="display:flex;align-items:center;gap:.5rem"><div class="pm-price">R$ ${fmtN(t.price)}</div><button class="btn-sm-red" onclick="removeTier(${t.id})">✕</button></div></div>`).join('');
-  }
-  el.innerHTML = html;
+function renderRooms(rooms){
+  document.getElementById('admin-rooms').innerHTML=rooms.map(r=>`<div class="adm-card" style="display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:start"><div><div style="font-weight:500;color:var(--forest);margin-bottom:.15rem">${r.emoji} ${r.name}</div><div style="font-size:.78rem;color:var(--ember)">R$ ${fmtN(r.price)}/noite · ${r.capacity}p${r.breakfast?' · ☕ Café incluso':''}</div><div style="font-size:.76rem;color:var(--ink3);margin-top:.25rem">${r.description}</div></div><div style="display:flex;flex-direction:column;gap:.35rem"><button class="btn-sm-g" onclick="editRoom(${r.id},${r.price})">Editar</button><button class="btn-sm-r" onclick="delRoom(${r.id})">Excluir</button></div></div>`).join('')||'<p style="color:var(--ink3);font-size:.84rem">Nenhuma acomodação.</p>';
 }
-async function saveTier(type) {
-  const map = { week: 'pm-week', weekend: 'pm-wend', holiday: 'pm-hol' };
-  const names = { week: 'Semana (Seg–Qui)', weekend: 'Fim de semana (Sex–Dom)', holiday: 'Feriados' };
-  const price = parseFloat(document.getElementById(map[type]).value);
-  if (isNaN(price)) { toast('⚠️ Valor inválido'); return; }
-  await api('POST', '/admin/price-tiers', { name: names[type], type, price });
-  toast('✓ Preço salvo!');
-  const tiers = await api('GET', '/admin/price-tiers');
-  renderPriceManager(tiers);
+function renderSvcs(svcs){
+  document.getElementById('admin-svcs').innerHTML=svcs.map(s=>`<div class="adm-card" style="display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center"><div><div style="font-weight:500;color:var(--forest)">${s.emoji} ${s.name}</div><div style="font-size:.76rem;color:var(--ember)">${Number(s.price)===0?'Incluso':'R$ '+fmtN(s.price)} · ${s.category}</div><div style="font-size:.74rem;color:var(--ink3)">${s.description}</div></div><button class="btn-sm-r" onclick="delSvc(${s.id})">Excluir</button></div>`).join('')||'<p style="color:var(--ink3);font-size:.84rem">Nenhum serviço.</p>';
 }
-async function addPriceTier() {
-  const name  = document.getElementById('pt-name').value.trim();
-  const price = parseFloat(document.getElementById('pt-price').value);
-  const start = document.getElementById('pt-start').value;
-  const end   = document.getElementById('pt-end').value;
-  if (!name||isNaN(price)||!start||!end) { toast('⚠️ Preencha todos os campos'); return; }
-  await api('POST', '/admin/price-tiers', { name, type:'custom', price, date_start:start, date_end:end });
-  ['pt-name','pt-price','pt-start','pt-end'].forEach(id=>document.getElementById(id).value='');
-  toast('✓ Período adicionado!');
-  const tiers = await api('GET', '/admin/price-tiers');
-  renderPriceManager(tiers);
-}
-async function removeTier(id) {
-  if (!confirm('Remover período?')) return;
-  await api('DELETE', '/admin/price-tiers/' + id);
-  toast('✓ Removido!');
-  const tiers = await api('GET', '/admin/price-tiers');
-  renderPriceManager(tiers);
-}
+async function addRoom(){const n=document.getElementById('r-name').value.trim(),p=parseFloat(document.getElementById('r-price').value);if(!n||isNaN(p)){toast('⚠️ Preencha nome e preço');return;}await api('POST','/admin/rooms',{name:n,price:p,capacity:parseInt(document.getElementById('r-cap').value)||2,emoji:document.getElementById('r-emoji').value||'🛏️',description:document.getElementById('r-desc').value.trim(),img_url:document.getElementById('r-img').value.trim(),breakfast:document.getElementById('r-bf').checked});['r-name','r-price','r-cap','r-emoji','r-desc','r-img'].forEach(id=>document.getElementById(id).value='');document.getElementById('r-bf').checked=false;toast('✓ Acomodação salva!');const rooms=await api('GET','/rooms');renderRooms(rooms);}
+async function editRoom(id,cp){const np=prompt('Novo preço (atual: R$ '+cp+')',cp);if(np===null||isNaN(np))return;const rooms=await api('GET','/rooms');const r=rooms.find(x=>x.id===id);if(!r)return;await api('PUT','/admin/rooms/'+id,{...r,price:parseFloat(np)});toast('✓ Preço atualizado!');const updated=await api('GET','/rooms');renderRooms(updated);}
+async function delRoom(id){if(!confirm('Excluir acomodação?'))return;await api('DELETE','/admin/rooms/'+id);toast('✓ Removida');const rooms=await api('GET','/rooms');renderRooms(rooms);}
+async function addService(){const n=document.getElementById('s-name').value.trim();if(!n){toast('⚠️ Informe o nome');return;}await api('POST','/admin/services',{name:n,price:parseFloat(document.getElementById('s-price').value)||0,emoji:document.getElementById('s-emoji').value||'✨',category:document.getElementById('s-cat').value,description:document.getElementById('s-desc').value.trim()});['s-name','s-price','s-emoji','s-desc'].forEach(id=>document.getElementById(id).value='');toast('✓ Serviço salvo!');const svcs=await api('GET','/services');renderSvcs(svcs);}
+async function delSvc(id){if(!confirm('Excluir serviço?'))return;await api('DELETE','/admin/services/'+id);toast('✓ Removido');const svcs=await api('GET','/services');renderSvcs(svcs);}
 
-// ── ROOMS / SERVICES ──
-function renderAdminRooms(rooms) {
-  document.getElementById('admin-rooms').innerHTML = rooms.map(r=>`
-    <div class="adm-card" style="display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:start">
-      <div><div style="font-weight:500;color:var(--forest);margin-bottom:.2rem">${r.emoji} ${r.name}</div>
-      <div style="font-size:.8rem;color:var(--ember);font-weight:500">R$ ${fmtN(r.price)}/noite · ${r.capacity} pessoa(s) ${r.breakfast?'· ☕ Café incluso':''}</div>
-      <div style="font-size:.78rem;color:var(--muted);margin-top:.3rem">${r.description}</div></div>
-      <div style="display:flex;flex-direction:column;gap:.4rem;align-items:flex-end">
-        <button class="btn-sm-green" onclick="editRoom(${r.id},${r.price})">Editar preço</button>
-        <button class="btn-sm-red" onclick="delRoom(${r.id})">Excluir</button>
-      </div>
-    </div>`).join('') || '<p style="color:var(--muted);font-size:.85rem">Nenhuma acomodação.</p>';
-}
-function renderAdminSvcs(svcs) {
-  document.getElementById('admin-svcs').innerHTML = svcs.map(s=>`
-    <div class="adm-card" style="display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center">
-      <div><div style="font-weight:500;color:var(--forest)">${s.emoji} ${s.name}</div>
-      <div style="font-size:.78rem;color:var(--ember)">${Number(s.price)===0?'Incluso':'R$ '+fmtN(s.price)} · ${s.category}</div>
-      <div style="font-size:.76rem;color:var(--muted)">${s.description}</div></div>
-      <button class="btn-sm-red" onclick="delSvc(${s.id})">Excluir</button>
-    </div>`).join('') || '<p style="color:var(--muted);font-size:.85rem">Nenhum serviço.</p>';
-}
-async function addRoom() {
-  const n = document.getElementById('r-name').value.trim();
-  const p = parseFloat(document.getElementById('r-price').value);
-  if (!n || isNaN(p)) { toast('⚠️ Preencha nome e preço'); return; }
-  await api('POST', '/admin/rooms', {
-    name:n, price:p, capacity:parseInt(document.getElementById('r-cap').value)||2,
-    emoji:document.getElementById('r-emoji').value||'🛏️',
-    description:document.getElementById('r-desc').value.trim(),
-    img_url:document.getElementById('r-img').value.trim(),
-    breakfast:document.getElementById('r-bf').checked
-  });
-  ['r-name','r-price','r-cap','r-emoji','r-desc','r-img'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('r-bf').checked=false;
-  toast('✓ Acomodação salva!');
-  const rooms = await api('GET', '/rooms');
-  renderAdminRooms(rooms);
-}
-async function editRoom(id, currentPrice) {
-  const np = prompt('Novo preço (atual: R$ ' + currentPrice + ')', currentPrice);
-  if (np === null || isNaN(np)) return;
-  const rooms = await api('GET', '/rooms');
-  const room  = rooms.find(r=>r.id===id);
-  if (!room) return;
-  await api('PUT', '/admin/rooms/' + id, { ...room, price: parseFloat(np) });
-  toast('✓ Preço atualizado!');
-  const updated = await api('GET', '/rooms');
-  renderAdminRooms(updated);
-}
-async function delRoom(id) {
-  if (!confirm('Excluir acomodação?')) return;
-  await api('DELETE', '/admin/rooms/' + id);
-  toast('✓ Removida');
-  const rooms = await api('GET', '/rooms');
-  renderAdminRooms(rooms);
-}
-async function addService() {
-  const n = document.getElementById('s-name').value.trim();
-  if (!n) { toast('⚠️ Informe o nome'); return; }
-  await api('POST', '/admin/services', {
-    name:n, price:parseFloat(document.getElementById('s-price').value)||0,
-    emoji:document.getElementById('s-emoji').value||'✨',
-    category:document.getElementById('s-cat').value,
-    description:document.getElementById('s-desc').value.trim()
-  });
-  ['s-name','s-price','s-emoji','s-desc'].forEach(id=>document.getElementById(id).value='');
-  toast('✓ Serviço salvo!');
-  const svcs = await api('GET', '/services');
-  renderAdminSvcs(svcs);
-}
-async function delSvc(id) {
-  if (!confirm('Excluir serviço?')) return;
-  await api('DELETE', '/admin/services/' + id);
-  toast('✓ Removido');
-  const svcs = await api('GET', '/services');
-  renderAdminSvcs(svcs);
-}
+function loadCfg(c){document.getElementById('cfg-w').value=c.whatsapp||'';document.getElementById('cfg-e').value=c.email||'';document.getElementById('cfg-a').value=c.address||'';document.getElementById('cfg-ci').value=c.checkinout||'';}
+async function saveConfig(){const np=document.getElementById('cfg-p').value;const body={whatsapp:document.getElementById('cfg-w').value.trim(),email:document.getElementById('cfg-e').value.trim(),address:document.getElementById('cfg-a').value.trim(),checkinout:document.getElementById('cfg-ci').value.trim()};if(np)body.new_password=np;await api('PUT','/admin/config',body);document.getElementById('cfg-p').value='';toast('✓ Configurações salvas!');}
 
-function loadConfig(cfg) {
-  document.getElementById('cfg-w').value  = cfg.whatsapp  || '';
-  document.getElementById('cfg-e').value  = cfg.email     || '';
-  document.getElementById('cfg-a').value  = cfg.address   || '';
-  document.getElementById('cfg-ci').value = cfg.checkinout|| '';
-}
-async function saveConfig() {
-  const np = document.getElementById('cfg-p').value;
-  const body = {
-    whatsapp:  document.getElementById('cfg-w').value.trim(),
-    email:     document.getElementById('cfg-e').value.trim(),
-    address:   document.getElementById('cfg-a').value.trim(),
-    checkinout:document.getElementById('cfg-ci').value.trim(),
-  };
-  if (np) body.new_password = np;
-  await api('PUT', '/admin/config', body);
-  document.getElementById('cfg-p').value = '';
-  toast('✓ Configurações salvas!');
-}
-
-// ── TABS ──
-async function switchTab(id, btn) {
-  document.querySelectorAll('.adm-sec').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.adm-tab').forEach(b=>b.classList.remove('active'));
-  document.getElementById(id).classList.add('active'); btn.classList.add('active');
-  if (id==='tab-reservas')  await renderReservations();
-  if (id==='tab-precos')    renderPriceManager(await api('GET','/admin/price-tiers'));
-  if (id==='tab-calendario') await renderAdminCal();
-}
+function switchTab(id,btn){document.querySelectorAll('.adm-sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.adm-tab').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active');btn.classList.add('active');if(id==='tab-r')renderReservations();if(id==='tab-p')api('GET','/admin/price-tiers').then(renderPriceMgr);if(id==='tab-cal')renderAdmCal();}
 
 // ── UTILS ──
-function fmt(dt) { return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0'); }
-function fmtDate(ds) { if(!ds) return '—'; const [y,m,d]=ds.split('-'); return `${d}/${m}/${y}`; }
-function fmtN(n) { return Number(n).toLocaleString('pt-BR'); }
-function toast(msg) { const t=document.getElementById('toast'); t.textContent=msg; t.style.display='block'; setTimeout(()=>t.style.display='none',2800); }
-
-// ── MOBILE STICKY BAR ──
-(function(){
-  const bar = document.getElementById('sticky-bar');
-  if(!bar) return;
-  let lastY = 0;
-  window.addEventListener('scroll', ()=>{
-    const y = window.scrollY;
-    const isMobile = window.innerWidth <= 768;
-    if(!isMobile){ bar.style.display='none'; return; }
-    if(y > 400){
-      bar.style.display = y > lastY ? 'none' : 'flex';
-    } else {
-      bar.style.display = 'none';
-    }
-    lastY = y;
-  }, {passive:true});
-  window.addEventListener('resize', ()=>{
-    if(window.innerWidth > 768) bar.style.display='none';
-  });
-})();
-
-// ── MOBILE MENU ──
-function toggleMobileMenu(){
-  const m=document.getElementById('mobile-menu');
-  const open=m.style.display==='flex';
-  m.style.display=open?'none':'flex';
-  document.body.style.overflow=open?'':'hidden';
-}
-function closeMobileMenu(){
-  const m=document.getElementById('mobile-menu');
-  m.style.display='none';
-  document.body.style.overflow='';
-}
+function fmt(dt){return dt.getFullYear()+'-'+String(dt.getMonth()+1).padStart(2,'0')+'-'+String(dt.getDate()).padStart(2,'0');}
+function fmtD(ds){if(!ds)return'—';const[y,m,d]=ds.split('-');return`${d}/${m}/${y}`;}
+function fmtN(n){return Number(n).toLocaleString('pt-BR');}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',2800);}
 </script>
 </body>
 </html>
